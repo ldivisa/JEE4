@@ -1,0 +1,43 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 22 de abr. de 2025, 16:48:17
+    Author     : luiz.souza
+*/
+
+
+
+#paginatotal{
+    background-color: blue;
+    height:100%;
+    width: 100%;
+    margin: auto;
+    }
+    
+    #cabeçalho{
+        background-color: yellow;
+        height:15%;
+        width:100%;
+    }    
+    
+    #menu{
+        background-color: red;
+        height: 70%;
+        width: 30%;
+        float: left;
+    }
+    
+    #central{
+        background-color: pink;
+        height: 70%;
+        width: 70%;
+        float:right;
+    }
+    
+    #rodape{
+        background-color: black;
+        height: 15%;
+        width: 100%;
+    }
