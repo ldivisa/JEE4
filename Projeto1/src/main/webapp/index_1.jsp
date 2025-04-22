@@ -34,7 +34,7 @@
                             
                             <li><a href="views\relatorios.jsp">Relatorios</a></li>
                             
-                            <li><a href="views\saida.jsp">Sair</li>
+                            <li><a href="views\saida.jsp">Sair</a></li>
                         </ol>
                     </nav>
                 </div>

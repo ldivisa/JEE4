@@ -35,7 +35,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     #menu nav ol{
         margin-left: 20px;
         margin-top:  20px;
+    }
+    
+    #menu nav ol li{
+        list-style-type: none;
+        font-size: 1.2em;
+        font-family: Arial;
+        color: blueviolet;
         
+    }
+    #menu nav ol li a{
+        text-decoration: none;
+        font-size: 1.2em;
+        font-family: Arial;
+        color: blueviolet;
+    }
+    
+    #menu nav ol li a:hover{
+        text-decoration: underline;
+        background-color: yellow;
+        font-size: 1.2em;
+        color: black;
+        font-family: Arial;
+        color: blueviolet;
     }
     #central{
         
