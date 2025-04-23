@@ -7,9 +7,9 @@
                             <li><a href="views\saida.jsp">Vender Material</a></li>
                             <li><a href="views\entrada.jsp">Receber Material</a></li>
                             <li><a href="views\financeiro.jsp">Financeiro</a></li>
-                            
+                            <br>
                             <li><a href="views\relatorios.jsp">Relatorios</a></li>
-                            
+                            <br>
                             <li><a href="views\saida.jsp">Sair</a></li>
                         </ol>
                     </nav>
