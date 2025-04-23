@@ -8,29 +8,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 *{
     margin: 0px;
-    padding: 0px;
-    
+    padding: 0px;    
 }
 
-
 #paginatotal{
-    background-color: #fdf1cb;
+    background-color: white;
     height:100%;
     width: 100%;
-    margin: auto;
+/*    margin: auto;*/
     }
     
     #cabeçalho{
         height:5%;
         width:100%;
-        border-bottom: solid gold 3px;
+        border-bottom: solid gold 9px;
     }    
     
     #menu{
         height: 70%;
-        width: 30%;
+        width: 20%;
         float: left;
         margin-top: 10px;
+        margin-bottom: 10px;
+        border-right: solid black 6px;
     }
     
     #menu nav ol{
@@ -43,8 +43,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         font-size: 1.2em;
         font-family: Arial;
         color: blueviolet;
-        
     }
+    
     #menu nav ol li a{
         text-decoration: none;
         font-size: 1.2em;
@@ -60,33 +60,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         font-family: Arial;
         color: blueviolet;
     }
-    #central{
-        height: 90%;
-        width: 70%;
-        float:right;
-        
-    }
     
-    #rodape{
-        height: 5%;
+    #central{
+        height: 60%;
+        width: 80%;
+        float:right;
+        border-bottom: solid white 20px;
+    }
+
+/*    #rodape{
+        height: 10%;
         width: 100%;
         margin-bottom: 0px;
         margin-right: 0px;
-        border-top: solid red 2px;
-    }
+        border-top: solid white 4px;
+        background-color: grey;
+    }*/
     
     
     h1#texto1{
-        font-size:3em;
+        font-size:2em;
         font-family: serif;
-        color: orange;
+        color: red;
         text-shadow:
             0px 3px 0px orange,
             0px 14px 10px rgba(0,0,0,0.15),
             0px 14px 2px rgba(0,0,0,0.1),
             0px 30px 30px rgba(0,0,0,0.1);
         text-align: left;
-        
     }
     
     h1#textorodape{
@@ -95,8 +96,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         color: black;
         margin-right: 0px;
         text-align: right;
-        
-        
     }
     
     h1#textocabecalho{
@@ -108,6 +107,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
             0px 5px 10px rgba(0,0,0,0.15),
             0px 5px 2px rgba(0,0,0,0.1),
             0px 5px 30px rgba(0,0,0,0.1);
-        
-        
     }

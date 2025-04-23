@@ -1,6 +1,9 @@
- <div id="rodape">
+ </div>
+</div>
+    
+<div id="rodape">
                 <footer>
-                    <h1 id="textorodape">Depósito Divisa - Usuário ativo:      Data:</h1>
+                    <h1>Depósito Divisa - Usuário ativo:      Data:</h1>
                 </footer>
   </div>
         </div>   
