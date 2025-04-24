@@ -1,10 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 22 de abr. de 2025, 16:47:18
-    Author     : luiz.souza
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="css/estilos_1.css" media="screen">
 <!DOCTYPE html>
 <html>
@@ -12,10 +5,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Java EE 4 - Projeto 1</title>
     </head>
-                <body>
-
+<body>
         <div id="paginatotal">
-            <div id="cabeÃ§alho">
+            <div id="cabeçalho">
                 <header>
                     <h1 id="texto1">Deposito Divisa</h1>
                 </header>
@@ -38,3 +30,30 @@
                     </nav>
                 </div>
                
+ <div id="central">
+            
+<form action="ServletLogar" method="GET">
+    <table border="1">
+        <tr> <td colspan="2">Acesso ao sistema: </td></tr>
+        <tr>
+            <td>Usuário.:</td>
+            <td><input type="text" name="usuario"></td>
+       </tr>
+        <tr>
+            <td>Senha.:</td>
+            <td><input type="password" name="senha"></td>
+       </tr>
+       <tr><td colspan="2">Status... </td></tr>
+    </table>
+</form>
+</div>
+</div>
+ <div id="rodape">
+                <footer>
+                    Depósito Divisa - Usuário ativo:      Data:
+                </footer>
+  </div>
+        </div>   
+  </body>   
+</html>
+ 

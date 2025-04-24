@@ -1,11 +1,8 @@
- </div>
-</div>
-    
-<div id="rodape">
+ <div id="rodape">
                 <footer>
-                    <h1>Depósito Divisa - Usuário ativo:      Data:</h1>
+                    Depósito Divisa - Usuário ativo:      Data:
                 </footer>
   </div>
         </div>   
-    </body>
+  </body>   
 </html>

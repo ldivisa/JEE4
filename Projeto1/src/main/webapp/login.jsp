@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="cabecalho.jsp" />
-
-<form action=ServletLogar" method="GET">
+ <div id="central">
+            
+<form action="ServletLogar" method="GET">
     <table border="1">
         <tr> <td colspan="2">Acesso ao sistema: </td></tr>
         <tr>
@@ -16,6 +17,6 @@
        <tr><td colspan="2">Status... </td></tr>
     </table>
 </form>
-
-
-<c:import url="rodape.jsp" />
+</div>
+</div>
+<c:import url="rodape.jsp" /> 
