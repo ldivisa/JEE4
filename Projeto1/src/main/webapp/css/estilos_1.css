@@ -21,14 +21,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     #cabeçalho{
         height:8%;
         width:100%;
-        background-color: beige;
+        background-color: wheat;
+        border-bottom: solid red 1px;
     }    
     
     #menu{
         height: 82%;
         width: 20%;
         float: left;
-        background-color: whitesmoke;
+        background-color: lightsalmon;
+        border-right: solid red 1px;
        
     }
     
@@ -48,21 +50,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         text-decoration: none;
         font-size: 1.2em;
         font-family: Arial;
-        color: blueviolet;
+        color: black;
     }
     
     #menu nav ol li a:hover{
-        text-decoration: underline;
-        background-color: yellow;
+        text-decoration: bold;
+        background-color: red;
         font-size: 1.2em;
-        color: black;
+        color: white;
         font-family: Arial;
-        color: blueviolet;
+        
     }
     
     #central{
         height: 82%;
-        width: 80%;
+        width: 79%;
         float:right;
          alignment-baseline: middle;
          background-color: wheat;
@@ -70,9 +72,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
 
     #rodape{
-        height: 10%;
+        height: 6%;
         width: 100%;
-     
+        color: red;
+        text-align: center;
+             
     }
         
     h1#texto1{
@@ -88,7 +92,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
     
     h1#textorodape{
-        font-size:2em;
+        font-size:1.5em;
         font-family: Arial;
         text-align: center;
         background-color: black;
@@ -129,7 +133,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: white;
     align-content: center;    
     margin-top: 15%;
-    margin-left: 40%;
+    margin-left: 35%;
     margin-bottom: 10px;
         
     }
