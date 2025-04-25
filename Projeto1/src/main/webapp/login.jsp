@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="cabecalho.jsp" />
+<c:import url="cabecalhoLogin.jsp" />
 <div id="central">
 
     <form action="ServletLogar1" method="GET">
@@ -22,12 +22,12 @@
                     <input type="reset" name="limpar" value="Limpar">
                 </td>
             </tr>
-            <tr><td colspan="2"><h1 id="TextoStatus">x
+            <tr><td colspan="2"><h1 id="TextoStatus">
                         <%String status=(String) request.getAttribute("status");
                         if (status != null){
                             out.println(status);
                             } else{
-                            out.println("Digite seu usário e senha");
+                            out.println("Digite seu usuário e senha");
                             }
                             
                         %>
@@ -35,5 +35,5 @@
         </table>
     </form>
 </div>
-</div>
-<c:import url="rodape.jsp" /> 
+
+                        <c:import url="rodape.jsp" /> 
