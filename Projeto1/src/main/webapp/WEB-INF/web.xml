@@ -8,6 +8,17 @@
         <servlet-name>ServletLogar</servlet-name>
         <url-pattern>/ServletLogar</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletLogar1</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.ServletLogar1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletLogar1</servlet-name>
+        <url-pattern>/ServletLogar1</url-pattern>
+    </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30
