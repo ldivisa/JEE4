@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="mensagem" tagdir="/WEB-INF/tags/" %>
 <c:import url="cabecalhoLogin.jsp" />
 <div id="central">
 
@@ -31,15 +31,7 @@
                             }
                             */
                         %>
-                        <c:choose>
-                            <c:when test="${status !=null}">
-                                ${status} 
-                                </c:when>
-                               <c:otherwise>
-                                 Entre com seu usuário e senha
-                              </c:otherwise>   
-                            
-                        </c:choose>
+                        <mensagem:mensagemStatusLogin />
                     </h1> </td></tr>
         </table>
     </form>
