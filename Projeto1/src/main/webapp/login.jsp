@@ -23,14 +23,23 @@
                 </td>
             </tr>
             <tr><td colspan="2"><h1 id="TextoStatus">
-                        <%String status=(String) request.getAttribute("status");
+                       <% /*String status=(String) request.getAttribute("status");
                         if (status != null){
                             out.println(status);
                             } else{
                             out.println("Digite seu usuário e senha");
                             }
-                            
+                            */
                         %>
+                        <c:choose>
+                            <c:when test="${status !=null}">
+                                ${status} 
+                                </c:when>
+                               <c:otherwise>
+                                 Entre com seu usuário e senha
+                              </c:otherwise>   
+                            
+                        </c:choose>
                     </h1> </td></tr>
         </table>
     </form>
