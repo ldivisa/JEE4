@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen">
+<%@taglib tagdir="/WEB-INF/tags/" prefix="depositodivisa" %>
+<depositodivisa:verificarSessaoAtiva />
 <!DOCTYPE html>
 <html>
     <head>
