@@ -1,7 +1,7 @@
-<%@taglib  prefix="mensagem" tagdir="/WEB-INF/tags/" %> 
+<%@taglib  prefix="depositodivisa" tagdir="/WEB-INF/tags/" %> 
 <div id="rodape">
                 <footer>
-                    Depósito Divisa - Usuário ativo:<mensagem:mostrarUsuarioAtual />      Data:
+                    Depósito Divisa - Usuário ativo:<depositodivisa:mostrarUsuarioAtual />   -   Data: <depositodivisa:exibirDataAtual />
                 </footer>
   </div>
         </div>   
