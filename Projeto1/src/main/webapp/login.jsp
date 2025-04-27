@@ -23,18 +23,10 @@
                 </td>
             </tr>
             <tr><td colspan="2"><h1 id="TextoStatus">
-                       <% /*String status=(String) request.getAttribute("status");
-                        if (status != null){
-                            out.println(status);
-                            } else{
-                            out.println("Digite seu usuário e senha");
-                            }
-                            */
-                        %>
                         <mensagem:mensagemStatusLogin />
                     </h1> </td></tr>
         </table>
     </form>
 </div>
 
-                        <c:import url="rodape.jsp" /> 
+<c:import url="rodape.jsp" /> 

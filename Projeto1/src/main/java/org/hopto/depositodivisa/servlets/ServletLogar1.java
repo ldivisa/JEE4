@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.hopto.depositodivisa.model.Login;
 
 /**
@@ -34,24 +35,26 @@ public class ServletLogar1 extends HttpServlet {
         String nomeUsuario = request.getParameter("usuario");
         String senhaUsuario = request.getParameter("senha");
         String status = null;
+        String usuarioAtivo = null;
         Login login = new Login();
         login.setNomeUsuario(nomeUsuario);
         login.setSenhaUsuario(senhaUsuario);
         RequestDispatcher rd = null;
         
+        
         if (login.verificaUsuario()){
+            HttpSession sessao = request.getSession();
             status="Usuário válido";
-            request.setAttribute(status, "Usuário Válido");
-            rd = request.getRequestDispatcher("/index.jsp");
+            usuarioAtivo = login.getNomeUsuario();
+            request.setAttribute("status", "Usuário Válido");
+            sessao.setAttribute("usuarioAtual", nomeUsuario);
+            rd = request.getRequestDispatcher("/index2.jsp");
             rd.forward(request,response);
             //response.sendRedirect("index2.jsp");
         } else {
-            status="Usuário inválido";
             request.setAttribute("status", "Usuário e/ou senha inválidos");
-            //response.sendRedirect("login.jsp");
             rd = request.getRequestDispatcher("/login.jsp");
             rd.forward(request,response);
-
         }
         
         try (PrintWriter out = response.getWriter()) {
