@@ -4,15 +4,18 @@
  */
 package org.hopto.depositodivisa.servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hopto.depositodivisa.dao.LoginDAO;
+
 
 /**
  *
@@ -30,22 +33,31 @@ public class ServletLogar extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String nomeUsuario = request.getParameter("usuario");
         String senhaUsuario = request.getParameter("senha");
-        String status = null;
         LoginDAO login = new LoginDAO();
-        
-        if (login.verificaUsuario(nomeUsuario, status)){
-            status="Usuário válido";
-            //response.sendRedirect("index2.jsp");
-            
-        } else {
-            status="Usuário inválido";
-            //response.sendRedirect("login.jsp");
+        RequestDispatcher rd = null;
+                
+        try {
+            if (login.verificaUsuario(nomeUsuario, senhaUsuario)) {
+                HttpSession sessao = request.getSession();
+                request.setAttribute("status", "Usuário Válido");
+                request.setAttribute("usuarioAtual", nomeUsuario);
+                //sessao.setAttribute("usuarioAtual", nomeUsuario);
+                rd = request.getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
+            } else {
+                request.setAttribute("status", "Usuário e/ou senha inválidos");
+                rd = request.getRequestDispatcher("/login.jsp");
+                rd.forward(request, response);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletLogar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,11 +72,7 @@ public class ServletLogar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ServletLogar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -78,11 +86,7 @@ public class ServletLogar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ServletLogar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
