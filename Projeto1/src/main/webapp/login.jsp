@@ -4,15 +4,15 @@
 <div id="central">
 
     <form action="ServletLogar1" method="GET">
-        <table border="1" id=table" class="tabela">
+        <table border="1" id="table" class="tabela">
             <tr> <td colspan="2"><h1 id="TextoInformativo">Acesso ao sistema:</h1> </td></tr>
             <tr>
                 <td>Usuário.:</td>
-                <td><input placeholder="usuario" autocomplete="on" autofocus="true" type="text" name="usuario" required="true"></td>
+                <td><input placeholder="usuario" autocomplete="on" autofocus type="text" name="usuario" required></td>
             </tr>
             <tr>
                 <td>Senha.:</td>
-                <td><input placeholder="senha" type="password" name="senha" required="true"></td>
+                <td><input placeholder="senha" type="password" name="senha" required></td>
             </tr>
             <tr>
                 <td colspan="2">
