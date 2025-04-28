@@ -77,16 +77,7 @@ public class Login {
         this.dataUltimoAcessoUsuario = dataUltimoAcessoUsuario;
     }
     
-    public boolean verificaUsuario(){
-        if (this.nomeUsuario!=null&&senhaUsuario!=null){
-            if(this.nomeUsuario.equalsIgnoreCase("luiz") && this.senhaUsuario.equals("1234")){
-                return true;
-            }
-        }
-    
-        
-        return false;
-    }
+   
     private String nomeUsuario;
     private String senhaUsuario;
     private String acessousuario;

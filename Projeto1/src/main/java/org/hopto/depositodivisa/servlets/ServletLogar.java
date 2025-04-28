@@ -5,12 +5,14 @@
 package org.hopto.depositodivisa.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hopto.depositodivisa.model.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.hopto.depositodivisa.dao.LoginDAO;
 
 /**
  *
@@ -28,15 +30,14 @@ public class ServletLogar extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String nomeUsuario = request.getParameter("usuario");
         String senhaUsuario = request.getParameter("senha");
         String status = null;
-        Login login = new Login();
-        login.setNomeUsuario(nomeUsuario);
-        login.setSenhaUsuario(senhaUsuario);
-        if (login.verificaUsuario()){
+        LoginDAO login = new LoginDAO();
+        
+        if (login.verificaUsuario(nomeUsuario, status)){
             status="Usuário válido";
             //response.sendRedirect("index2.jsp");
             
@@ -45,21 +46,6 @@ public class ServletLogar extends HttpServlet {
             //response.sendRedirect("login.jsp");
         }
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletLogar</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println(status);
-            out.println("<h1>Usuario "+nomeUsuario+" Logou " + request.getContextPath() + "</h1>");
-            out.println("<h1> Senha"+senhaUsuario);
-            out.println("<h1>"+status+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +60,11 @@ public class ServletLogar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletLogar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -88,7 +78,11 @@ public class ServletLogar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletLogar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

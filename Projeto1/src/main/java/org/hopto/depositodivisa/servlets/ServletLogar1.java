@@ -6,13 +6,16 @@ package org.hopto.depositodivisa.servlets;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.hopto.depositodivisa.model.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.hopto.depositodivisa.dao.LoginDAO;
+
 
 /**
  *
@@ -36,25 +39,28 @@ public class ServletLogar1 extends HttpServlet {
         String senhaUsuario = request.getParameter("senha");
         String status = null;
         String usuarioAtual = null;
-        Login login = new Login();
-        login.setNomeUsuario(nomeUsuario);
-        login.setSenhaUsuario(senhaUsuario);
+        LoginDAO login = new LoginDAO();
+        
         RequestDispatcher rd = null;
         
         
-        if (login.verificaUsuario()){
-            HttpSession sessao = request.getSession();
-            status="Usuário válido";
-            //usuarioAtual = login.getNomeUsuario();
-            request.setAttribute("status", "Usuário Válido");
-            sessao.setAttribute("usuarioAtual", nomeUsuario);
-            rd = request.getRequestDispatcher("/index2.jsp");
-            rd.forward(request,response);
-            //response.sendRedirect("index2.jsp");
-        } else {
-            request.setAttribute("status", "Usuário e/ou senha inválidos");
-            rd = request.getRequestDispatcher("/login.jsp");
-            rd.forward(request,response);
+        try {
+            if (login.verificaUsuario(nomeUsuario, senhaUsuario)){
+                HttpSession sessao = request.getSession();
+                status="Usuário válido";
+                //usuarioAtual = login.getNomeUsuario();
+                request.setAttribute("status", "Usuário Válido");
+                sessao.setAttribute("usuarioAtual", nomeUsuario);
+                rd = request.getRequestDispatcher("/index2.jsp");
+                rd.forward(request,response);
+                //response.sendRedirect("index2.jsp");
+            } else {
+                request.setAttribute("status", "Usuário e/ou senha inválidos");
+                rd = request.getRequestDispatcher("/login.jsp");
+                rd.forward(request,response);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletLogar1.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        
