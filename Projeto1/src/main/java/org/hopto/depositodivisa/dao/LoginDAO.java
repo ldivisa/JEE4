@@ -160,7 +160,7 @@ public List<Login> getListaUsuarios() throws SQLException {
         while (resultSet.next()) {
             Login usuario = new Login();
             usuario.setAcessousuario(resultSet.getString("acessoUsuario"));
-            usuario.setDataUltimoAcessoUsuario(resultSet.getDate("dataUltimoAcessoUsuario"));
+            usuario.setDataUltimoAcessoUsuario(resultSet.getDate("dataUltimoAcesso"));
             usuario.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
             usuario.setNomeUsuario(resultSet.getString("nomeUsuario"));
             usuario.setSenhaUsuario(resultSet.getString("senhaUsuario"));
