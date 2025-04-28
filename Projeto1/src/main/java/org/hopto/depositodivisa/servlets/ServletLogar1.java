@@ -35,7 +35,7 @@ public class ServletLogar1 extends HttpServlet {
         String nomeUsuario = request.getParameter("usuario");
         String senhaUsuario = request.getParameter("senha");
         String status = null;
-        String usuarioAtivo = null;
+        String usuarioAtual = null;
         Login login = new Login();
         login.setNomeUsuario(nomeUsuario);
         login.setSenhaUsuario(senhaUsuario);
@@ -45,7 +45,7 @@ public class ServletLogar1 extends HttpServlet {
         if (login.verificaUsuario()){
             HttpSession sessao = request.getSession();
             status="Usuário válido";
-            usuarioAtivo = login.getNomeUsuario();
+            //usuarioAtual = login.getNomeUsuario();
             request.setAttribute("status", "Usuário Válido");
             sessao.setAttribute("usuarioAtual", nomeUsuario);
             rd = request.getRequestDispatcher("/index2.jsp");
@@ -57,21 +57,7 @@ public class ServletLogar1 extends HttpServlet {
             rd.forward(request,response);
         }
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletLogar</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println(status);
-            out.println("<h1>Usuario "+nomeUsuario+" Logou " + request.getContextPath() + "</h1>");
-            out.println("<h1> Senha"+senhaUsuario);
-            out.println("<h1>"+status+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

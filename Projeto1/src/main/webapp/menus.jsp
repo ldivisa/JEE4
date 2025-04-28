@@ -10,7 +10,7 @@
                             <br>
                             <li><a href="views\relatorios.jsp">Relatorios</a></li>
                             <br>
-                            <li><a href="views\saida.jsp">Sair</a></li>
+                            <li><a href="ServletEncerrarSessao">Sair</a></li>
                         </ol>
                     </nav>
                 </div>

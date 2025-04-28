@@ -18,6 +18,14 @@
         <url-pattern>/ServletLogar1</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>ServletEncerrarSessao</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.ServletEncerrarSessao</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEncerrarSessao</servlet-name>
+        <url-pattern>/ServletEncerrarSessao</url-pattern>
+    </servlet-mapping>
     
     <session-config>
         <session-timeout>
