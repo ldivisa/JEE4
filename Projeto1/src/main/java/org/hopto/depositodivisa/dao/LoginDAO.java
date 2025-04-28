@@ -4,10 +4,14 @@
  */
 package org.hopto.depositodivisa.dao;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.ws.rs.core.Application;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import org.hopto.depositodivisa.factory.ConexaoFactory;
 import org.hopto.depositodivisa.model.Login;
@@ -25,7 +29,7 @@ public class LoginDAO {
     private ResultSet resultSet;
     private PreparedStatement ps;
     private List<Login> listaUsuariosBanco;
-
+    public static String nomeCompletoUsuario;
 
     
     public void LoginDAO() {
@@ -35,9 +39,10 @@ public class LoginDAO {
         resultSet = null;
         ps = null;
         listaUsuariosBanco = null;
+        nomeCompletoUsuario = null;
         
-
     }
+
 
 public boolean verificaUsuario(String usuario, String senha) throws SQLException {
         this.usuario = usuario;
@@ -50,15 +55,128 @@ public boolean verificaUsuario(String usuario, String senha) throws SQLException
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
             ps.setString(2, senha);
-            
             resultSet = ps.executeQuery();
-            
             return resultSet.next();
+                
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }            
+    
+}
+
+
+public boolean verificaUsuario1(Login login) throws SQLException {
+        this.usuario = login.getNomeUsuario();
+        this.senha = login.getSenhaUsuario();
+                
+        try {
+            connection = new ConexaoFactory().getConnection();
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
+            ps = connection.prepareStatement(SQL);
+            ps.setString(1, usuario);
+            ps.setString(2, senha);
+            resultSet = ps.executeQuery();
+            return resultSet.next();
+                
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }            
+    
+}
+
+
+public Login getLogin(String usuario, String senha) throws SQLException {
+        this.usuario = usuario;
+        this.senha =senha;
+
+        try {
+            connection = new ConexaoFactory().getConnection();
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
+            ps = connection.prepareStatement(SQL);
+            ps.setString(1, usuario);
+            ps.setString(2, senha);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                Login usuarioLogado = new Login();
+                usuarioLogado.setNomeUsuario(usuario);
+                usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
+                usuarioLogado.setSenhaUsuario(senha);
+                usuarioLogado.setAcessousuario(resultSet.getString("AcessoUsuario"));
+                //System.out.println("O connection está fechado? "+connection.isClosed());
+                return usuarioLogado;
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        finally{
+        ps.close();
+        resultSet.close();
+        connection.close();
+        }
+
+        return null;
+    }
+
+
+
+public Login getLogin1(Login login) {
+        this.usuario = login.getNomeUsuario();
+        this.senha = login.getSenhaUsuario();
+
+        try {
+            connection = new ConexaoFactory().getConnection();
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
+            ps = connection.prepareStatement(SQL);
+            ps.setString(1, usuario);
+            ps.setString(2, senha);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                Login usuarioLogado = new Login();
+                usuarioLogado.setNomeUsuario(usuario);
+                usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
+                usuarioLogado.setSenhaUsuario(senha);
+                usuarioLogado.setAcessousuario(resultSet.getString("AcessoUsuario"));
+                return usuarioLogado;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+
+public List<Login> getListaUsuarios() throws SQLException {
+            connection = new ConexaoFactory().getConnection();
+    String SQL = "select * from login";
+    PreparedStatement ps = null;
+    ResultSet resultSet = null;
+    try {
+        ps = connection.prepareStatement(SQL);
+        resultSet = ps.executeQuery();
+        List<Login> listaUsuarios = new ArrayList<Login>();
+        while (resultSet.next()) {
+            Login usuario = new Login();
+            usuario.setAcessousuario(resultSet.getString("acessoUsuario"));
+            usuario.setDataUltimoAcessoUsuario(resultSet.getDate("dataUltimoAcessoUsuario"));
+            usuario.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
+            usuario.setNomeUsuario(resultSet.getString("nomeUsuario"));
+            usuario.setSenhaUsuario(resultSet.getString("senhaUsuario"));
+            listaUsuarios.add(login);
+        }
+        return listaUsuarios;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    finally{
+        resultSet.close();
+        ps.close();
+        connection.close();
+    }
         
     }
-          
-    
+
+
 }

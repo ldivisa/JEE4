@@ -14,6 +14,20 @@ import java.util.Date;
  */
 public class Login {
 
+    /**
+     * @return the nomeCompletoUsuario
+     */
+    public String getNomeCompletoUsuario() {
+        return nomeCompletoUsuario;
+    }
+
+    /**
+     * @param nomeCompletoUsuario the nomeCompletoUsuario to set
+     */
+    public void setNomeCompletoUsuario(String nomeCompletoUsuario) {
+        this.nomeCompletoUsuario = nomeCompletoUsuario;
+    }
+
     public Login() {
         this.nomeUsuario = null;
         this.senhaUsuario = null;
@@ -82,6 +96,6 @@ public class Login {
     private String senhaUsuario;
     private String acessousuario;
     private Date dataUltimoAcessoUsuario;
-    
+    private String nomeCompletoUsuario;
     
 }

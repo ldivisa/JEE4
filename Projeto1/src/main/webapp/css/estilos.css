@@ -6,38 +6,134 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : 22 de abr. de 2025, 16:48:17
     Author     : luiz.souza
 */
-
-
+*{
+    margin: 0px;
+    padding: 0px;    
+}
 
 #paginatotal{
-    background-color: blue;
+    background-color: white;
     height:100%;
     width: 100%;
     margin: auto;
     }
     
     #cabeçalho{
-        background-color: yellow;
-        height:15%;
+        height:8%;
         width:100%;
+        background-color: wheat;
+        border-bottom: solid red 1px;
     }    
     
     #menu{
-        background-color: red;
-        height: 70%;
-        width: 30%;
+        height: 86%;
+        width: 20%;
         float: left;
+        background-color: lightsalmon;
+        border-right: solid red 1px;
+       
+    }
+    
+    #menu nav ol{
+        margin-left: 20px;
+        margin-top:  20px;
+    }
+    
+    #menu nav ol li{
+        list-style-type: none;
+        font-size: 1.2em;
+        font-family: Arial;
+        color: blueviolet;
+    }
+    
+    #menu nav ol li a{
+        text-decoration: none;
+        font-size: 1.2em;
+        font-family: Arial;
+        color: black;
+    }
+    
+    #menu nav ol li a:hover{
+        background-color: red;
+        font-size: 1.2em;
+        color: white;
+        font-family: Arial;
+        
     }
     
     #central{
-        background-color: pink;
-        height: 70%;
-        width: 70%;
+        height: 86%;
+        width: 79.9%;
         float:right;
+         alignment-baseline: middle;
+         background-color: wheat;
+       
+    }
+
+    #rodape{
+        
+        height: 2%;
+        width: 100%;
+        color: red;
+        text-align: center;
+        vertical-align: central;
+    }
+        
+    h1#texto1{
+        font-size:2em;
+        font-family: serif;
+        color: red;
+        text-shadow:
+            0px 3px 0px orange,
+            0px 14px 10px rgba(0,0,0,0.15),
+            0px 14px 2px rgba(0,0,0,0.1),
+            0px 30px 30px rgba(0,0,0,0.1);
+        text-align: left;
     }
     
-    #rodape{
+    h1#textorodape{
+        font-size:1.5em;
+        font-family: Arial;
+        text-align: center;
         background-color: black;
-        height: 15%;
-        width: 100%;
+        color: white;
+    }
+    
+    h1#textocabecalho{
+        font-size:2em;
+        font-family: Arial;
+        color: black;
+        text-shadow:
+            0px 3px 0px white,
+            0px 5px 10px rgba(0,0,0,0.15),
+            0px 5px 2px rgba(0,0,0,0.1),
+            0px 5px 30px rgba(0,0,0,0.1);
+    }
+
+    h1#textoInformativo{
+        font-size:2em;
+        font-family: Arial;
+        color: red;
+        text-shadow:
+            0px 3px 0px white,
+            0px 5px 10px rgba(0,0,0,0.15),
+            0px 5px 2px rgba(0,0,0,0.1),
+            0px 5px 30px rgba(0,0,0,0.1);
+    }
+
+    h1#TextoStatus{
+        font-size:1.5em;
+        font-family: Arial;
+        color: yellow;
+        background-color: black;
+        
+    }
+
+    table{
+    background-color: white;
+    align-content: center;    
+    margin-top: 15%;
+    margin-left: 35%;
+    margin-bottom: 10px;
+        
     }

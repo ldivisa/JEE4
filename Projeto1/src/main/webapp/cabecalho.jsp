@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="css/estilos_1.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen">
 <!DOCTYPE html>
 <html>
     <head>

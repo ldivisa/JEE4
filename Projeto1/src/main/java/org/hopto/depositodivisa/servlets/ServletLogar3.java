@@ -21,7 +21,7 @@ import org.hopto.depositodivisa.model.Login;
  *
  * @author luiz.souza
  */
-public class ServletLogar extends HttpServlet {
+public class ServletLogar3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,23 +36,21 @@ public class ServletLogar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         LoginDAO login = new LoginDAO();
-        RequestDispatcher rd;
         Login usuarioChecado = new Login();
+        RequestDispatcher rd;
         usuarioChecado.setNomeUsuario(request.getParameter("usuario"));
         usuarioChecado.setSenhaUsuario(request.getParameter("senha"));
-        try {
-            if (login.verificaUsuario1(usuarioChecado)) {
-                request.setAttribute("status", "Usuário Válido");
-                request.setAttribute("usuarioAtual", usuarioChecado.getNomeUsuario());
-                rd = request.getRequestDispatcher("/index.jsp");
-                rd.forward(request, response);
-            } else {
-                request.setAttribute("status", "Usuário e/ou senha inválidos");
-                rd = request.getRequestDispatcher("/login.jsp");
-                rd.forward(request, response);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ServletLogar.class.getName()).log(Level.SEVERE, null, ex);
+        if (login.getLogin1(usuarioChecado)!=null) {
+            Login usuarioCarregado = login.getLogin1(usuarioChecado);
+            request.setAttribute("status", "Usuário Válido");
+            request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
+            request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
+            rd = request.getRequestDispatcher("/index.jsp");
+            rd.forward(request, response);
+        } else {
+            request.setAttribute("status", "Usuário e/ou senha inválidos");
+            rd = request.getRequestDispatcher("/login.jsp");
+            rd.forward(request, response);
         }
 
        

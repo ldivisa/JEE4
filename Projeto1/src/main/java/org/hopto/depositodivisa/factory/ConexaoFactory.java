@@ -34,7 +34,10 @@ public class ConexaoFactory {
                 Logger.getLogger(ConexaoFactory.class.getName()).log(Level.SEVERE, null, e);        
     throw new RuntimeException("Erro ClassNotFoundException em ConnectionFactory",e);
         }
+        
+        
     }
+   
 }
 
 

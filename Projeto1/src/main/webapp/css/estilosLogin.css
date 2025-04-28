@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 #paginatotal{
     background-color: white;
-    height:99%;
+    height:100%;
     width: 100%;
     margin: auto;
     }
@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     
     
     #central{
-        height: 90%;
+        height: 86%;
         width: 100%;
         float:right;
          alignment-baseline: middle;

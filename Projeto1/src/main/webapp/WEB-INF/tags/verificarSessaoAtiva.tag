@@ -6,6 +6,5 @@
      </c:when>
     <c:otherwise>
         <%session.invalidate();%>
-        Validacao ativa
     </c:otherwise>   
 </c:choose>
