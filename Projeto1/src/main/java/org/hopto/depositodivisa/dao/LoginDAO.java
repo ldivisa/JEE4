@@ -101,7 +101,7 @@ public Login getLogin(String usuario, String senha) throws SQLException {
                 usuarioLogado.setNomeUsuario(usuario);
                 usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
                 usuarioLogado.setSenhaUsuario(senha);
-                usuarioLogado.setAcessousuario(resultSet.getString("AcessoUsuario"));
+                usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
                 //System.out.println("O connection está fechado? "+connection.isClosed());
                 return usuarioLogado;
             }
@@ -136,7 +136,7 @@ public Login getLogin1(Login login) {
                 usuarioLogado.setNomeUsuario(usuario);
                 usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
                 usuarioLogado.setSenhaUsuario(senha);
-                usuarioLogado.setAcessousuario(resultSet.getString("AcessoUsuario"));
+                usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
                 return usuarioLogado;
             }
 
@@ -153,18 +153,19 @@ public List<Login> getListaUsuarios() throws SQLException {
     String SQL = "select * from login";
     PreparedStatement ps = null;
     ResultSet resultSet = null;
+    List<Login> listaUsuarios;
     try {
         ps = connection.prepareStatement(SQL);
         resultSet = ps.executeQuery();
-        List<Login> listaUsuarios = new ArrayList<Login>();
+        listaUsuarios = new ArrayList<Login>();
         while (resultSet.next()) {
             Login usuario = new Login();
-            usuario.setAcessousuario(resultSet.getString("acessoUsuario"));
+            usuario.setAcessoUsuario(resultSet.getString("acessoUsuario"));
             usuario.setDataUltimoAcessoUsuario(resultSet.getDate("dataUltimoAcesso"));
             usuario.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
             usuario.setNomeUsuario(resultSet.getString("nomeUsuario"));
             usuario.setSenhaUsuario(resultSet.getString("senhaUsuario"));
-            listaUsuarios.add(login);
+            listaUsuarios.add(usuario);
         }
         return listaUsuarios;
         } catch (SQLException e) {

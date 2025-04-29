@@ -31,7 +31,7 @@ public class Login {
     public Login() {
         this.nomeUsuario = null;
         this.senhaUsuario = null;
-        this.acessousuario = null;
+        this.acessoUsuario = null;
         this.dataUltimoAcessoUsuario = null;
     }
 
@@ -66,15 +66,15 @@ public class Login {
     /**
      * @return the acessousuario
      */
-    public String getAcessousuario() {
-        return acessousuario;
+    public String getAcessoUsuario() {
+        return acessoUsuario;
     }
 
     /**
      * @param acessousuario the acessousuario to set
      */
-    public void setAcessousuario(String acessousuario) {
-        this.acessousuario = acessousuario;
+    public void setAcessoUsuario(String acessoUsuario) {
+        this.acessoUsuario = acessoUsuario;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Login {
    
     private String nomeUsuario;
     private String senhaUsuario;
-    private String acessousuario;
+    private String acessoUsuario;
     private Date dataUltimoAcessoUsuario;
     private String nomeCompletoUsuario;
     
