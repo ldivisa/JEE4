@@ -42,6 +42,10 @@
         <location>/erro.jsp</location>
     </error-page>
     <error-page>
+        <error-code>500</error-code>
+        <location>/erro.jsp</location>
+    </error-page>    
+    <error-page>
         <error-code>404</error-code>
         <location>/naoencontrada.jsp</location>
     </error-page>
