@@ -16,21 +16,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height:100%;
     width: 100%;
     margin: auto;
+    resize: both;
     }
     
     #cabeçalho{
-        height:8%;
+        height:10%;
         width:100%;
         background-color: wheat;
         border-bottom: solid red 1px;
+        resize: both;
     }    
     
     #menu{
-        height: 86%;
-        width: 20%;
+        height: 79.9%;
+        width: 19.9%;
         float: left;
         background-color: lightsalmon;
         border-right: solid red 1px;
+        resize: both;
        
     }
     
@@ -62,21 +65,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
     
     #central{
-        height: 86%;
+        height: 80%;
         width: 79.9%;
         float:right;
          alignment-baseline: middle;
          background-color: wheat;
-       
+         resize: both;
     }
 
     #rodape{
         
-        height: 2%;
+        height: 8%;
         width: 100%;
         color: red;
         text-align: center;
         vertical-align: central;
+        resize: both;
     }
         
     h1#texto1{
@@ -130,10 +134,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
 
     table{
+    align-content: center;
     background-color: white;
     align-content: center;    
-    margin-top: 15%;
-    margin-left: 35%;
-    margin-bottom: 10px;
+    margin: auto;
+    resize: both;
         
     }

@@ -8,29 +8,34 @@
 <c:import url="cabecalho.jsp" />
 <div id="central">
     <h1>Lista usuários via scriptlet Java</h1>
-    <% 
+    <table border="1">
+        <tr>
+            <td>Nome</td>
+            <td>Nome Completo</td>
+            <td>Nivel Acesso</td>
+            <td>Grupo Usuários</td>
+            <td>Data Cadastro</td>
+            <td>Data último acesso</td>
+            
+        </tr>
+     <%
     List<Login> listaUsuarios= (List<Login>) request.getAttribute("sessaoListaUsuarios");
     for (Iterator iterator = listaUsuarios.iterator();
     iterator.hasNext();){
-        Login usuario = (Login) iterator.next();
-        out.println(usuario.getNomeUsuario());
-        out.println(usuario.getNomeCompletoUsuario());
-        out.println("<br>");
+       Login usuario = (Login) iterator.next();
+        out.println("<tr>");
+        out.println("<td>"+usuario.getNomeUsuario()+"</td>");
+        out.println("<td>"+usuario.getNomeCompletoUsuario()+"</td>");
+        out.println("<td>"+usuario.getAcessoUsuario()+"</td>");
+        out.println("<td>"+usuario.getGrupoUsuarios()+"</td>");
+        out.println("<td>"+usuario.getDataCadastro()+"</td>");
+        out.println("<td>"+usuario.getDataUltimoAcesso()+"</td>");
         
         }
-        out.println("<br>Fim do iterator<br>");
     %>
     
-    <% 
-    List<Login> listaUsuarios2= (List<Login>) request.getAttribute("sessaoListaUsuarios");
-    for (Login usuario:listaUsuarios2){
-        out.print(usuario.getNomeUsuario());
-        out.print(usuario.getSenhaUsuario());
-        }
-       
-        out.println("<br>Fim do for<br>");
-    %>
-           
+    
+    </table>
     </div>
 </div>
 <c:import url="rodape.jsp" />

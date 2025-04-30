@@ -161,10 +161,12 @@ public List<Login> getListaUsuarios() throws SQLException {
         while (resultSet.next()) {
             Login usuario = new Login();
             usuario.setAcessoUsuario(resultSet.getString("acessoUsuario"));
-            usuario.setDataUltimoAcessoUsuario(resultSet.getDate("dataUltimoAcesso"));
+            usuario.setDataUltimoAcesso(resultSet.getDate("dataUltimoAcesso"));
+            usuario.setDataCadastro(resultSet.getDate("dataCadastro"));
             usuario.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
             usuario.setNomeUsuario(resultSet.getString("nomeUsuario"));
             usuario.setSenhaUsuario(resultSet.getString("senhaUsuario"));
+            usuario.setGrupoUsuarios(resultSet.getString("grupoUsuarios"));
             listaUsuarios.add(usuario);
         }
         return listaUsuarios;
