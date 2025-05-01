@@ -150,3 +150,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     margin: auto;
     
 }
+.tabelaLinhaEspecial{
+    color: white;
+    background: red;
+    text-align: center;
+    
+}

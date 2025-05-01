@@ -7,13 +7,15 @@
     <c:set var="corA" value="lightblue"/>
     <c:set var="corB" value="white"/>
     <table border="1">
-        <tr style="background-color: grey">
+        <tr class="tabelaLinhaespecial">
             <td>Nome</td>
             <td>Nome Completo</td>
             <td>Nivel Acesso</td>
             <td>Grupo Usuários</td>
             <td>Data Cadastro</td>
             <td>Data último acesso</td>
+            <td>Alterar</td>
+            <td>Excluir</td>
         </tr>
         <c:forEach var="usuarios" items="${sessaoListaUsuarios}">
             <c:choose>
@@ -31,10 +33,11 @@
                 <td> ${usuarios['grupoUsuarios']} </td>
                 <td> ${usuarios['dataCadastro']} </td>
                 <td> ${usuarios['dataUltimoAcesso']} </td>
-
+                <td>alterar</td>
+                <td>excluir</td>
             </tr>   
             <c:set var="contador" value="${contador+1}"/>
         </c:forEach>
-        <tr><td colspan="6">Total de usuários registrados: ${contador}</td></tr>
+        <tr><td class="tabelaLinhaespecial" colspan="8">Total de usuários registrados: ${contador}</td></tr>
 
     </table>
