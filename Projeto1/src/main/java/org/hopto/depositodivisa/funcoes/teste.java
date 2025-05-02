@@ -12,11 +12,15 @@ public class teste {
 
 
     public static void main (String[] args) {
-        HashSenhas teste1 = new HashSenhas();
-        String cifrada ="d";
-        String hash= teste1.gerarArgon2(cifrada);
-        System.out.println(teste1.checarArgon2(cifrada, hash));
+        HashSenhasArgo2 maquinaHash = new HashSenhasArgo2();
+        
+        String cifrada ="123";
+        String hash = maquinaHash.criaHashSenha(cifrada);
+        System.out.println("Senha cifrada: "+hash);
+        System.out.println(maquinaHash.checaHashSenha(hash,cifrada));
+        System.out.println(maquinaHash.checaHashSenha(hash,cifrada));
     }
 
+    
+    }
 
-}
