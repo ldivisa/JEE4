@@ -40,6 +40,9 @@ public class ServletListarUsuarios extends HttpServlet {
             List<Login> listaUsuarios = loginDAO.getListaUsuarios();
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             RequestDispatcher rd = request.getRequestDispatcher("listausuarios.jsp");
+            request.setAttribute("usuarioAtual", (String) request.getSession().getAttribute("usuarioAtual"));
+            request.setAttribute("nomeCompletoUsuario",(String) request.getSession().getAttribute("nomeCompletoUsuario"));
+            
             rd.forward(request, response);
             
         } catch (SQLException ex) {

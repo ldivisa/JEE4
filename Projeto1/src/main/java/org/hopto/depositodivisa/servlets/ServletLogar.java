@@ -43,7 +43,7 @@ public class ServletLogar extends HttpServlet {
         try {
             if (login.verificaUsuario1(usuarioChecado)) {
                 request.setAttribute("status", "Usuário Válido");
-                request.setAttribute("usuarioAtual", usuarioChecado.getNomeUsuario());
+                request.getSession().setAttribute("usuarioAtual", usuarioChecado.getNomeUsuario());
                 rd = request.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
             } else {

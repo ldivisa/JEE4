@@ -10,9 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import jakarta.servlet.http.HttpSession;
 import org.hopto.depositodivisa.dao.LoginDAO;
 import org.hopto.depositodivisa.model.Login;
 
@@ -35,6 +33,7 @@ public class ServletLogar3 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         LoginDAO login = new LoginDAO();
         Login usuarioChecado = new Login();
         RequestDispatcher rd;
@@ -45,6 +44,8 @@ public class ServletLogar3 extends HttpServlet {
             request.setAttribute("status", "Usuário Válido");
             request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
             request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
+            session.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
+            session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
             rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
         } else {
@@ -55,7 +56,7 @@ public class ServletLogar3 extends HttpServlet {
 
        
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

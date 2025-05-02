@@ -6,13 +6,12 @@ package org.hopto.depositodivisa.servlets;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.hopto.depositodivisa.model.Login;
+
 
 /**
  *
@@ -34,10 +33,11 @@ public class ServletEncerrarSessao extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sessao;
         sessao = request.getSession();
-        RequestDispatcher rd = null;
+        RequestDispatcher rd;
         request.setAttribute("status", null);
         request.setAttribute("usuarioAtual", null);     
         sessao.setAttribute("usuarioAtual", null);
+        sessao.setAttribute("nomeUsuarioCompleto", null);
         rd = request.getRequestDispatcher("/login.jsp");
         rd.forward(request, response);
     }
@@ -47,6 +47,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         RequestDispatcher rd = null;
         HttpSession sessao = request.getSession();
         sessao.removeAttribute("usuarioAtual");
+        sessao.removeAttribute("nomeUsuarioCompleto");
         request.setAttribute("status", null);
         request.removeAttribute("usuarioAtual");
         

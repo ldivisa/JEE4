@@ -1,6 +1,12 @@
 <%@tag body-content="empty"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<c:choose>
-    <c:when test="${nomeCompletoUsuario !=null}">${nomeCompletoUsuario}</c:when>
-    <c:otherwise> nenhum </c:otherwise>   
-</c:choose>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+    String nomeCompletoUsuario;
+    if (session.getAttribute("nomeCompletoUsuario") != null) {
+        nomeCompletoUsuario = (String) session.getAttribute("nomeCompletoUsuario");
+    } else {
+        nomeCompletoUsuario = "ninguém logado no sistema";
+    }
+    request.setAttribute("nomeCompletoUsuario", nomeCompletoUsuario);
+%>
+${nomeCompletoUsuario} -  Id da sessão do usuário: <%= session.getId() %>
