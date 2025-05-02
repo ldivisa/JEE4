@@ -4,7 +4,5 @@
     <c:when test="${usuarioAtual == null}"> 
         <%response.sendRedirect("login.jsp");%>
      </c:when>
-    <c:otherwise>
-        <%session.invalidate();%>
-    </c:otherwise>   
+     
 </c:choose>

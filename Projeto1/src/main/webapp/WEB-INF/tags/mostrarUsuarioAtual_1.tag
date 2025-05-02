@@ -9,4 +9,4 @@
     }
     request.setAttribute("nomeCompletoUsuario", nomeCompletoUsuario);
 %>
-${nomeCompletoUsuario} -  Id da sessão do usuário: <%= session.getId() %>
+<%=session.getAttribute("nomeCompletoUsuario")%> -  Id da sessão do usuário: <%= session.getId() %>
