@@ -4,7 +4,7 @@
 <%@page import="org.hopto.depositodivisa.model.Login"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="depositodivisa" %>
-
+<depositodivisa:verificarSessaoAtiva />
 <c:import url="cabecalho.jsp" />
 <div id="central">
     <h1>Listagem dos usuários do sistema</h1>

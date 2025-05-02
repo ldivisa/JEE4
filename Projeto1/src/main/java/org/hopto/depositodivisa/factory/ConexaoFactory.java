@@ -4,7 +4,7 @@
  */
 package org.hopto.depositodivisa.factory;
 
-import java.net.ConnectException;
+import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,24 +18,51 @@ import java.util.logging.Logger;
  */
 public class ConexaoFactory {
 
-    private final String usuario = "estudos";
-    private final String url = "jdbc:mysql://127.0.0.1:3306/estudos";
-    //private final String url = "jdbc:mysql://depositodivisa2.hopto.org:3306/estudos";
-    private final String driver = "com.mysql.jdbc.Driver";
-    //private final String senha = "Caralho@estudos1";
-    private final String senha = "1234";
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * @return the driver
+     */
+    public String getDriver() {
+        return driver;
+    }
+
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
+Dotenv ambiente =Dotenv.load();
+
+    private final String usuario = ambiente.get("DB_USUARIO");
+    private final String url = ambiente.get("DB_URL");
+    private final String driver = ambiente.get("DB_DRIVER");
+    private final String senha = ambiente.get("DB_SENHA");
 
     public Connection getConnection() {
         try {
-            Class.forName(driver);
-            return DriverManager.getConnection(url, usuario, senha);
+            Class.forName(getDriver());
+            return DriverManager.getConnection(getUrl(), getUsuario(), getSenha());
         } catch (SQLException e) {
             Logger.getLogger(ConexaoFactory.class.getName()).log(Level.SEVERE, null, e);
-            throw new RuntimeException("Erro SQLException ao abrir a conexão em ConnectionFactory",e);
+            throw new RuntimeException("Erro SQLException ao abrir a conexão em ConnectionFactory", e);
         } catch (ClassNotFoundException e) {
-                Logger.getLogger(ConexaoFactory.class.getName()).log(Level.SEVERE, null, e);        
-    throw new RuntimeException("Erro ClassNotFoundException em ConnectionFactory",e);
-        } 
+            Logger.getLogger(ConexaoFactory.class.getName()).log(Level.SEVERE, null, e);
+            throw new RuntimeException("Erro ClassNotFoundException em ConnectionFactory", e);
+        }
         
         
     }

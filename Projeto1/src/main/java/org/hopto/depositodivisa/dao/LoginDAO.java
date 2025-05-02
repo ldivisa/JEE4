@@ -4,9 +4,6 @@
  */
 package org.hopto.depositodivisa.dao;
 
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.jsp.JspWriter;
-import jakarta.ws.rs.core.Application;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +18,7 @@ import org.hopto.depositodivisa.model.Login;
  * @author luiz.souza
  */
 public class LoginDAO {
-
+    public static String url;
     public Connection connection;
     Login login = new Login();
     private String usuario;
@@ -30,9 +27,10 @@ public class LoginDAO {
     private PreparedStatement ps;
     private List<Login> listaUsuariosBanco;
     public static String nomeCompletoUsuario;
-
+    
     
     public void LoginDAO() {
+        url = null;
         login = new Login();
         usuario = null;
         senha = null;
@@ -47,10 +45,12 @@ public class LoginDAO {
 public boolean verificaUsuario(String usuario, String senha) throws SQLException {
         this.usuario = usuario;
         this.senha = senha;
-        
+        url=new ConexaoFactory().getUrl();
         
         try {
             connection = new ConexaoFactory().getConnection();
+            
+                    
             String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
@@ -60,7 +60,12 @@ public boolean verificaUsuario(String usuario, String senha) throws SQLException
                 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }            
+        }
+        finally{
+        ps.close();
+        resultSet.close();
+        connection.close();
+        }
     
 }
 
@@ -81,6 +86,11 @@ public boolean verificaUsuario1(Login login) throws SQLException {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }            
+ finally {
+        ps.close();
+        resultSet.close();
+        connection.close();
+    }
     
 }
 
