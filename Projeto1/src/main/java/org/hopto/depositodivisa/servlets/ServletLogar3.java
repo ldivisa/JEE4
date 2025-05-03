@@ -13,8 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.hopto.depositodivisa.dao.LoginDAO;
 import org.hopto.depositodivisa.model.Login;
-
-
 /**
  *
  * @author luiz.souza
@@ -39,8 +37,8 @@ public class ServletLogar3 extends HttpServlet {
         RequestDispatcher rd;
         usuarioChecado.setNomeUsuario(request.getParameter("usuario"));
         usuarioChecado.setSenhaUsuario(request.getParameter("senha"));
-        if (login.getLogin1(usuarioChecado)!=null) {
-            Login usuarioCarregado = login.getLogin1(usuarioChecado);
+        if (login.getLogin(usuarioChecado)!=null) {
+            Login usuarioCarregado = login.getLogin(usuarioChecado);
             request.setAttribute("status", "Usuário Válido");
             request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
             request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());

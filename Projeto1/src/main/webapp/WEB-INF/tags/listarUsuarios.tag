@@ -14,6 +14,7 @@
             <td>Grupo Usuários</td>
             <td>Data Cadastro</td>
             <td>Data último acesso</td>
+            <td>Ativo</td>
             <td>Alterar</td>
             <td>Excluir</td>
         </tr>
@@ -33,6 +34,7 @@
                 <td> ${usuarios['grupoUsuarios']} </td>
                 <td> ${usuarios['dataCadastro']} </td>
                 <td> ${usuarios['dataUltimoAcesso']} </td>
+                <td> ${usuarios['ativo']} </td>
                 <td>alterar</td>
                 <td>excluir</td>
             </tr>   

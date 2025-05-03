@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.hopto.depositodivisa.factory.ConexaoFactory;
+import org.hopto.depositodivisa.funcoes.HashSenhasArgo2;
 import org.hopto.depositodivisa.model.Login;
 
 /**
@@ -51,7 +52,7 @@ public boolean verificaUsuario(String usuario, String senha) throws SQLException
             connection = new ConexaoFactory().getConnection();
             
                     
-            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=? and ativo=true";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
             ps.setString(2, senha);
@@ -76,7 +77,7 @@ public boolean verificaUsuario1(Login login) throws SQLException {
                 
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=? and ativo=true";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
             ps.setString(2, senha);
@@ -95,7 +96,7 @@ public boolean verificaUsuario1(Login login) throws SQLException {
 }
 
 
-public Login getLogin(String usuario, String senha) throws SQLException {
+public Login getLogin2(String usuario, String senha) throws SQLException {
         this.usuario = usuario;
         this.senha =senha;
 
@@ -147,6 +148,36 @@ public Login getLogin1(Login login) {
                 usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
                 usuarioLogado.setSenhaUsuario(senha);
                 usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
+                return usuarioLogado;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+
+public Login getLogin(Login login) {
+        this.usuario = login.getNomeUsuario();
+        this.senha = login.getSenhaUsuario();
+        HashSenhasArgo2 maquinaSenha = new HashSenhasArgo2();
+        
+        try {
+            connection = new ConexaoFactory().getConnection();
+            String SQL = "select * from login where nomeUsuario=? and ativo=true";
+            ps = connection.prepareStatement(SQL);
+            ps.setString(1, usuario);
+            //ps.setString(2, senha);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()&&maquinaSenha.checaHashSenha(resultSet.getString("senhaUsuario"), this.senha)) {
+                Login usuarioLogado = new Login();
+                usuarioLogado.setNomeUsuario(usuario);
+                usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
+                usuarioLogado.setSenhaUsuario(senha);
+                usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
+                usuarioLogado.setAtivo(resultSet.getBoolean("ativo"));
                 return usuarioLogado;
             }
 

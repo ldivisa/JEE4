@@ -15,6 +15,20 @@ import java.util.Date;
 public class Login {
 
     /**
+     * @return the ativo
+     */
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    /**
      * @return the nomeUsuario
      */
     public String getNomeUsuario() {
@@ -123,5 +137,6 @@ public class Login {
     private Date dataCadastro;
     private String grupoUsuarios;
     private String nomeCompletoUsuario;
+    private boolean ativo;
     
 }
