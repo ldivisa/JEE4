@@ -36,10 +36,18 @@
                 <td> ${usuarios['dataUltimoAcesso']} </td>
                 <td> ${usuarios['ativo']} </td>
                 <td>alterar</td>
-                <td>excluir</td>
+                <c:choose>
+                    <c:when test="${usuarios['ativo']==1}">
+                        <td> <a href="desativarUsuario?usuario=${usuarios['nomeUsuario']}"</a>desativar</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td> <a href="ativarUsuario?usuario=${usuarios['nomeUsuario']}"</a>reativar</td>
+                    </c:otherwise>
+                </c:choose>
+                
             </tr>   
             <c:set var="contador" value="${contador+1}"/>
         </c:forEach>
-        <tr><td class="tabelaLinhaespecial" colspan="8">Total de usuários registrados: ${contador}</td></tr>
+        <tr><td class="tabelaLinhaespecial" colspan="9">Total de usuários registrados: ${contador}</td></tr>
 
     </table>

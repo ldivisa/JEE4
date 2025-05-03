@@ -17,14 +17,14 @@ public class Login {
     /**
      * @return the ativo
      */
-    public boolean isAtivo() {
+    public int getAtivo() {
         return ativo;
     }
 
     /**
      * @param ativo the ativo to set
      */
-    public void setAtivo(boolean ativo) {
+    public void setAtivo(int ativo) {
         this.ativo = ativo;
     }
 
@@ -137,6 +137,6 @@ public class Login {
     private Date dataCadastro;
     private String grupoUsuarios;
     private String nomeCompletoUsuario;
-    private boolean ativo;
+    private int ativo;
     
 }

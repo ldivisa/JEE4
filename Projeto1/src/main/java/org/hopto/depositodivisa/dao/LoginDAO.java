@@ -177,7 +177,7 @@ public Login getLogin(Login login) {
                 usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
                 usuarioLogado.setSenhaUsuario(senha);
                 usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
-                usuarioLogado.setAtivo(resultSet.getBoolean("ativo"));
+                usuarioLogado.setAtivo(resultSet.getInt("ativo"));
                 return usuarioLogado;
             }
 
@@ -208,6 +208,7 @@ public List<Login> getListaUsuarios() throws SQLException {
             usuario.setNomeUsuario(resultSet.getString("nomeUsuario"));
             usuario.setSenhaUsuario(resultSet.getString("senhaUsuario"));
             usuario.setGrupoUsuarios(resultSet.getString("grupoUsuarios"));
+            usuario.setAtivo(resultSet.getInt("ativo"));
             listaUsuarios.add(usuario);
         }
         return listaUsuarios;
