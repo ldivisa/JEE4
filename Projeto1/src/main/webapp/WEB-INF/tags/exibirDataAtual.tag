@@ -5,7 +5,7 @@
 
 <jsp:useBean id="dataAtual" class="java.util.Date" />
 <jsp:useBean id="DiaSemana" class="org.hopto.depositodivisa.funcoes.DiaSemana" />
-<fmt:formatDate value="${dataAtual}" type="date" />
+<fmt:formatDate value="${dataAtual}" type="date" pattern="dd/MMMM/YYYY"/>
 <% 
 String diaSemana = DiaSemana.verificarDiaSemana();
 request.setAttribute("diaSemana", diaSemana);

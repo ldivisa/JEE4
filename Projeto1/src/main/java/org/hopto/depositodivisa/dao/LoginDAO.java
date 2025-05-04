@@ -152,7 +152,7 @@ public Login getLogin1(Login login) {
 public Login getLogin(Login login) throws SQLException {
         this.usuario = login.getNomeUsuario();
         this.senha = login.getSenhaUsuario();
-        System.out.println("This senha "+senha);
+        //System.out.println("This senha "+senha);
         HashSenhasArgo2 maquinaSenha = new HashSenhasArgo2();
         try {
             connection = new ConexaoFactory().getConnection();
@@ -168,10 +168,10 @@ public Login getLogin(Login login) throws SQLException {
                 usuarioLogado.setSenhaUsuario(resultSet.getString("senhaUsuario"));
                 usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
                 usuarioLogado.setAtivo(resultSet.getInt("ativo"));
-                System.out.println("Passou no teste de nome no banco e hash "+usuarioLogado.getAtivo());
+                //System.out.println("Passou no teste de nome no banco e hash "+usuarioLogado.getAtivo());
                 return usuarioLogado;
             } else {
-                System.out.println(" Nao Passou no teste de nome no banco e hash");
+                //System.out.println(" Nao Passou no teste de nome no banco e hash");
                 return null;
             }
                     } catch (SQLException e) {
@@ -226,7 +226,7 @@ public void ativarUsuario(String usuarioAlterarEstado){
         this.usuarioAlterarEstado = usuarioAlterarEstado;
         connection = new ConexaoFactory().getConnection();
         String SQL = "update login set ativo=1 where nomeUsuario='" + this.usuarioAlterarEstado + "'";
-        System.out.println("SQL " + SQL);
+        //System.out.println("SQL " + SQL);
         Statement ps1 = connection.createStatement();
         ps1.executeUpdate(SQL);
     } catch (SQLException ex) {
