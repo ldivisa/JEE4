@@ -8,8 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hopto.depositodivisa.factory.ConexaoFactory;
 import org.hopto.depositodivisa.funcoes.HashSenhasArgo2;
 import org.hopto.depositodivisa.model.Login;
@@ -27,6 +30,7 @@ public class LoginDAO {
     private PreparedStatement ps;
     public static String nomeCompletoUsuario;
     private Login usuarioLogado;
+    private String usuarioAlterarEstado;
     
     public void LoginDAO() {
         url = null;
@@ -204,4 +208,31 @@ public List<Login> getListaUsuarios() throws SQLException {
     }
     return null;
     }
+public void desativarUsuario(String usuarioAlterarEstado){
+    
+        try {
+            this.usuarioAlterarEstado = usuarioAlterarEstado;
+            connection = new ConexaoFactory().getConnection();
+            String SQL = "update login set ativo=0 where nomeUsuario='"+this.usuarioAlterarEstado+"'";
+            Statement st = connection.createStatement();
+            st.executeUpdate(SQL);
+                    } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+public void ativarUsuario(String usuarioAlterarEstado){
+        try {
+        this.usuarioAlterarEstado = usuarioAlterarEstado;
+        connection = new ConexaoFactory().getConnection();
+        String SQL = "update login set ativo=1 where nomeUsuario='" + this.usuarioAlterarEstado + "'";
+        System.out.println("SQL " + SQL);
+        Statement ps1 = connection.createStatement();
+        ps1.executeUpdate(SQL);
+    } catch (SQLException ex) {
+        Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+}
+
 }

@@ -38,10 +38,12 @@
                 <td>alterar</td>
                 <c:choose>
                     <c:when test="${usuarios['ativo']==1}">
-                        <td> <a href="desativarUsuario?usuario=${usuarios['nomeUsuario']}"</a>desativar</td>
+                        <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>
+                        <td> <a href="desativarUsuario?usuarioAlterarEstado=${usuarios['nomeUsuario']}"</a>desativar</td>
                     </c:when>
                     <c:otherwise>
-                        <td> <a href="ativarUsuario?usuario=${usuarios['nomeUsuario']}"</a>reativar</td>
+                        <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>
+                        <td> <a href="ativarUsuario?usuarioAlterarEstado=${usuarios['nomeUsuario']}"</a>ativar</td>
                     </c:otherwise>
                 </c:choose>
                 

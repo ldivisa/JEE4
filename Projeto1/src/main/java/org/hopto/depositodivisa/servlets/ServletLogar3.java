@@ -47,6 +47,11 @@ public class ServletLogar3 extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 Login usuarioCarregado = login.getLogin(usuarioChecado);
+                if (usuarioCarregado.getAtivo() == 0) {
+                    request.setAttribute("status", "Usuário desativado");
+                    rd = request.getRequestDispatcher("/login.jsp");
+                    rd.forward(request, response);
+                } else{
                 request.setAttribute("status", "Usuário Válido");
                 request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
                 request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
@@ -54,6 +59,7 @@ public class ServletLogar3 extends HttpServlet {
                 session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
                 rd = request.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServletLogar3.class.getName()).log(Level.SEVERE, null, ex);

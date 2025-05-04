@@ -9,6 +9,15 @@
         <servlet-class>org.hopto.depositodivisa.servlets.ServletLogar3</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>desativarUsuario</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.desativarUsuario</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>ativarUsuario</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.ativarUsuario</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>ServletListarUsuarios</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuarios</servlet-class>
     </servlet>
@@ -32,6 +41,14 @@
         <servlet-name>ServletListarUsuarios</servlet-name>
         <url-pattern>/ServletListarUsuarios</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ativarUsuario</servlet-name>
+        <url-pattern>/ativarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>desativarUsuario</servlet-name>
+        <url-pattern>/desativarUsuario</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -44,7 +61,7 @@
     <error-page>
         <error-code>500</error-code>
         <location>/erro.jsp</location>
-    </error-page>    
+    </error-page>
     <error-page>
         <error-code>404</error-code>
         <location>/naoencontrada.jsp</location>
