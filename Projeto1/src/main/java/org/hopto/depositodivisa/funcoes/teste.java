@@ -16,10 +16,10 @@ public class teste {
     public static void main (String[] args) {
         HashSenhasArgo2 maquinaHash = new HashSenhasArgo2();
         
-        String cifrada ="1234";
-        String hash = maquinaHash.criaHashSenha(cifrada);
+        String cifrada ="Caralho@estudos1";
+        //String hash = maquinaHash.criaHashSenha(cifrada);
         //String hash="$argon2id$v=19$m=15360,t=2,p=1$m6m4sQC357UwTgeQRrH7nohkdENmQsmVyt8UAmKTijM$NDfgp65xeuefMF44r3X65R426RpGjxK56mROJ0UCE/m9J1x6du2ryk6jD1ttTEu2FqiopA0BU0ZpZQfj3Meqng";
-        
+        String hash = "$argon2id$v=19$m=15360,t=2,p=1$hu4eG5VjS530OPoqJBgauBpAd2Mo2UOAHPDew71PTFY$NGUe7Qv0a1kJRgZpfTmVmySZmOCz2qL9x+HRfeY3/QHtny7WqGeDsEOt/7mcn0rrzifoW5QNvHUSF11jbku1jQ";
         System.out.println("Senha cifrada: "+hash);
         System.out.println(" "+maquinaHash.checaHashSenha(hash,cifrada));
  

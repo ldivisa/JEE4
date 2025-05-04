@@ -21,23 +21,19 @@ import org.hopto.depositodivisa.model.Login;
 public class LoginDAO {
     public static String url;
     public Connection connection;
-    Login login = new Login();
     private String usuario;
     private String senha;
     private ResultSet resultSet;
     private PreparedStatement ps;
-    private List<Login> listaUsuariosBanco;
     public static String nomeCompletoUsuario;
-    
+    private Login usuarioLogado;
     
     public void LoginDAO() {
         url = null;
-        login = new Login();
         usuario = null;
         senha = null;
         resultSet = null;
         ps = null;
-        listaUsuariosBanco = null;
         nomeCompletoUsuario = null;
         
     }
@@ -50,9 +46,7 @@ public boolean verificaUsuario(String usuario, String senha) throws SQLException
         
         try {
             connection = new ConexaoFactory().getConnection();
-            
-                    
-            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=? and ativo=true";
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
             ps.setString(2, senha);
@@ -77,7 +71,7 @@ public boolean verificaUsuario1(Login login) throws SQLException {
                 
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=? and ativo=true";
+            String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
             ps.setString(2, senha);
@@ -94,7 +88,6 @@ public boolean verificaUsuario1(Login login) throws SQLException {
     }
     
 }
-
 
 public Login getLogin2(String usuario, String senha) throws SQLException {
         this.usuario = usuario;
@@ -125,16 +118,12 @@ public Login getLogin2(String usuario, String senha) throws SQLException {
         resultSet.close();
         connection.close();
         }
-
         return null;
     }
-
-
 
 public Login getLogin1(Login login) {
         this.usuario = login.getNomeUsuario();
         this.senha = login.getSenhaUsuario();
-
         try {
             connection = new ConexaoFactory().getConnection();
             String SQL = "select * from login where nomeUsuario=? and senhaUsuario=?";
@@ -143,85 +132,76 @@ public Login getLogin1(Login login) {
             ps.setString(2, senha);
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                Login usuarioLogado = new Login();
+                usuarioLogado = new Login();
                 usuarioLogado.setNomeUsuario(usuario);
                 usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
                 usuarioLogado.setSenhaUsuario(senha);
                 usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
                 return usuarioLogado;
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return null;
     }
 
-
-public Login getLogin(Login login) {
+public Login getLogin(Login login) throws SQLException {
         this.usuario = login.getNomeUsuario();
         this.senha = login.getSenhaUsuario();
+        System.out.println("This senha "+senha);
         HashSenhasArgo2 maquinaSenha = new HashSenhasArgo2();
-        
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from login where nomeUsuario=? and ativo=true";
+            String SQL = "select * from login where nomeUsuario=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, usuario);
-            //ps.setString(2, senha);
             resultSet = ps.executeQuery();
-            if (resultSet.next()&&maquinaSenha.checaHashSenha(resultSet.getString("senhaUsuario"), this.senha)) {
-                Login usuarioLogado = new Login();
-                usuarioLogado.setNomeUsuario(usuario);
+            
+            if (resultSet.next() && maquinaSenha.checaHashSenha(resultSet.getString("senhaUsuario"), this.senha)) {
+                usuarioLogado = new Login();
+                usuarioLogado.setNomeUsuario(resultSet.getString("nomeUsuario"));
                 usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
-                usuarioLogado.setSenhaUsuario(senha);
+                usuarioLogado.setSenhaUsuario(resultSet.getString("senhaUsuario"));
                 usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
                 usuarioLogado.setAtivo(resultSet.getInt("ativo"));
+                System.out.println("Passou no teste de nome no banco e hash "+usuarioLogado.getAtivo());
                 return usuarioLogado;
+            } else {
+                System.out.println(" Nao Passou no teste de nome no banco e hash");
+                return null;
             }
-
-        } catch (SQLException e) {
+                    } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        return null;
-    }
-
-
-public List<Login> getListaUsuarios() throws SQLException {
-            connection = new ConexaoFactory().getConnection();
-    String SQL = "select * from login";
-    PreparedStatement ps = null;
-    ResultSet resultSet = null;
-    List<Login> listaUsuarios;
-    try {
-        ps = connection.prepareStatement(SQL);
-        resultSet = ps.executeQuery();
-        listaUsuarios = new ArrayList<Login>();
-        while (resultSet.next()) {
-            Login usuario = new Login();
-            usuario.setAcessoUsuario(resultSet.getString("acessoUsuario"));
-            usuario.setDataUltimoAcesso(resultSet.getDate("dataUltimoAcesso"));
-            usuario.setDataCadastro(resultSet.getDate("dataCadastro"));
-            usuario.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
-            usuario.setNomeUsuario(resultSet.getString("nomeUsuario"));
-            usuario.setSenhaUsuario(resultSet.getString("senhaUsuario"));
-            usuario.setGrupoUsuarios(resultSet.getString("grupoUsuarios"));
-            usuario.setAtivo(resultSet.getInt("ativo"));
-            listaUsuarios.add(usuario);
-        }
-        return listaUsuarios;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    finally{
-        resultSet.close();
+        finally{
+       
         ps.close();
         connection.close();
     }
-        
+     }
+
+public List<Login> getListaUsuarios() throws SQLException {
+    connection = new ConexaoFactory().getConnection();
+    String SQL = "select * from login";
+    PreparedStatement ps1= connection.prepareStatement(SQL);
+    ResultSet resultSet1 = ps1.executeQuery();
+    List<Login> listaUsuarios;
+    listaUsuarios = new ArrayList<>();
+    if (resultSet1.isBeforeFirst()){    
+    while (resultSet1.next()) {
+            Login usuario1 = new Login();
+            usuario1.setAcessoUsuario(resultSet1.getString("acessoUsuario"));
+            usuario1.setDataUltimoAcesso(resultSet1.getDate("dataUltimoAcesso"));
+            usuario1.setDataCadastro(resultSet1.getDate("dataCadastro"));
+            usuario1.setNomeCompletoUsuario(resultSet1.getString("nomeCompletoUsuario"));
+            usuario1.setNomeUsuario(resultSet1.getString("nomeUsuario"));
+            usuario1.setSenhaUsuario(resultSet1.getString("senhaUsuario"));
+            usuario1.setGrupoUsuarios(resultSet1.getString("grupoUsuarios"));
+            usuario1.setAtivo(resultSet1.getInt("ativo"));
+            listaUsuarios.add(usuario1);
+        }
+        return listaUsuarios;
     }
-
-
+    return null;
+    }
 }
