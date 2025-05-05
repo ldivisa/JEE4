@@ -19,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
     
     #cabeçalho{
-        height:8%;
+        height:3%;
         width:100%;
         background-color: wheat;
 
@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     
     
     #central{
-        height: 86%;
+        height: 95%;
         width: 100%;
         float:right;
          alignment-baseline: middle;
@@ -37,9 +37,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
 
     #rodape{
-        height: 6%;
+        height: 3%;
         width: 100%;
-        color: red;
+        color: black;
+        background-color: red;
         text-align: center;
              
     }
@@ -93,34 +94,46 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         background-color: black;
         
     }
+    
+    table{
+        background-color: whitesmoke;
+        vertical-align: middle;
+        text-align-all: center;
+        align-content: center;
+        margin-top: 15%;
+        margin-left: 38%;
+        margin-bottom: 10px;
+        width: 35%;
+        height: 25%;
+        font-size: 1.5vw;
 
-/*    table{
-        
-    background-color: white;
-    align-content: center;    
-    margin-top: 15%;
-    margin-left: 30%;
-    margin-bottom: 10px;
-        
-    }*/
+    }
     
     central{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    vertical-align: middle;
- 
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        vertical-align: middle;
+        
+        
 }
 
-table{
+/*table{
     display: flex;
     flex-direction: row;
     justify-content: center;
     vertical-align: middle;
     margin-top: 15%;
+    vertical-align: central;
     
-}
+}*/
 
 td{
  text-align: center;   
+ vertical-align: central;
+}
+
+input{
+    font-size: 2vw;
+    
 }
