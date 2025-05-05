@@ -20,7 +20,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
     
     #cabeçalho{
-        height:3%;
+        height:10%;
         width:100%;
         background-color: wheat;
         border-bottom: solid red 1px;
@@ -28,14 +28,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }    
     
     #menu{
-        height: 93.9%;
+        height: 79.9%;
         width: 19.9%;
         float: left;
         background-color: lightsalmon;
         border-right: solid red 1px;
         resize: both;
-        padding-top: 50px;
-               
+       
     }
     
     #menu nav ol{
@@ -66,7 +65,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
     
     #central{
-        height: 93.9%;
+        height: 79.9%;
         width: 79.9%;
         float:right;
          alignment-baseline: middle;
@@ -75,14 +74,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
 
     #rodape{
-        resize: both;
-        height: 3%;
+        
+        height: 6%;
         width: 100%;
-        color: black;
-        background: red;
+        color: red;
         text-align: center;
-        vertical-align: middle;
-       
+        
+        
     }
         
     h1#texto1{
@@ -145,14 +143,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
     */
     table{
-    font-size:2vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
     vertical-align: middle;
     margin: auto;
-    resize: both;
-    
     
 }
 .tabelaLinhaEspecial{
