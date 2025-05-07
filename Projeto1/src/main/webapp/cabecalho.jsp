@@ -26,15 +26,15 @@
                     <nav>
                         <h1>MENUS</h1>
                         <ol>
-                            <li><a href="views\cadastros.jsp">Cadastros (clientes, produtos, etc.)</a></li>
-                            <li><a href="views\saida.jsp">Vender Material</a></li>
-                            <li><a href="views\entrada.jsp">Receber Material</a></li>
-                            <li><a href="views\financeiro.jsp">Financeiro</a></li>
-                            <li><a href="ServletListarUsuarios">Usuários</a></li>
+                            <li><a href="views\cadastros.jsp" /><img src="imagens/Gabinete.jpg" alt="alt" height="50px" width="50px">Cadastros</a></li>
+                            <li><a href="views\saida.jsp"><img src="imagens/CaixaRegistradora.jpg" alt="alt" height="50px" width="50px">Vender Material</a></li>
+                            <li><a href="views\entrada.jsp"><img src="imagens/EntradaEstoque.jpg" alt="alt" height="50px" width="50px">Receber Material</a></li>
+                            <li><a href="views\financeiro.jsp"><img src="imagens/Financeiro.jpg" alt="alt" height="50px" width="50px">Financeiro</a></li>
+                            <li><a href="ServletListarUsuarios"><img src="imagens/Usuarios.png" alt="alt" height="50px" width="50px">Usuários</a></li>
             
-                            <li><a href="views\relatorios.jsp">Relatorios</a></li>
+                            <li><a href="views\relatorios.jsp"><img src="imagens/Relatorios.jpg" alt="alt" height="50px" width="50px">Relatorios</a></li>
             
-                            <li><a href="saida.jsp">Sair</a></li>
+                            <li><a href="saida.jsp"><img src="imagens/Saida.jpg" alt="alt" height="50px" width="50px">Sair</a></li>
                         </ol>
                     </nav>
                 </div>
