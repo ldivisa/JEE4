@@ -230,5 +230,7 @@ public class LoginDAO {
         }
 
     }
-
+public boolean getPermissao(String permissao)  {
+        return(usuarioLogado.getAcessoUsuario().contains("permissao"));
+}
 }

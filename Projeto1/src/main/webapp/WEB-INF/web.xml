@@ -12,14 +12,17 @@
         <servlet-name>desativarUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.desativarUsuario</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ativarUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ativarUsuario</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ServletListarUsuarios</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checarPermissao</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.checarPermissao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogar</servlet-name>
@@ -48,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>desativarUsuario</servlet-name>
         <url-pattern>/desativarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checarPermissao</servlet-name>
+        <url-pattern>/checarPermissao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

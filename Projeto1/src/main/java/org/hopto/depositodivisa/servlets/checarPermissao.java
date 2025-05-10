@@ -11,16 +11,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hopto.depositodivisa.dao.LoginDAO;
-import org.hopto.depositodivisa.model.Login;
+
 /**
  *
- * @author luiz.souza
+ * @author Luiz
  */
-public class ServletLogar3 extends HttpServlet {
+public class checarPermissao extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,41 +31,19 @@ public class ServletLogar3 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+        HttpSession sessao;
         LoginDAO login = new LoginDAO();
-        Login usuarioChecado = new Login();
+        sessao = request.getSession();
         RequestDispatcher rd;
-        usuarioChecado.setNomeUsuario(request.getParameter("usuario"));
-        usuarioChecado.setSenhaUsuario(request.getParameter("senha"));
-        try {
-            if (login.getLogin(usuarioChecado)==null) {
-                request.setAttribute("status", "Usuário e/ou senha inválidos");
-                rd = request.getRequestDispatcher("/login.jsp");
-                rd.forward(request, response);
-            } else {
-                Login usuarioCarregado = login.getLogin(usuarioChecado);
-                if (usuarioCarregado.getAtivo() == 0) {
-                    request.setAttribute("status", "Usuário desativado");
-                    rd = request.getRequestDispatcher("/login.jsp");
-                    rd.forward(request, response);
-                } else{
-                request.setAttribute("status", "Usuário Válido");
-                request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
-                request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
-                session.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
-                session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
-                session.setAttribute("acessoUsuario", usuarioCarregado.getAcessoUsuario());
-                rd = request.getRequestDispatcher("/index.jsp");
-                rd.forward(request, response);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ServletLogar3.class.getName()).log(Level.SEVERE, null, ex);
+        String permissaoNecesssaria =(String) request.getParameter("permissaoNecessaria");  
+        String direitos =(String) sessao.getAttribute("acessoUsuario");  
+        login.getPermissao(direitos);
+        if (!direitos.contains(permissaoNecesssaria)){
+        rd = request.getRequestDispatcher("/login.jsp");
+        rd.forward(request, response);
         }
-
-       
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
