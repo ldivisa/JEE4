@@ -227,27 +227,30 @@ public class LoginDAO {
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public boolean getPermissao(String acessoUsuario, String permissaoNecessaria) {
-        System.out.println("Passando em getPermissao - " + acessoUsuario + " contem " + permissaoNecessaria + " ?");
+        //System.out.println("Passando em getPermissao - " + acessoUsuario + " contem " + permissaoNecessaria + " ?");
 
         return (acessoUsuario.contains(permissaoNecessaria));
     }
 
-    public void alterarUsuario(Login usuario) {
+    public void alterarUsuario(String nomeUsuario,String nomeCompletoUsuario,String acessoUsuario,String grupoUsuario,String ativo) {
         try {
             connection = new ConexaoFactory().getConnection();
             String SQL = "update login set"
-                    +" nomeCompletoUsuario="+ usuario.getNomeCompletoUsuario()
-                    +" acessoUsuario="+ usuario.getAcessoUsuario()
-                    +" grupoUsuarios="+ usuario.getGrupoUsuarios()
-                    +" ativo="+ usuario.getAtivo()
-                    +" where nomeUsuario='" +usuario.getNomeUsuario() + "'";
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(2, usuario.getNomeCompletoUsuario());
-            ps.executeUpdate(SQL);
+                    +" nomeCompletoUsuario= ?"+ nomeCompletoUsuario
+                    +" acessoUsuario=? "+ acessoUsuario
+                    +" grupoUsuarios= ?"+ grupoUsuario
+                    +" ativo= ? "+ ativo
+                    +" where nomeUsuario= ?";
+            PreparedStatement ps1 = connection.prepareStatement(SQL);
+            ps1.setString(5, nomeUsuario);
+            ps1.setString(1, nomeCompletoUsuario);
+            ps1.setString(2, acessoUsuario);
+            ps1.setString(3, grupoUsuario);
+            ps1.setInt(4, Integer.parseInt(ativo));
+            ps1.executeUpdate(SQL);
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

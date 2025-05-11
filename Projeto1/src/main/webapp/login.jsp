@@ -7,11 +7,11 @@
         <table border="1" id="table" class="tabela">
             <tr> <td colspan="2"><h1 id="TextoInformativo">Acesso ao sistema:</h1> </td></tr>
             <tr>
-                <td> <img src="imagens/dados-do-usuario.png" height="50px" width="50px" />  Usuário.:</td>
+                <td> <img src="imagens/dados-do-usuario.png" height="50px" width="50px" /><title>Usuário</title></td>
                 <td><input placeholder="usuario" autocomplete="on" autofocus type="text" name="usuario" required></td>
             </tr>
             <tr>
-                <td><img src="imagens/trancado.png" height="50px" width="50x" /> Senha.:</td>
+                <td><img src="imagens/trancado.png" height="50px" width="50x" /><title>Senha</title></td>
                 <td><input placeholder="senha" type="password" name="senha" required></td>
             </tr>
             <tr>

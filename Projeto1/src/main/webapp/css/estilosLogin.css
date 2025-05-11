@@ -15,7 +15,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: white;
     height:100%;
     width: 100%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    resize: both;
     }
     
     #cabeçalho{
@@ -28,7 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     
     
     #central{
-        height: 95%;
+        height: 94%;
         width: 100%;
         float:right;
          alignment-baseline: middle;
@@ -94,14 +96,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         background-color: black;
         
     }
-    
+
     table{
         background-color: whitesmoke;
         vertical-align: middle;
         text-align-all: center;
         align-content: center;
         margin-top: 15%;
-        margin-left: 38%;
+        margin-left: auto;
+        margin-right: auto;
+        resize: both;
         margin-bottom: 10px;
         width: 35%;
         height: 25%;
