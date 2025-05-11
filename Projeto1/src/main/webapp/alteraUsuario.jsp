@@ -6,18 +6,19 @@
 <c:import url="cabecalho.jsp" />
 <div id="central">
     <h1>Altera Usuário</h1>
-        <util:verificarSessaoAtiva />
+    <util:verificarSessaoAtiva />
     <%
         HttpSession sessao = request.getSession();
         LoginDAO login = new LoginDAO();
-        
-        if (!login.getPermissao((String)sessao.getAttribute("acessoUsuario"),"U"))
+
+        if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
             response.sendRedirect("index.jsp");
     %>
+
     <form id="formAlteraUsuario" method="get" action="alterarUsuario">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text" disabled="true"  name="nomeUsuario" value="${param.nomeUsuario}"/>
+            <input type="text" disabled  name="nomeUsuario" value="${param.nomeUsuario}"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
@@ -33,7 +34,12 @@
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
-            <input type="checkbox"  name="ativo" value="${param.estadoUsuario}"/>
+            <c:choose>
+                <c:when test="${param.ativo}==1">
+                    <c:set scope="session" value="true" var="estadoUsuario"/>
+                </c:when>
+            </c:choose>
+            <input type="checkbox"  value=" " name="ativo" checked="${session.estadoUsuario}" />
         </div>
     </form>
 </div>

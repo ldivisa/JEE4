@@ -35,13 +35,7 @@
                 <td> ${usuarios['dataCadastro']} </td>
                 <td> ${usuarios['dataUltimoAcesso']} </td>
                 <td> ${usuarios['ativo']} </td>
-                )
-                <%
-                // É preciso transformar o campo ativo (boolean ou 0 ou 1 em ativo ou desativo - true  ou false
-                //para passar para o checkbox no alteraUsuario.jsp
-                //System.out.println(pageContext.getAttribute(usuarios[]));
-                %>
-                <td><a href="alteraUsuario.jsp?nomeUsuario=${usuarios['nomeUsuario']}&nomeCompletoUsuario=${usuarios['nomeCompletoUsuario']}&acessoUsuario=${usuarios['acessoUsuario']}&grupoUsuarios=${usuarios['grupoUsuarios']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${usuarios['nomeUsuario']}"></a></td>
+                <td><a href="alteraUsuario.jsp?nomeUsuario=${usuarios['nomeUsuario']}&nomeCompletoUsuario=${usuarios['nomeCompletoUsuario']}&acessoUsuario=${usuarios['acessoUsuario']}&grupoUsuarios=${usuarios['grupoUsuarios']}&ativo=${usuarios['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${usuarios['nomeUsuario']}"></a></td>
                 <c:choose>
                     <c:when test="${usuarios['ativo']==1}">
                         <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>

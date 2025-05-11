@@ -8,7 +8,6 @@
     <%
         HttpSession sessao = request.getSession();
         LoginDAO login = new LoginDAO();
-        
         if (!login.getPermissao((String)sessao.getAttribute("acessoUsuario"),"U"))
             response.sendRedirect("index.jsp");
     %>
