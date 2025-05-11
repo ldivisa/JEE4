@@ -41,25 +41,25 @@ public class HashSenhas_inutil {
     
     public String gerarArgon2(String senhaOriginal) {
         char[] senha = senhaOriginal.toCharArray();
-        Instant start = Instant.now();
+        //Instant start = Instant.now();
         try {
             //iterations = 10;
             //memory = 16m;
             //parallelism = 1;
             String hash = getArgon2().hash(22, 65536, 1, senha);
-            System.out.println(hash);
+            //System.out.println(hash);
 
             if (getArgon2().verify(hash, senha)) {
-                System.out.println("Hash matches password.");
+              //  System.out.println("Hash matches password.");
             }
        
             int iterations = Argon2Helper.findIterations(getArgon2(), 1000, 65536, 1);
-            System.out.println(iterations);
+            //System.out.println(iterations);
              getArgon2().wipeArray(senha);
-            Instant end;
-            end = Instant.now();
-            System.out.println(String.format("Hashing took %s ms", ChronoUnit.MILLIS.between(start, end)
-            ));
+            //Instant end;
+            //end = Instant.now();
+            //System.out.println(String.format("Hashing took %s ms", ChronoUnit.MILLIS.between(start, end)));
+            
 
             return hash;
         } finally {

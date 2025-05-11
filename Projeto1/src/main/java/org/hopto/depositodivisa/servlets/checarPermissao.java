@@ -37,7 +37,7 @@ public class checarPermissao extends HttpServlet {
         RequestDispatcher rd;
         String permissaoNecesssaria =(String) request.getParameter("permissaoNecessaria");  
         String direitos =(String) sessao.getAttribute("acessoUsuario");  
-        login.getPermissao(direitos);
+        login.getPermissao(direitos,permissaoNecesssaria);
         if (!direitos.contains(permissaoNecesssaria)){
         rd = request.getRequestDispatcher("/login.jsp");
         rd.forward(request, response);

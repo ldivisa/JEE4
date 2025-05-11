@@ -173,7 +173,6 @@ public class LoginDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-
             ps.close();
             connection.close();
         }
@@ -230,7 +229,8 @@ public class LoginDAO {
         }
 
     }
-public boolean getPermissao(String permissao)  {
-        return(usuarioLogado.getAcessoUsuario().contains("permissao"));
+public boolean getPermissao(String acessoUsuario,String permissaoNecessaria)  {
+    System.out.println("Passando em getPermissao - "+acessoUsuario+ " contem "+permissaoNecessaria+" ?");    
+    return(acessoUsuario.contains(permissaoNecessaria));
 }
 }

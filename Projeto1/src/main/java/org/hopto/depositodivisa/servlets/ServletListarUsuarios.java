@@ -42,12 +42,11 @@ public class ServletListarUsuarios extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("listausuarios.jsp");
             request.setAttribute("usuarioAtual", (String) request.getSession().getAttribute("usuarioAtual"));
             request.setAttribute("nomeCompletoUsuario",(String) request.getSession().getAttribute("nomeCompletoUsuario"));
-            
-            rd.forward(request, response);
-            
+            rd.forward(request, response);    
         } catch (SQLException ex) {
             Logger.getLogger(ServletListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
