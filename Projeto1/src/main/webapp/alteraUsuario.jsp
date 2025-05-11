@@ -34,12 +34,7 @@
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
-            <c:choose>
-                <c:when test="${param.ativo}==1">
-                    <c:set scope="session" value="true" var="estadoUsuario"/>
-                </c:when>
-            </c:choose>
-            <input type="checkbox"  value=" " name="ativo" checked="${session.estadoUsuario}" />
+            <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked="true"<% else %>  />
         </div>
     </form>
 </div>
