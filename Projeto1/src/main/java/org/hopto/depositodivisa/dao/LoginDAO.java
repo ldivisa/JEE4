@@ -229,8 +229,27 @@ public class LoginDAO {
         }
 
     }
-public boolean getPermissao(String acessoUsuario,String permissaoNecessaria)  {
-    System.out.println("Passando em getPermissao - "+acessoUsuario+ " contem "+permissaoNecessaria+" ?");    
-    return(acessoUsuario.contains(permissaoNecessaria));
-}
+
+    public boolean getPermissao(String acessoUsuario, String permissaoNecessaria) {
+        System.out.println("Passando em getPermissao - " + acessoUsuario + " contem " + permissaoNecessaria + " ?");
+
+        return (acessoUsuario.contains(permissaoNecessaria));
+    }
+
+    public void alterarUsuario(Login usuario) {
+        try {
+            connection = new ConexaoFactory().getConnection();
+            String SQL = "update login set"
+                    +" nomeCompletoUsuario="+ usuario.getNomeCompletoUsuario()
+                    +" acessoUsuario="+ usuario.getAcessoUsuario()
+                    +" grupoUsuarios="+ usuario.getGrupoUsuarios()
+                    +" ativo="+ usuario.getAtivo()
+                    +" where nomeUsuario='" +usuario.getNomeUsuario() + "'";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(2, usuario.getNomeCompletoUsuario());
+            ps.executeUpdate(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
