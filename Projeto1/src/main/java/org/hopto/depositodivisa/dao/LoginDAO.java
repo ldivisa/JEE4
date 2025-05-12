@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.hopto.depositodivisa.dao;
 
 import java.sql.Connection;
@@ -102,13 +98,13 @@ public class LoginDAO {
             ps.setString(2, senha);
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                Login usuarioLogado = new Login();
-                usuarioLogado.setNomeUsuario(usuario);
-                usuarioLogado.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
-                usuarioLogado.setSenhaUsuario(senha);
-                usuarioLogado.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
+                Login usuarioLogadoAtual = new Login();
+                usuarioLogadoAtual.setNomeUsuario(usuario);
+                usuarioLogadoAtual.setNomeCompletoUsuario(resultSet.getString("nomeCompletoUsuario"));
+                usuarioLogadoAtual.setSenhaUsuario(senha);
+                usuarioLogadoAtual.setAcessoUsuario(resultSet.getString("AcessoUsuario"));
                 //System.out.println("O connection está fechado? "+connection.isClosed());
-                return usuarioLogado;
+                return usuarioLogadoAtual;
             }
 
         } catch (SQLException e) {
@@ -194,7 +190,7 @@ public class LoginDAO {
                 usuario1.setNomeCompletoUsuario(resultSet1.getString("nomeCompletoUsuario"));
                 usuario1.setNomeUsuario(resultSet1.getString("nomeUsuario"));
                 usuario1.setSenhaUsuario(resultSet1.getString("senhaUsuario"));
-                usuario1.setGrupoUsuarios(resultSet1.getString("grupoUsuarios"));
+                usuario1.setGruposUsuario(resultSet1.getString("gruposUsuario"));
                 usuario1.setAtivo(resultSet1.getInt("ativo"));
                 listaUsuarios.add(usuario1);
             }
@@ -235,21 +231,18 @@ public class LoginDAO {
         return (acessoUsuario.contains(permissaoNecessaria));
     }
 
-    public void alterarUsuario(String nomeUsuario,String nomeCompletoUsuario,String acessoUsuario,String grupoUsuario,String ativo) {
+    public void alterarUsuario(String nomeUsuario,String nomeCompletoUsuario,String acessoUsuario,String gruposUsuario,String ativo) {
         try {
             connection = new ConexaoFactory().getConnection();
+            int usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;
             String SQL = "update login set"
-                    +" nomeCompletoUsuario= ?"+ nomeCompletoUsuario
-                    +" acessoUsuario=? "+ acessoUsuario
-                    +" grupoUsuarios= ?"+ grupoUsuario
-                    +" ativo= ? "+ ativo
-                    +" where nomeUsuario= ?";
+                    +" nomeCompletoUsuario=\""+nomeCompletoUsuario
+                    +"\" ,acessoUsuario=\""+acessoUsuario
+                    +"\",gruposUsuario=\""+gruposUsuario
+                    +"\",ativo=\""+usuarioAtivo
+                    +"\" where nomeUsuario=\""+nomeUsuario+"\"";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
-            ps1.setString(5, nomeUsuario);
-            ps1.setString(1, nomeCompletoUsuario);
-            ps1.setString(2, acessoUsuario);
-            ps1.setString(3, grupoUsuario);
-            ps1.setInt(4, Integer.parseInt(ativo));
+            System.out.println("\n SQL: "+SQL);
             ps1.executeUpdate(SQL);
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);

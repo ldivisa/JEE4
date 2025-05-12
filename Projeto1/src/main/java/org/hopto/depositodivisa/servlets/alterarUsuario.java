@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.hopto.depositodivisa.dao.LoginDAO;
 
 
@@ -17,7 +18,7 @@ import org.hopto.depositodivisa.dao.LoginDAO;
  *
  * @author luiz.souza
  */
-public class ativarUsuario extends HttpServlet {
+public class alterarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,23 +31,18 @@ public class ativarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
-        LoginDAO login = new LoginDAO();
+        response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd;
-        String usuarioAlterarEstado=(String) request.getParameter("usuarioAlterarEstado");
-        login.ativarUsuario(usuarioAlterarEstado);
+        LoginDAO login = new LoginDAO();
+        login.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
         rd = request.getRequestDispatcher("ServletListarUsuarios");
         rd.forward(request, response);
     }
-protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        LoginDAO login = new LoginDAO();
-        RequestDispatcher rd;
-        String usuarioAlterarEstado=(String) request.getParameter("usuarioAlterarEstado");
-        login.ativarUsuario(usuarioAlterarEstado);
-        rd = request.getRequestDispatcher("ServletListarUsuarios");
-        rd.forward(request, response);
 
-}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+      }
+
 }

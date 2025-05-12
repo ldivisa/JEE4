@@ -16,6 +16,11 @@
         <servlet-name>ativarUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ativarUsuario</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>alterarUsuario</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.alterarUsuario</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>ServletListarUsuarios</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuarios</servlet-class>
@@ -47,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>ativarUsuario</servlet-name>
         <url-pattern>/ativarUsuario</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>alterarUsuario</servlet-name>
+        <url-pattern>/alterarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>desativarUsuario</servlet-name>

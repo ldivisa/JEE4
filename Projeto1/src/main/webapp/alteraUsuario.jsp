@@ -5,24 +5,24 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="cabecalho.jsp" />
 <div id="central">
-    <h1>Altera Usuário</h1>
+    <h1>Alterar dados do  Usuário</h1>
     <util:verificarSessaoAtiva />
-    <%
+    
+    <%//Checando se o usuario ativo tem a permissao neste modulo
         HttpSession sessao = request.getSession();
         LoginDAO login = new LoginDAO();
-
         if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
             response.sendRedirect("index.jsp");
     %>
-
+    
     <form id="formAlteraUsuario" method="get" action="alterarUsuario">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text" disabled  name="nomeUsuario" value="${param.nomeUsuario}"/>
+            <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeUsuario" value="${param.nomeCompletoUsuario}"/>
+            <input type="text"  name="nomeCompletoUsuario" value="${param.nomeCompletoUsuario}"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
@@ -34,7 +34,10 @@
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
-            <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked="true"<% else %>  />
+            <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked="on"<% else %>  />
+        </div>
+        <div class="campos">
+            <input type="submit"  name="enviarAlteracoesUsuario" title="Gravar alterações no cadastro deste usuário" />
         </div>
     </form>
 </div>

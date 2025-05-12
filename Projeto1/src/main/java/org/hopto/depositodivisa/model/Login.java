@@ -101,15 +101,15 @@ public class Login {
     /**
      * @return the grupoUsuarios
      */
-    public String getGrupoUsuarios() {
-        return grupoUsuarios;
+    public String getGruposUsuario() {
+        return gruposUsuario;
     }
 
     /**
-     * @param grupoUsuarios the grupoUsuarios to set
+     * @param gruposUsuario the grupoUsuarios to set
      */
-    public void setGrupoUsuarios(String grupoUsuarios) {
-        this.grupoUsuarios = grupoUsuarios;
+    public void setGruposUsuario(String gruposUsuario) {
+        this.gruposUsuario = gruposUsuario;
     }
 
     /**
@@ -135,7 +135,7 @@ public class Login {
     private String acessoUsuario;
     private Date dataUltimoAcesso;
     private Date dataCadastro;
-    private String grupoUsuarios;
+    private String gruposUsuario;
     private String nomeCompletoUsuario;
     private int ativo;
     
