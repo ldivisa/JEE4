@@ -156,5 +156,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: white;
     background: red;
     text-align: center;
+    }
+    
+.formAlteraUsuario{
+    
+    border: 2px;
+}
+.campos{
+    margin:auto;
+    font-size:3em;
+    align-content: stretch;
+    width: 70%;
     
 }
