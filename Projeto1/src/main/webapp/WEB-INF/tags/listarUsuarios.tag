@@ -7,6 +7,7 @@
     <c:set var="corA" value="lightblue"/>
     <c:set var="corB" value="white"/>
     <table border="1">
+        <tr><td colspan="6"><a href="novoUsuario.jsp" title="Criar Novo Usuário"><img src="imagens/novoUsuario.jpg" alt="Novo usuário" height="50px" widht="50px"> </td></tr>
         <tr class="tabelaLinhaespecial">
             <td>Nome</td>
             <td>Nome Completo</td>
@@ -27,7 +28,7 @@
                     <tr style="background: ${corB}">
                     </c:otherwise>
                 </c:choose>
-
+                      
                 <td> ${usuarios['nomeUsuario']} </td>
                 <td> ${usuarios['nomeCompletoUsuario']} </td>
                 <td> ${usuarios['acessoUsuario']} </td>
@@ -35,7 +36,7 @@
                 <td> ${usuarios['dataCadastro']} </td>
                 <td> ${usuarios['dataUltimoAcesso']} </td>
                 <td> ${usuarios['ativo']} </td>
-                <td><a href="alteraUsuario.jsp?nomeUsuario=${usuarios['nomeUsuario']}&nomeCompletoUsuario=${usuarios['nomeCompletoUsuario']}&acessoUsuario=${usuarios['acessoUsuario']}&gruposUsuario=${usuarios['gruposUsuario']}&ativo=${usuarios['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${usuarios['nomeUsuario']}"></a></td>
+                <td><a href="alteraUsuario.jsp?nomeUsuario=${usuarios['nomeUsuario']}&nomeCompletoUsuario=${usuarios['nomeCompletoUsuario']}&acessoUsuario=${usuarios['acessoUsuario']}&gruposUsuario=${usuarios['gruposUsuario']}&dataCadastro=${usuarios['dataCadastro']}&dataUltimoAcesso=${usuarios['dataUltimoAcesso']}&ativo=${usuarios['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${usuarios['nomeUsuario']}"></a></td>
                 <c:choose>
                     <c:when test="${usuarios['ativo']==1}">
                         <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>

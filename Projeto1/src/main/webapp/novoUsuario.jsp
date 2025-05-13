@@ -11,41 +11,42 @@
         if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
             response.sendRedirect("index.jsp");
     %>
-    <div id="formAlteraUsuario">
-    <form id="formAlteraUsuario" method="get" action="alterarUsuario">
-        <div id="tituloAlterarUsuario">
-        <h1>Alterar dados do  Usuário</h1>
+    <div id="formNovoUsuario">
+    <form id="formNovoUsuario" method="get" action="criarNovoUsuario">
+        <div id="tituloNovoUsuario">
+        <h1>Novo Usuário</h1>
         </div>
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly="true"/>
+            <input type="text"  name="nomeUsuario" required="true" />
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required="true" value="${param.nomeCompletoUsuario}"/>
+            <input type="text"  name="nomeCompletoUsuario" required="true" />
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text"  name="acessoUsuario" required="true" value="${param.acessoUsuario}"/>
+            <input type="text"  name="acessoUsuario" required="true" />
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required="true" value="${param.gruposUsuario}"/>
+            <input type="text"  name="gruposUsuario" required="true" />
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
-            <input type="text"  name="dataCadastro" required="true" value="${param.dataCadastro}"/>
+            <% String hoje =new java.text.SimpleDateFormat("YYYY-MM-dd").format(new java.util.Date());%>
+            <input type="date"  name="dataCadastro" required="true" value="<%=hoje%>" min="2025-05-01" />
         </div>
         <div class="campos">
-            <label for="dataUltimoAcesso">Data último acesso.:</label>
-            <input type="text"  name="dataUltimoAcesso" required="true" value="${param.dataUltimoAcesso}"/>
+            <label for="senha">Senha .:</label>
+            <input type="password"  name="senha" required="true" />
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
-            <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked="on"<% else %>  />
+            <input type="checkbox"  name="ativo" checked="on" />
         </div>
         <div class="campos">
-            <input type="submit"  name="enviarAlteracoesUsuario" title="Gravar alterações no cadastro deste usuário" />
+            <input type="submit"  name="enviarNovoUsuario" title="Gravar informações no cadastro deste novousuário" />
         </div>
     </form>
     </div>

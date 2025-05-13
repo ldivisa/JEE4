@@ -73,6 +73,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
          alignment-baseline: middle;
          background-color: wheat;
          resize: both;
+         border: none;
     }
 
     #rodape{
@@ -158,14 +159,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     text-align: center;
     }
     
-.formAlteraUsuario{
+form{
+    background-color: bisque;
+    margin: auto;
+    margin-top: 30px;
+    border: none;
     
-    border: 2px;
+    
 }
-.campos{
-    margin:auto;
-    font-size:3em;
-    align-content: stretch;
-    width: 70%;
+#formAlteraUsuario,#formNovoUsuario{
+    padding-top: 15px;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    padding-left: 15px;
+
+campos{
+        font-size:6em;
+        align-content: center;
+        
+}
+input{
+        font-size:6em;
+}
+label{
+    font-family: aArial;
+    font-size: 2em;
+    text-shadow: 2px 2px 2px;
+    padding-top: 10px;
+    }    
+    
+    input{
+        font-size: 2em;
+        
+    }
     
 }

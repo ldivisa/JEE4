@@ -16,11 +16,10 @@
         <servlet-name>ativarUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ativarUsuario</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>alterarUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.alterarUsuario</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ServletListarUsuarios</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuarios</servlet-class>
@@ -28,6 +27,10 @@
     <servlet>
         <servlet-name>checarPermissao</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.checarPermissao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>criarNovoUsuario</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.criarNovoUsuario</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogar</servlet-name>
@@ -53,7 +56,7 @@
         <servlet-name>ativarUsuario</servlet-name>
         <url-pattern>/ativarUsuario</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>alterarUsuario</servlet-name>
         <url-pattern>/alterarUsuario</url-pattern>
     </servlet-mapping>
@@ -64,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>checarPermissao</servlet-name>
         <url-pattern>/checarPermissao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>criarNovoUsuario</servlet-name>
+        <url-pattern>/criarNovoUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

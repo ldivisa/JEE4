@@ -242,10 +242,43 @@ public class LoginDAO {
                     +"\",ativo=\""+usuarioAtivo
                     +"\" where nomeUsuario=\""+nomeUsuario+"\"";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
-            System.out.println("\n SQL: "+SQL);
+            //System.out.println("\n SQL: "+SQL);
             ps1.executeUpdate(SQL);
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+   public void registrarNovoUsuario(String nomeUsuario,String nomeCompletoUsuario,String acessoUsuario,String gruposUsuario,String ativo,String dataCadastro, String Senha) {
+       //System.out.println("Nome Usuario:"+nomeUsuario); 
+       HashSenhasArgo2 maquinaHash = new HashSenhasArgo2();
+        String senhaHash=maquinaHash.criaHashSenha(Senha);       
+        try {
+            connection = new ConexaoFactory().getConnection();
+            int usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;
+            String SQL = "insert into Login"
+                    +"(nomeUsuario"
+                    +",acessoUsuario"
+                    +",gruposUsuario"
+                    +",ativo"
+                    +",senhaUsuario"
+                    +",dataCadastro"
+                    +",nomeCompletoUsuario)"
+                    +" values(?,?,?,?,?,?,?)";
+            PreparedStatement ps1 = connection.prepareStatement(SQL);
+            
+            ps1.setString(1, nomeUsuario);
+            ps1.setString(2, acessoUsuario);
+            ps1.setString(3, gruposUsuario);
+            ps1.setInt(4, usuarioAtivo);
+            ps1.setString(5, senhaHash);
+            ps1.setString(6, dataCadastro);
+            ps1.setString(7, nomeCompletoUsuario);
+            
+            ps1.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
 }
