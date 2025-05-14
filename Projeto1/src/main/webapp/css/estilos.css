@@ -77,14 +77,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
 
     #rodape{
-        
         height: 4%;
         width: 100%;
         color: red;
         text-align: center;
-        
-        
-    }
+     }
         
     h1#texto1{
         font-size:2em;
@@ -152,6 +149,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     vertical-align: middle;
     margin: auto;
     text-align: center;
+    border-radius: 20px;
     
 }
 .tabelaLinhaEspecial{
@@ -177,6 +175,8 @@ form{
 campos{
         font-size:6em;
         align-content: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
         
 }
 input{
@@ -194,4 +194,17 @@ label{
         
     }
     
+}
+
+input[type=submit],input[type=reset]{
+    border-radius: 30px;
+    margin-left: 50px;
+    vertical-align: central;
+    font-size: 3.5em;
+    
+}
+
+img{
+    border-radius: 50px;
+ 
 }

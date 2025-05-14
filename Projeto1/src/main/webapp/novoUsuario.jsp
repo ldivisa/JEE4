@@ -18,19 +18,19 @@
         <form id="formNovoUsuario" method="get" action="criarNovoUsuario">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" required autofocus="true"/>
+            <input type="text"  name="nomeUsuario" required autofocus="true" maxlength="30" size="30"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required/>
+            <input type="text"  name="nomeCompletoUsuario" required maxlength="100" size="30"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text"  name="acessoUsuario" required />
+            <input type="text"  name="acessoUsuario" required maxlenght="34" size="34"/>
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required autocomplete="false"/>
+            <input type="text"  name="gruposUsuario" required autocomplete="false"  maxlength="20" size="20"/>
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
@@ -39,7 +39,7 @@
         </div>
         <div class="campos">
             <label for="senha">Senha .:</label>
-            <input type="password"  name="senha" required autocomplete="false" onkey="" />
+            <input type="password"  name="senha" required autocomplete="false"  maxlength="20" size="20"/>
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
