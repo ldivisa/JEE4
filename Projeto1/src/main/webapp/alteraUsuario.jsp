@@ -18,27 +18,27 @@
     <form id="formAlteraUsuario" method="get" action="alterarUsuario">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly="true" autofocus="true"/>
+            <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly autofocus maxlength="40"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required value="${param.nomeCompletoUsuario}"/>
+            <input type="text"  name="nomeCompletoUsuario" required value="${param.nomeCompletoUsuario}" maxlength="50" size="50"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text"  name="acessoUsuario" required value="${param.acessoUsuario}"/>
+            <input type="text"  name="acessoUsuario" required value="${param.acessoUsuario}" maxlength="34" size="34"/>
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required value="${param.gruposUsuario}"/>
+            <input type="text" name="gruposUsuario" required value="${param.gruposUsuario}" maxlength="30" />
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
-            <input type="date"  name="dataCadastro" required value="${param.dataCadastro}" readonly="true"/>
+            <input type="text" name="dataCadastro" required value="${param.dataCadastro}" readonly />
         </div>
         <div class="campos">
             <label for="dataUltimoAcesso">Data último acesso.:</label>
-            <input type="text"  name="dataUltimoAcesso" " value="${param.dataUltimoAcesso}" readonly="true"/>
+            <input type="text"  name="dataUltimoAcesso" value="${param.dataUltimoAcesso}" readonly/>
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>

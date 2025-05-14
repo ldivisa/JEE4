@@ -18,19 +18,19 @@
         <form id="formNovoUsuario" method="get" action="criarNovoUsuario">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" required autofocus="true" maxlength="30" size="30"/>
+            <input type="text"  name="nomeUsuario" required autofocus maxlength="30" size="30"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required maxlength="100" size="30"/>
+            <input type="text"  name="nomeCompletoUsuario" required maxlength="50" size="50"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text"  name="acessoUsuario" required maxlenght="34" size="34"/>
+            <input type="text" name="acessoUsuario" required size="34" maxlength="34"/>
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required autocomplete="false"  maxlength="20" size="20"/>
+            <input type="text"  name="gruposUsuario" required maxlength="20" size="20"/>
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
