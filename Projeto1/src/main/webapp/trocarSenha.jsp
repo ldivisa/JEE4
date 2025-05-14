@@ -17,15 +17,15 @@
     <div id="formNovoUsuario">
                 <form id="formTrocarSenha" method="get" action="trocarSenha">
         <div class="campos">
-            <label for="senhaAtual">Senha Atual.:</label>
+            <label for="senhaAtual">Senha Atual.......................:</label>
             <input type="password"  name="senhaAtual" required autofocus="true"/>
         </div>
         <div class="campos">
-            <label for="senhaNova1">Nova Senha.:</label>
+            <label for="senhaNova1">Nova Senha.......................:</label>
             <input type="password"  name="senhaNova1" required/>
         </div>
         <div class="campos">
-            <label for="senhaNova2">Confirme a nova Senha.:</label>
+            <label for="senhaNova2">Confirme a nova Senha.....:</label>
             <input type="password"  name="senhaNova2" required />
         </div>
         <div class="campos">

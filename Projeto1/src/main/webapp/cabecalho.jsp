@@ -28,6 +28,9 @@
                         <h1>MENUS</h1>
                         <ol>
                             <%LoginDAO login = new LoginDAO();
+                            if(session.getAttribute("acessoUsuario")==null){
+                                response.sendRedirect("login.jsp");
+                                }
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"C")){
                             out.print("<li><a href=\"views/cadastros.jsp\"><img src=\"imagens/Gabinete.jpg\" alt=\"Cadastros\" height=\"50px\" width=\"50px\" title=\"Cadastros de clientes, produtos, fornecedores, etc.\"</a></li>");
                                 }
