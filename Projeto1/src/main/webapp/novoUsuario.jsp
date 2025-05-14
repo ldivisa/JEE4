@@ -18,28 +18,28 @@
         </div>
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" required="true" />
+            <input type="text"  name="nomeUsuario" required />
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required="true" />
+            <input type="text"  name="nomeCompletoUsuario" required/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text"  name="acessoUsuario" required="true" />
+            <input type="text"  name="acessoUsuario" required />
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required="true" />
+            <input type="text"  name="gruposUsuario" required />
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
             <% String hoje =new java.text.SimpleDateFormat("YYYY-MM-dd").format(new java.util.Date());%>
-            <input type="date"  name="dataCadastro" required="true" value="<%=hoje%>" min="2025-05-01" />
+            <input type="date"  name="dataCadastro" required value="<%=hoje%>" min="2025-05-01" />
         </div>
         <div class="campos">
             <label for="senha">Senha .:</label>
-            <input type="password"  name="senha" required="true" />
+            <input type="password"  name="senha" required />
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>

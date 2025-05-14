@@ -256,7 +256,7 @@ public class LoginDAO {
         try {
             connection = new ConexaoFactory().getConnection();
             int usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;
-            String SQL = "insert into Login"
+            String SQL = "insert into login"
                     +"(nomeUsuario"
                     +",acessoUsuario"
                     +",gruposUsuario"
