@@ -52,11 +52,13 @@ public class ServletLogar3 extends HttpServlet {
                     rd = request.getRequestDispatcher("/login.jsp");
                     rd.forward(request, response);
                 } else{
-                request.setAttribute("status", "Usuário Válido");
-                request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
-                request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
+                //request.setAttribute("status", "Usuário Válido");
+                //request.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
+                //request.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
                 session.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
+                session.setAttribute("nomeUsuario", usuarioCarregado.getNomeUsuario());
                 session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
+                session.setAttribute("senhaUsuarioBanco", usuarioCarregado.getSenhaUsuario());
                 session.setAttribute("acessoUsuario", usuarioCarregado.getAcessoUsuario());
                 rd = request.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);

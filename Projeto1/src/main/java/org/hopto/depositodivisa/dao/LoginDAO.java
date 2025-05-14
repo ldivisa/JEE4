@@ -185,7 +185,7 @@ public class LoginDAO {
             while (resultSet1.next()) {
                 Login usuario1 = new Login();
                 usuario1.setAcessoUsuario(resultSet1.getString("acessoUsuario"));
-                usuario1.setDataUltimoAcesso(resultSet1.getDate("dataUltimoAcesso"));
+                usuario1.setDataUltimoAcesso(resultSet1.getString("dataUltimoAcesso"));
                 usuario1.setDataCadastro(resultSet1.getDate("dataCadastro"));
                 usuario1.setNomeCompletoUsuario(resultSet1.getString("nomeCompletoUsuario"));
                 usuario1.setNomeUsuario(resultSet1.getString("nomeUsuario"));
@@ -280,5 +280,30 @@ public class LoginDAO {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
-    
+public void registrarDataUltimoLoginPerfilUsuario(String usuarioAlterarEstado)    {
+  this.usuarioAlterarEstado = usuarioAlterarEstado;
+    try {
+         connection = new ConexaoFactory().getConnection();
+         String hoje = new java.text.SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new java.util.Date());
+         //System.out.println("hoje "+hoje);
+         String SQL = "update login set dataUltimoAcesso=\""+hoje+ "\" where nomeUsuario=\""+usuarioAlterarEstado+"\"";
+         //System.out.println("SQL "+SQL);
+            PreparedStatement ps1 = connection.prepareStatement(SQL);
+            ps1.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
+public void alterarSenha(String nomeUsuario, String senhaNovaHash){
+    try{     
+    connection = new ConexaoFactory().getConnection();
+    String SQL = "update login set senhaUsuario= \""+senhaNovaHash +"\" where nomeUsuario=\""+nomeUsuario+"\"";
+        //System.out.println("SQL "+SQL);
+        PreparedStatement ps1 = connection.prepareStatement(SQL);
+        ps1.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+}
 }

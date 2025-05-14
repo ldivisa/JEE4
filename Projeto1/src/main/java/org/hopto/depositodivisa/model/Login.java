@@ -73,14 +73,14 @@ public class Login {
     /**
      * @return the dataUltimoAcesso
      */
-    public Date getDataUltimoAcesso() {
+    public String getDataUltimoAcesso() {
         return dataUltimoAcesso;
     }
 
     /**
      * @param dataUltimoAcesso the dataUltimoAcesso to set
      */
-    public void setDataUltimoAcesso(Date dataUltimoAcesso) {
+    public void setDataUltimoAcesso(String dataUltimoAcesso) {
         this.dataUltimoAcesso = dataUltimoAcesso;
     }
 
@@ -133,7 +133,7 @@ public class Login {
     private String nomeUsuario;
     private String senhaUsuario;
     private String acessoUsuario;
-    private Date dataUltimoAcesso;
+    private String dataUltimoAcesso;
     private Date dataCadastro;
     private String gruposUsuario;
     private String nomeCompletoUsuario;

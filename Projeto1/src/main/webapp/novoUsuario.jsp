@@ -11,14 +11,14 @@
         if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
             response.sendRedirect("index.jsp");
     %>
-    <div id="formNovoUsuario">
-    <form id="formNovoUsuario" method="get" action="criarNovoUsuario">
-        <div id="tituloNovoUsuario">
+    <div id="tituloNovoUsuario">
         <h1>Novo Usuário</h1>
-        </div>
+    </div>
+    <div id="formNovoUsuario">
+        <form id="formNovoUsuario" method="get" action="criarNovoUsuario">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" required />
+            <input type="text"  name="nomeUsuario" required autofocus="true"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
@@ -30,7 +30,7 @@
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required />
+            <input type="text"  name="gruposUsuario" required autocomplete="false"/>
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
@@ -39,7 +39,7 @@
         </div>
         <div class="campos">
             <label for="senha">Senha .:</label>
-            <input type="password"  name="senha" required />
+            <input type="password"  name="senha" required autocomplete="false" onkey="" />
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>

@@ -11,34 +11,34 @@
         if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
             response.sendRedirect("index.jsp");
     %>
+    <div id="tituloAlterarUsuario">
+        <h1>Alterar dados do  Usuário</h1>
+    </div>
     <div id="formAlteraUsuario">
     <form id="formAlteraUsuario" method="get" action="alterarUsuario">
-        <div id="tituloAlterarUsuario">
-        <h1>Alterar dados do  Usuário</h1>
-        </div>
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly="true"/>
+            <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly="true" autofocus="true"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required="true" value="${param.nomeCompletoUsuario}"/>
+            <input type="text"  name="nomeCompletoUsuario" required value="${param.nomeCompletoUsuario}"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text"  name="acessoUsuario" required="true" value="${param.acessoUsuario}"/>
+            <input type="text"  name="acessoUsuario" required value="${param.acessoUsuario}"/>
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required="true" value="${param.gruposUsuario}"/>
+            <input type="text"  name="gruposUsuario" required value="${param.gruposUsuario}"/>
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
-            <input type="text"  name="dataCadastro" required="true" value="${param.dataCadastro}"/>
+            <input type="date"  name="dataCadastro" required value="${param.dataCadastro}" readonly="true"/>
         </div>
         <div class="campos">
             <label for="dataUltimoAcesso">Data último acesso.:</label>
-            <input type="text"  name="dataUltimoAcesso" required="true" value="${param.dataUltimoAcesso}"/>
+            <input type="text"  name="dataUltimoAcesso" " value="${param.dataUltimoAcesso}" readonly="true"/>
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>

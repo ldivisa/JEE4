@@ -32,6 +32,10 @@
         <servlet-name>criarNovoUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.criarNovoUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>trocarSenha</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.trocarSenha</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogar</servlet-name>
         <url-pattern>/ServletLogar</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>criarNovoUsuario</servlet-name>
         <url-pattern>/criarNovoUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>trocarSenha</servlet-name>
+        <url-pattern>/trocarSenha</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

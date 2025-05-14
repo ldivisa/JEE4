@@ -46,8 +46,14 @@
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"R")){
                             out.print("<li><a href=\"views/relatorios.jsp\"><img src=\"imagens/Relatorios.jpg\" alt=\"alt\" height=\"50px\" width=\"50px\" title=\"Relatorios\"</a></li>");
                                 }
+                             %>
+                             <br><br><br>
+                             <%
+                            if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"S")){
+                            out.print("<li><a href=\"trocarSenha.jsp?mensagem=Insira os dados\"><img src=\"imagens/trocarSenha.png\" alt=\"Trocar Senha\" height=\"50px\" width=\"50px\" title=\"Trocar Senha\"</a></li>");
+                                }    
                             %>
-                            
+                            <br><br><br><br><br>
                             <li><a href="saida.jsp"><img src="imagens/Saida.jpg" alt="Saída" height="50px" width="50px" title="Sair"></a></li>
                         </ol>
                     </nav>
