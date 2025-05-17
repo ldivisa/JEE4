@@ -9,22 +9,7 @@
 
 <div id="central">
        
-    <%
-        int offset = 1;
-        Connection conexao = new ConexaoFactory().getConnection();
-        String SQL = "select * from login limit 10 offset " + offset;
-        System.out.println("\n SQL: "+SQL);
-        PreparedStatement ps;
-        ResultSet resultSet;
-        ps = conexao.prepareStatement(SQL);
-        resultSet = ps.executeQuery();
-        HttpSession sessao = request.getSession();
-        LoginDAO login = new LoginDAO();
-      
-        while (resultSet.next()) {
-            System.out.println("\n Usuario: " + resultSet.getNString("nomeUsuario"));
-        }
-    %>
+   
     
 </div>
 </div>

@@ -28,7 +28,8 @@ public class LoginDAO {
     public static String nomeCompletoUsuario;
     private Login usuarioLogado;
     private String usuarioAlterarEstado;
-
+    private Integer numeroPagina;
+    private Integer limite;
     public void LoginDAO() {
         url = null;
         usuario = null;
@@ -199,6 +200,34 @@ public class LoginDAO {
         return null;
     }
 
+    public List<Login> getListaUsuariosPaginada(Integer limite,Integer numeroPagina) throws SQLException {
+        this.limite = limite;
+        this.numeroPagina = numeroPagina;
+        int offset = (limite* numeroPagina) - limite;
+        connection = new ConexaoFactory().getConnection();
+        String SQL = "select * from login limit = "+ limite+" offset= "+numeroPagina;
+        PreparedStatement ps1 = connection.prepareStatement(SQL);
+        ResultSet resultSet1 = ps1.executeQuery();
+        List<Login> listaUsuarios;
+        listaUsuarios = new ArrayList<>();
+        if (resultSet1.isBeforeFirst()) {
+            while (resultSet1.next()) {
+                Login usuario1 = new Login();
+                usuario1.setAcessoUsuario(resultSet1.getString("acessoUsuario"));
+                usuario1.setDataUltimoAcesso(resultSet1.getString("dataUltimoAcesso"));
+                usuario1.setDataCadastro(resultSet1.getDate("dataCadastro"));
+                usuario1.setNomeCompletoUsuario(resultSet1.getString("nomeCompletoUsuario"));
+                usuario1.setNomeUsuario(resultSet1.getString("nomeUsuario"));
+                usuario1.setSenhaUsuario(resultSet1.getString("senhaUsuario"));
+                usuario1.setGruposUsuario(resultSet1.getString("gruposUsuario"));
+                usuario1.setAtivo(resultSet1.getInt("ativo"));
+                listaUsuarios.add(usuario1);
+            }
+            return listaUsuarios;
+        }
+        return null;
+    }
+
     public void desativarUsuario(String usuarioAlterarEstado) {
 
         try {
@@ -248,6 +277,7 @@ public class LoginDAO {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
    public void registrarNovoUsuario(String nomeUsuario,String nomeCompletoUsuario,String acessoUsuario,String gruposUsuario,String ativo,String dataCadastro, String Senha) {
        //System.out.println("Nome Usuario:"+nomeUsuario); 
