@@ -46,7 +46,7 @@
             <input type="checkbox"  name="ativo" checked="on" />
         </div>
         <div class="campos">
-            <input type="submit"  name="enviarNovoUsuario" title="Gravar informações no cadastro deste novousuário" />
+            <button type="submit"  name="enviarNovoUsuario" title="Gravar informações no cadastro deste novo usuário">Gravar novo usuário</>
         </div>
     </form>
     </div>

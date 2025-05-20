@@ -35,7 +35,7 @@ public class alterarUsuario extends HttpServlet {
         RequestDispatcher rd;
         LoginDAO login = new LoginDAO();
         login.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
-        rd = request.getRequestDispatcher("ServletListarUsuarios");
+        rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
         rd.forward(request, response);
     }
 

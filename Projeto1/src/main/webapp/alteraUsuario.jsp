@@ -45,7 +45,7 @@
             <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked="on"<% else %>  />
         </div>
         <div class="campos">
-            <input type="submit"  name="enviarAlteracoesUsuario" title="Gravar alterações no cadastro deste usuário" />
+            <button type="submit"  name="enviarAlteracoesUsuario" label="Alterar" title="Gravar alterações no cadastro deste usuário">Alterar Usuário</>
         </div>
     </form>
     </div>

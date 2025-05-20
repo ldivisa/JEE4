@@ -263,7 +263,11 @@ public class LoginDAO {
     public void alterarUsuario(String nomeUsuario,String nomeCompletoUsuario,String acessoUsuario,String gruposUsuario,String ativo) {
         try {
             connection = new ConexaoFactory().getConnection();
-            int usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;
+            int usuarioAtivo;
+            if (ativo==null){
+                ativo="0";
+                usuarioAtivo=0;} else{
+            usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;}
             String SQL = "update login set"
                     +" nomeCompletoUsuario=\""+nomeCompletoUsuario
                     +"\" ,acessoUsuario=\""+acessoUsuario
