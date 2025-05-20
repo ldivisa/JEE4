@@ -44,7 +44,7 @@
                             out.print("<li><a href=\"views/financeiro.jsp\"><img src=\"imagens/Financeiro.jpg\" alt=\"alt\" height=\"50px\" width=\"50px\" title=\"Financeiro\"</a></li>");
                                 }
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"U")){
-                            out.print("<li><a href=\"ServletListarUsuarios\"><img src=\"imagens/Usuarios.png\" alt=\"alt\" height=\"50px\" width=\"50px\" title=\"Usuários\"</a></li>");
+                            out.print("<li><a href=\"ServletListarUsuariosPaginada\"><img src=\"imagens/Usuarios.png\" alt=\"alt\" height=\"50px\" width=\"50px\" title=\"Usuários\"</a></li>");
                                 }
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"R")){
                             out.print("<li><a href=\"views/relatorios.jsp\"><img src=\"imagens/Relatorios.jpg\" alt=\"alt\" height=\"50px\" width=\"50px\" title=\"Relatorios\"</a></li>");

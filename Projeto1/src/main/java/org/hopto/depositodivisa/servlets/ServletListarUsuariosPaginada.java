@@ -43,8 +43,9 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
             }
             Integer limite = (Integer) request.getAttribute("limite");
             if (limite == null) {
-                limite = 1;
+                limite = 5;
             }
+            System.out.println("\nParametros - numeroPagina:"+numeroPagina+", limite:"+limite);
             List<Login> listaUsuarios = null;
         try {
             listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina);

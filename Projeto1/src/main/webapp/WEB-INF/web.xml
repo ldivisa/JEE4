@@ -25,6 +25,10 @@
         <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuarios</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ServletListarUsuariosPaginada</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuariosPaginada</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>checarPermissao</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.checarPermissao</servlet-class>
     </servlet>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>trocarSenha</servlet-name>
         <url-pattern>/trocarSenha</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarUsuariosPaginada</servlet-name>
+        <url-pattern>/ServletListarUsuariosPaginada</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

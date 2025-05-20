@@ -201,11 +201,11 @@ public class LoginDAO {
     }
 
     public List<Login> getListaUsuariosPaginada(Integer limite,Integer numeroPagina) throws SQLException {
-        this.limite = limite;
-        this.numeroPagina = numeroPagina;
-        int offset = (limite* numeroPagina) - limite;
+        String strLimite =String.valueOf(limite);
+        String offset =String.valueOf( (limite* numeroPagina) - limite);
         connection = new ConexaoFactory().getConnection();
-        String SQL = "select * from login limit = "+ limite+" offset= "+numeroPagina;
+        String SQL = "select * from login limit "+ strLimite+" offset "+offset;
+        System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
         List<Login> listaUsuarios;
@@ -221,6 +221,7 @@ public class LoginDAO {
                 usuario1.setSenhaUsuario(resultSet1.getString("senhaUsuario"));
                 usuario1.setGruposUsuario(resultSet1.getString("gruposUsuario"));
                 usuario1.setAtivo(resultSet1.getInt("ativo"));
+                System.out.println("\nNome:"+usuario1.getNomeUsuario());
                 listaUsuarios.add(usuario1);
             }
             return listaUsuarios;
@@ -229,7 +230,6 @@ public class LoginDAO {
     }
 
     public void desativarUsuario(String usuarioAlterarEstado) {
-
         try {
             this.usuarioAlterarEstado = usuarioAlterarEstado;
             connection = new ConexaoFactory().getConnection();
@@ -336,4 +336,23 @@ public void alterarSenha(String nomeUsuario, String senhaNovaHash){
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
 }
+
+public String contagemRegistros(){
+connection = new ConexaoFactory().getConnection();
+String SQL = "select count(*) as contagem from login where ativo=1 ";
+        PreparedStatement ps1;
+        ResultSet rs = null;
+        String contagem = null;
+        try {
+            ps1 = connection.prepareStatement(SQL);
+            rs = ps1.executeQuery();
+            rs.next();
+            contagem= rs.getString("contagem");
+     } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ return contagem;       
+}
+    
+
 }
