@@ -46,7 +46,7 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
         //System.out.println("\n pagina "+session.getAttribute("numeroPagina"));
         try {
             listaUsuarios = loginDAO.getListaUsuariosPaginada(
-                    Integer.parseInt((String)session.getAttribute("limite")),
+                    Integer.parseInt((String) session.getAttribute("limite")),
                     Integer.parseInt((String)session.getAttribute("numeroPagina")));
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
