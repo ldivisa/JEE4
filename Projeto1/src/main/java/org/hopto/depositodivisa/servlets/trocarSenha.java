@@ -80,7 +80,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
             }
             
             login.alterarSenha(usuarioAtual, senhaAtualHash);
-                rd = request.getRequestDispatcher("ServletListarUsuarios");
+                rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
                 rd.forward(request, response);
         
                 
