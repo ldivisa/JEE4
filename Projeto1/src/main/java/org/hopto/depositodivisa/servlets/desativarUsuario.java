@@ -38,7 +38,7 @@ public class desativarUsuario extends HttpServlet {
         RequestDispatcher rd;
         String usuarioAlterarEstado=(String) request.getParameter("usuarioAlterarEstado");
         login.desativarUsuario(usuarioAlterarEstado);
-        rd = request.getRequestDispatcher("ServletListarUsuarios");
+        rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
         rd.forward(request, response);
     }
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +50,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         RequestDispatcher rd;
         String usuarioAlterarEstado=(String) request.getParameter("usuarioAlterarEstado");
         login.desativarUsuario(usuarioAlterarEstado);
-        rd = request.getRequestDispatcher("ServletListarUsuarios");
+        rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
         rd.forward(request, response);
     }
 

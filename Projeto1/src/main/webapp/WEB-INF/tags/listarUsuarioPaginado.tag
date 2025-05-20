@@ -5,7 +5,14 @@
 <%@tag body-content="empty"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="depositodivisa" %>
-
+<%
+    LoginDAO login = new LoginDAO();
+    Integer pagMax = null;
+    Integer numRegistros = Integer.parseInt(login.contagemRegistros());
+    Integer limite = Integer.parseInt((String) session.getAttribute("limite"));
+    pagMax = Math.round(numRegistros / limite) + 1;
+    session.setAttribute("pagMax", String.valueOf(pagMax));
+%>
     <h1>Listagem de usuários do sistema:</h1>
     <c:set var="contador" value="0"/>
     <c:set var="corA" value="lightblue"/>

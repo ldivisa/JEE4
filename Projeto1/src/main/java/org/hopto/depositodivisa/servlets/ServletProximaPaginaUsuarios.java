@@ -34,14 +34,8 @@ public class ServletProximaPaginaUsuarios extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session;
         session = request.getSession();
-        LoginDAO login = new LoginDAO();
-        Integer pagMax = null;
-        Integer numRegistros = Integer.parseInt(login.contagemRegistros());
-        Integer limite = Integer.parseInt((String)session.getAttribute("limite"));
-        pagMax= Math.round(numRegistros/limite)+1;
-        session.setAttribute("pagMax", String.valueOf(pagMax));
-       if (session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))>=pagMax){
-            session.setAttribute("numeroPagina", String.valueOf(pagMax));}
+        if (session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))>=(Integer.parseInt((String)session.getAttribute("pagMax")))){
+            session.setAttribute("numeroPagina", session.getAttribute("maxPag"));}
         else {
             session.setAttribute("numeroPagina",
                 String.valueOf(
@@ -61,14 +55,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
    response.setContentType("text/html;charset=UTF-8");
         HttpSession session;
         session = request.getSession();
-        LoginDAO login = new LoginDAO();
-        Integer pagMax = null;
-        Integer numRegistros = Integer.parseInt(login.contagemRegistros());
-        Integer limite = Integer.parseInt((String)session.getAttribute("limite"));
-        pagMax= Math.round(numRegistros/limite)+1;
-        session.setAttribute("pagMax", String.valueOf(pagMax));
-       if (session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))>=pagMax){
-            session.setAttribute("numeroPagina", String.valueOf(pagMax));}
+        if (session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))>=(Integer.parseInt((String)session.getAttribute("pagMax")))){
+            session.setAttribute("numeroPagina", session.getAttribute("maxPag"));}
         else {
             session.setAttribute("numeroPagina",
                 String.valueOf(
