@@ -267,7 +267,8 @@ public class LoginDAO {
             if (ativo==null){
                 ativo="0";
                 usuarioAtivo=0;} else{
-            usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;}
+            usuarioAtivo= ativo.equalsIgnoreCase("on")?1:0;
+            }
             String SQL = "update login set"
                     +" nomeCompletoUsuario=\""+nomeCompletoUsuario
                     +"\" ,acessoUsuario=\""+acessoUsuario

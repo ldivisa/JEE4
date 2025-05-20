@@ -39,11 +39,11 @@
         </div>
         <div class="campos">
             <label for="senha">Senha .:</label>
-            <input type="password"  name="senha" required autocomplete="false"  maxlength="20" size="20"/>
+            <input type="password"  name="senha" required  maxlength="20" size="20"/>
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
-            <input type="checkbox"  name="ativo" checked="on" />
+            <input type="checkbox"  name="ativo" checked />
         </div>
         <div class="campos">
             <button type="submit"  name="enviarNovoUsuario" title="Gravar informações no cadastro deste novo usuário">Gravar novo usuário</>
