@@ -10,21 +10,7 @@
     <c:set var="contador" value="0"/>
     <c:set var="corA" value="lightblue"/>
     <c:set var="corB" value="white"/>
-     <%
-//        int limite ;
-//        if (request.getParameter("limite")==null)
-//         limite = 1;
-//         else
-//         limite =Integer.parseInt(request.getParameter("limite"));
-//         
-//        String numPagina = request.getParameter("numPagina");
-//        if (numPagina==null)
-//            numPagina="1";
-//        int offset = (Integer.parseInt(numPagina)*limite)-limite;
-//        HttpSession sessao = request.getSession();
-//        //List <Login> testeLista =(List<Login>) sessao.getAttribute("sessaoListaUsuarios");
-//        //while (testeLista.)
-    %>
+ 
     <table border="1">
         <tr><td colspan="6"><a href="novoUsuario.jsp" title="Criar Novo Usuário"><img src="imagens/novoUsuario.jpg" alt="Novo usuário" height="50px" widht="50px"> </td></tr>
         <tr class="tabelaLinhaespecial">
@@ -71,13 +57,12 @@
             <c:set var="contador" value="${contador+1}"/>
         </c:forEach>
             <tr>
-                <td><a href="ServerListarUsuariosPaginada?NumeroPagina=
-            <%=Integer.parseInt((String)request.getAttribute("numeroPagina"))-1%>
-            "</td>
-            <td><a href="ServerListarUsuariosPaginada?NumeroPagina=
-            <%=Integer.parseInt((String)request.getAttribute("numeroPagina"))+1%>
-            "</td>
+                <td><a href="ServletPaginaAnteriorUsuarios"
+                </a>Anterior</td>
+                <td><a href="ServletProximaPaginaUsuarios"
+                       
+                       </a>Posterior</td>
             </tr>
-            <tr><td class="tabelaLinhaespecial" colspan="9">Total de usuários registrados: <depositodivisa:contagemUsuarios/></td></tr>
+            <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/></td></tr>
 
     </table>

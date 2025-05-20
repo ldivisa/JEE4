@@ -35,32 +35,28 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession session;
+        session = request.getSession();
         LoginDAO loginDAO = new LoginDAO();
-            Integer numeroPagina = (Integer) request.getAttribute("numeroPagina");
-            if (numeroPagina == null) {
-                numeroPagina = 1;
-            }
-            Integer limite = (Integer) request.getAttribute("limite");
-            if (limite == null) {
-                limite = 5;
-            }
-            System.out.println("\nParametros - numeroPagina:"+numeroPagina+", limite:"+limite);
-            List<Login> listaUsuarios = null;
+        if ( session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))<1){
+        session.setAttribute("numeroPagina", "1");
+        session.setAttribute("limite", "4");
+        }
+        List<Login> listaUsuarios = null;
+        //System.out.println("\n pagina "+session.getAttribute("numeroPagina"));
         try {
-            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina);
+            listaUsuarios = loginDAO.getListaUsuariosPaginada(
+                    Integer.parseInt((String)session.getAttribute("limite")),
+                    Integer.parseInt((String)session.getAttribute("numeroPagina")));
+            request.setAttribute("sessaoListaUsuarios", listaUsuarios);
+            session.setAttribute("sessaoListaUsuarios", listaUsuarios);
+            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            rd.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ServletListarUsuariosPaginada.class.getName()).log(Level.SEVERE, null, ex);
         }
-        HttpSession session = request.getSession();
-        request.setAttribute("sessaoListaUsuarios", listaUsuarios);
-        session.setAttribute("sessaoListaUsuarios", listaUsuarios);
-            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
-            //   request.setAttribute("usuarioAtual", (String) request.getSession().getAttribute("usuarioAtual"));
-            //   request.setAttribute("nomeCompletoUsuario",(String) request.getSession().getAttribute("nomeCompletoUsuario"));
-            rd.forward(request, response);
-        
-        }
+
+    }
 
     
 

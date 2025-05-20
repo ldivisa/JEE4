@@ -205,7 +205,7 @@ public class LoginDAO {
         String offset =String.valueOf( (limite* numeroPagina) - limite);
         connection = new ConexaoFactory().getConnection();
         String SQL = "select * from login limit "+ strLimite+" offset "+offset;
-        System.out.println("\nSQL:"+SQL);
+        //System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
         List<Login> listaUsuarios;
@@ -221,7 +221,7 @@ public class LoginDAO {
                 usuario1.setSenhaUsuario(resultSet1.getString("senhaUsuario"));
                 usuario1.setGruposUsuario(resultSet1.getString("gruposUsuario"));
                 usuario1.setAtivo(resultSet1.getInt("ativo"));
-                System.out.println("\nNome:"+usuario1.getNomeUsuario());
+                //System.out.println("\nNome:"+usuario1.getNomeUsuario());
                 listaUsuarios.add(usuario1);
             }
             return listaUsuarios;
