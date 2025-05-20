@@ -22,9 +22,8 @@
             numPagina="1";
         int offset = (Integer.parseInt(numPagina)*limite)-limite;
         HttpSession sessao = request.getSession();
-
-
-              
+        List<Login> testeLista =(List<Login>) sessao.getAttribute("sessaoListaUsuarios");
+        while (testeLista)
     %>
     <table border="1">
         <tr><td colspan="6"><a href="novoUsuario.jsp" title="Criar Novo Usuário"><img src="imagens/novoUsuario.jpg" alt="Novo usuário" height="50px" widht="50px"> </td></tr>
