@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,22 +35,33 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  
+
         LoginDAO loginDAO = new LoginDAO();
+            Integer numeroPagina = (Integer) request.getAttribute("numeroPagina");
+            if (numeroPagina == null) {
+                numeroPagina = 1;
+            }
+            Integer limite = (Integer) request.getAttribute("limite");
+            if (limite == null) {
+                limite = 1;
+            }
+            List<Login> listaUsuarios = null;
         try {
-            Integer numeroPagina=(Integer) request.getAttribute("numeroPagina");
-            Integer limite=(Integer) request.getAttribute("limite");
-            List<Login> listaUsuarios = loginDAO.getListaUsuariosPaginada(limite,numeroPagina);
-            request.setAttribute("sessaoListaUsuarios", listaUsuarios);
-            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
-            request.setAttribute("usuarioAtual", (String) request.getSession().getAttribute("usuarioAtual"));
-            request.setAttribute("nomeCompletoUsuario",(String) request.getSession().getAttribute("nomeCompletoUsuario"));
-            rd.forward(request, response);    
+            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina);
         } catch (SQLException ex) {
             Logger.getLogger(ServletListarUsuariosPaginada.class.getName()).log(Level.SEVERE, null, ex);
         }
+        HttpSession session = request.getSession();
+        request.setAttribute("sessaoListaUsuarios", listaUsuarios);
+        session.setAttribute("sessaoListaUsuarios", listaUsuarios);
+            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            //   request.setAttribute("usuarioAtual", (String) request.getSession().getAttribute("usuarioAtual"));
+            //   request.setAttribute("nomeCompletoUsuario",(String) request.getSession().getAttribute("nomeCompletoUsuario"));
+            rd.forward(request, response);
+        
+        }
 
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -1,4 +1,8 @@
-<%@tag  body-content="empty"%>
+<%@tag import="org.hopto.depositodivisa.dao.LoginDAO"%>
+<%@tag import="com.mysql.cj.jdbc.*"%>
+<%@tag import="org.hopto.depositodivisa.factory.ConexaoFactory"%>
+<%@tag import="com.mysql.cj.protocol.Resultset"%>
+<%@tag body-content="empty"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="depositodivisa" %>
 
@@ -7,25 +11,20 @@
     <c:set var="corA" value="lightblue"/>
     <c:set var="corB" value="white"/>
      <%
-        int limite = 10;
+        int limite ;
+        if (request.getParameter("limite")==null)
+         limite = 1;
+         else
+         limite =Integer.parseInt(request.getParameter("limite"));
+         
         String numPagina = request.getParameter("numPagina");
         if (numPagina==null)
             numPagina="1";
         int offset = (Integer.parseInt(numPagina)*limite)-limite;
-        Connection conexao = new ConexaoFactory().getConnection();
-        String SQL = "select * from login limit " +limite+ " offset " + offset;
-        System.out.println("\n SQL: "+SQL);
-        PreparedStatement ps;
-        ResultSet resultSet;
-        ps = conexao.prepareStatement(SQL);
-        resultSet = ps.executeQuery();
         HttpSession sessao = request.getSession();
-        sessao.setAttribute("listaUusuariosPaginada", o);
-        LoginDAO login = new LoginDAO();
-      
-        while (resultSet.next()) {
-            System.out.println("\n Usuario: " + resultSet.getNString("nomeUsuario"));
-        }
+
+
+              
     %>
     <table border="1">
         <tr><td colspan="6"><a href="novoUsuario.jsp" title="Criar Novo Usuário"><img src="imagens/novoUsuario.jpg" alt="Novo usuário" height="50px" widht="50px"> </td></tr>
