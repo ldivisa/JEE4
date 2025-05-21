@@ -10,7 +10,9 @@
     Integer pagMax = null;
     Integer numRegistros = Integer.parseInt(login.contagemRegistros());
     Integer limite = Integer.parseInt((String) session.getAttribute("limite"));
-    pagMax = (numRegistros / limite) + 1;
+    pagMax = (numRegistros / limite);
+    if (numRegistros%limite >0)
+        pagMax++;
     session.setAttribute("pagMax", String.valueOf(pagMax));
 %>
     <h1>Listagem de usuários do sistema:</h1>
