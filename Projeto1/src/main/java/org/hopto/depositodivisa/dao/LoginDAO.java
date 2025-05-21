@@ -344,7 +344,7 @@ public void alterarSenha(String nomeUsuario, String senhaNovaHash){
 
 public String contagemRegistros(){
 connection = new ConexaoFactory().getConnection();
-String SQL = "select count(*) as contagem from login where ativo=1 ";
+String SQL = "select count(*) as contagem from login";
         PreparedStatement ps1;
         ResultSet rs = null;
         String contagem = null;

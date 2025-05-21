@@ -35,7 +35,7 @@ public class ServletProximaPaginaUsuarios extends HttpServlet {
         HttpSession session;
         session = request.getSession();
         if (session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))>=(Integer.parseInt((String)session.getAttribute("pagMax")))){
-            session.setAttribute("numeroPagina", session.getAttribute("maxPag"));}
+            session.setAttribute("numeroPagina", session.getAttribute("pagMax"));}
         else {
             session.setAttribute("numeroPagina",
                 String.valueOf(
@@ -56,7 +56,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         HttpSession session;
         session = request.getSession();
         if (session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))>=(Integer.parseInt((String)session.getAttribute("pagMax")))){
-            session.setAttribute("numeroPagina", session.getAttribute("maxPag"));}
+            session.setAttribute("numeroPagina", session.getAttribute("pagMax"));}
         else {
             session.setAttribute("numeroPagina",
                 String.valueOf(

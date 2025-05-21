@@ -38,7 +38,12 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
         HttpSession session;
         session = request.getSession();
         LoginDAO loginDAO = new LoginDAO();
-        if ( session.getAttribute("numeroPagina")==null||Integer.parseInt((String)session.getAttribute("numeroPagina"))<1){
+        if ( session.getAttribute("numeroPagina")==null){
+        session.setAttribute("limite", "4");
+        session.setAttribute("numeroPagina", "1");
+        
+        }
+        if (Integer.parseInt((String)session.getAttribute("numeroPagina"))<1){
         session.setAttribute("numeroPagina", "1");
         session.setAttribute("limite", "4");
         }
@@ -57,8 +62,6 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
         }
 
     }
-
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

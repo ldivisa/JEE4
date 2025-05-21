@@ -41,7 +41,7 @@ public class criarNovoUsuario extends HttpServlet {
         login.registrarNovoUsuario(nomeUsuario, nomeCompletoUsuario, acessoUsuario, gruposUsuario, ativo , dataCadastro, senha);
         
         RequestDispatcher rd;
-        rd = request.getRequestDispatcher("ServletListarUsuarios");
+        rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
         rd.forward(request, response);
 
         }
