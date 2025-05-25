@@ -51,7 +51,7 @@ public class UsuariosController extends HttpServlet {
         session.setAttribute("numeroPagina", String.valueOf(numeroPagina));}
         
         String processar = request.getParameter("processar");
-        
+        System.out.println("\n Acao processar:"+processar);
         if (request.getParameter("processar")==null)
             processar="listar";
         
@@ -60,6 +60,12 @@ public class UsuariosController extends HttpServlet {
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("alterar")) {
+            loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
+            request.setAttribute("sessaoListaUsuarios", listaUsuarios);
+            session.setAttribute("sessaoListaUsuarios", listaUsuarios);
+            RequestDispatcher rd = request.getRequestDispatcher("alteraUsuario.jsp");
             rd.forward(request, response);
         }
         
