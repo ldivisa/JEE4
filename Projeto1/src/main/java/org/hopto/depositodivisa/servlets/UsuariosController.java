@@ -67,6 +67,10 @@ public class UsuariosController extends HttpServlet {
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             RequestDispatcher rd = request.getRequestDispatcher("alteraUsuario.jsp");
             rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("gravar")){
+            loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
+            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            rd.forward(request, response);
         }
         
     }
