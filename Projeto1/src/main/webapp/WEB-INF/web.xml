@@ -36,8 +36,7 @@
         <servlet-name>criarNovoUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.criarNovoUsuario</servlet-class>
     </servlet>
-    
-        <servlet>
+    <servlet>
         <servlet-name>ServletProximaPaginaUsuarios</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletProximaPaginaUsuarios</servlet-class>
     </servlet>
@@ -45,10 +44,13 @@
         <servlet-name>ServletPaginaAnteriorUsuarios</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletPaginaAnteriorUsuarios</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>trocarSenha</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.trocarSenha</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsuariosController</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.UsuariosController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogar</servlet-name>
@@ -78,7 +80,6 @@
         <servlet-name>alterarUsuario</servlet-name>
         <url-pattern>/alterarUsuario</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>ServletPaginaAnteriorUsuarios</servlet-name>
         <url-pattern>/ServletPaginaAnteriorUsuarios</url-pattern>
@@ -87,7 +88,6 @@
         <servlet-name>ServletProximaPaginaUsuarios</servlet-name>
         <url-pattern>/ServletProximaPaginaUsuarios</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>desativarUsuario</servlet-name>
         <url-pattern>/desativarUsuario</url-pattern>
@@ -107,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ServletListarUsuariosPaginada</servlet-name>
         <url-pattern>/ServletListarUsuariosPaginada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuariosController</servlet-name>
+        <url-pattern>/UsuariosController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

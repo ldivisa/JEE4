@@ -8,8 +8,11 @@
 <%
     LoginDAO login = new LoginDAO();
     Integer pagMax = null;
+    Integer limite = 4;
     Integer numRegistros = Integer.parseInt(login.contagemRegistros());
-    Integer limite = Integer.parseInt((String) session.getAttribute("limite"));
+    if (session.getAttribute("limite")!=null){
+    limite = Integer.parseInt((String) session.getAttribute("limite"));
+    }
     pagMax = (numRegistros / limite);
     if (numRegistros%limite >0)
         pagMax++;

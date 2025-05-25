@@ -18,7 +18,8 @@
 <%
 if (request.getParameter("irPagina")!=null){
     session.setAttribute("numeroPagina",request.getParameter("irPagina"));
-    response.sendRedirect("ServletListarUsuariosPaginada");
+    session.setAttribute("processar",request.getParameter("listar"));
+    response.sendRedirect("UsuariosController");
     }
 %>
     <util:listarUsuarioPaginado/>       
