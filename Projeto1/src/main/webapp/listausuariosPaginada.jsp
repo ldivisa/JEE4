@@ -15,7 +15,12 @@
         if (!login.getPermissao((String)sessao.getAttribute("acessoUsuario"),"U"))
             response.sendRedirect("index.jsp");
     %>
-
+<%
+if (request.getParameter("irPagina")!=null){
+    session.setAttribute("numeroPagina",request.getParameter("irPagina"));
+    response.sendRedirect("ServletListarUsuariosPaginada");
+    }
+%>
     <util:listarUsuarioPaginado/>       
 </div>
 </div>

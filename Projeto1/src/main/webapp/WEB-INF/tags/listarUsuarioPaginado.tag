@@ -62,15 +62,25 @@
                     </c:otherwise>
                 </c:choose>
                 
-            </tr>   
-            <c:set var="contador" value="${contador+1}"/>
+                    </tr>   
+                    <c:set var="contador" value="${contador+1}"/>
         </c:forEach>
-            <tr>
-                <td><a href="ServletPaginaAnteriorUsuarios"
-                </a>Anterior</td>
-                <td><a href="ServletProximaPaginaUsuarios"
-                       
-                       </a>Posterior</td>
+        <tr>            
+            <td><a href="ServletPaginaAnteriorUsuarios"
+            </a>Anterior</td>
+        <td><a href="ServletProximaPaginaUsuarios"
+        </a>Posterior</td>
+        <td colspan="7">
+            <%
+            for (int i=1;i<=pagMax;i++){
+            if (Integer.parseInt((String)session.getAttribute("numeroPagina"))==i){
+                    out.print("<b>"+i+"</b> ");                    
+                } else {
+                    out.print("<a href=\"listausuariosPaginada.jsp?irPagina="+i+"\">"+i+"</a> ");
+                }
+                }
+            %>
+        </td>
             </tr>
             <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/></td></tr>
 

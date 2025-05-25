@@ -38,6 +38,7 @@ public class ServletListarUsuariosPaginada extends HttpServlet {
         HttpSession session;
         session = request.getSession();
         LoginDAO loginDAO = new LoginDAO();
+        
         if ( session.getAttribute("numeroPagina")==null){
         session.setAttribute("limite", "4");
         session.setAttribute("numeroPagina", "1");
