@@ -15,7 +15,7 @@
         <h1>Novo Usuário</h1>
     </div>
     <div id="formNovoUsuario">
-        <form id="formNovoUsuario" method="get" action="criarNovoUsuario">
+        <form id="formNovoUsuario" method="get" action="UsuariosController">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
             <input type="text"  name="nomeUsuario" required autofocus maxlength="30" size="30"/>
@@ -46,7 +46,7 @@
             <input type="checkbox"  name="ativo" checked />
         </div>
         <div class="campos">
-            <button type="submit"  name="enviarNovoUsuario" title="Gravar informações no cadastro deste novo usuário">Gravar novo usuário</>
+            <button type="submit"  name="processar" value="novo" title="Gravar informações no cadastro deste novo usuário">Gravar novo usuário</>
         </div>
     </form>
     </div>

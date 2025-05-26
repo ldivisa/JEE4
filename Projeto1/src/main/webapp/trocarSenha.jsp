@@ -15,7 +15,7 @@
         <h1>Trocar senha atual</h1>
     </div>
     <div id="formNovoUsuario">
-                <form id="formTrocarSenha" method="get" action="trocarSenha">
+                <form id="formTrocarSenha" method="get" action="UsuariosController">
         <div class="campos">
             <label for="senhaAtual">Senha Atual.......................:</label>
             <input type="password"  name="senhaAtual" required autofocus/>
@@ -29,7 +29,7 @@
             <input type="password"  name="senhaNova2" required />
         </div>
         <div class="campos">
-            <button type="submit"  name="trocarSenha" title="Gravar informações no cadastro deste novo usuário"> Trocar Senha</>
+            <button type="submit"  name="processar" value="trocarSenha" title="Gravar informações no cadastro deste novo usuário"> Trocar Senha</>
         </div>
     </form>
         <h1> ${mensagem} </h1>

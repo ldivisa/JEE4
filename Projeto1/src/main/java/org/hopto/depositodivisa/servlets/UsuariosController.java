@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hopto.depositodivisa.dao.LoginDAO;
+import org.hopto.depositodivisa.funcoes.HashSenhasArgo2;
 import org.hopto.depositodivisa.model.Login;
 
 /**
@@ -65,11 +66,13 @@ public class UsuariosController extends HttpServlet {
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
             rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("novo")){
+            loginDAO.registrarNovoUsuario(request.getParameter("nomeUsuario"),request.getParameter("nomeCompletoUsuario"),request.getParameter("acessoUsuario"),request.getParameter("gruposUsuario"),request.getParameter("ativo"), request.getParameter("dataCadastro"), request.getParameter("senha"));
+            rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
+            rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("alterar")) {
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
-            request.setAttribute("sessaoListaUsuarios", listaUsuarios);
-            session.setAttribute("sessaoListaUsuarios", listaUsuarios);
-            rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("gravar")){
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
@@ -97,9 +100,40 @@ public class UsuariosController extends HttpServlet {
             if(numeroPagina>1)
                 numeroPagina--;
             session.setAttribute("numeroPagina", String.valueOf(numeroPagina)); 
-            
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("trocarSenha")){
+            HashSenhasArgo2 hash = new HashSenhasArgo2();
+            String usuarioAtual = (String) session.getAttribute("nomeUsuario");
+            String usuarioAlterarEstado=(String) session.getAttribute("usuarioAlterarEstado");
+            String senhaAtual=request.getParameter("senhaAtual");
+            String senhaNova1=request.getParameter("senhaNova1");
+            String senhaNova2=request.getParameter("senhaNova2");
+            String senhaUsuarioBanco = (String) session.getAttribute("senhaUsuarioBanco");
+            String senhaAtualHash = hash.criaHashSenha(senhaNova1);
+            if  (senhaAtual.equals(senhaNova1)||senhaAtual.equals(senhaNova2)){
+                session.setAttribute("mensagem", "A senha nova precisar ser diferente da atual");
+                rd = request.getRequestDispatcher("trocarSenha.jsp");
+                rd.forward(request, response);
+                return;
+            }
+            if (!senhaNova1.equals(senhaNova2)){
+                session.setAttribute("mensagem", "Os dois campos de registro da nova senha precisam ser iguais");
+                rd = request.getRequestDispatcher("trocarSenha.jsp");
+                rd.forward(request, response);
+                return;
+            }
+            if(!hash.checaHashSenha(senhaUsuarioBanco,senhaAtual)){
+                session.setAttribute("mensagem", "A senha atual não confere");
+                rd = request.getRequestDispatcher("trocarSenha.jsp");
+                rd.forward(request, response);
+                return;
+            }
+            
+            loginDAO.alterarSenha(usuarioAtual, senhaAtualHash);
+                rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+                rd.forward(request, response);
+        
         }
     }
 

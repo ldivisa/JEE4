@@ -15,7 +15,7 @@
         <h1>Alterar dados do  Usuário</h1>
     </div>
     <div id="formAlteraUsuario">
-    <form id="formAlteraUsuario" method="get" action="UsuariosController?processar=gravar">
+    <form id="formAlteraUsuario" method="get" action="UsuariosController">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
             <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly autofocus maxlength="40"/>
@@ -45,7 +45,7 @@
             <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked<% else %>  />
         </div>
         <div class="campos">
-            <button type="submit"  name="enviarAlteracoesUsuario" title="Gravar alterações no cadastro deste usuário">Alterar Usuário</>
+            <button type="submit"  name="processar" value="alterar" title="Gravar alterações no cadastro deste usuário">Alterar Usuário</>
         </div>
     </form>
     </div>
