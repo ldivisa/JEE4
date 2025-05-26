@@ -6,7 +6,6 @@ package org.hopto.depositodivisa.servlets;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,8 +38,10 @@ public class UsuariosController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         List<Login> listaUsuarios = null;
         LoginDAO loginDAO = new LoginDAO();
-        Integer limite = 4 ,numeroPagina = 1;
+        Integer limite = 4 ,numeroPagina=1;
         HttpSession session = request.getSession();
+        RequestDispatcher rd;
+        Integer pagMax  = 1;
         if ((String) session.getAttribute("limite")!=null){
         limite = Integer.valueOf((String) session.getAttribute("limite"));
         } else {
@@ -51,7 +52,10 @@ public class UsuariosController extends HttpServlet {
         session.setAttribute("numeroPagina", String.valueOf(numeroPagina));}
         
         String processar = request.getParameter("processar");
-        System.out.println("\n Acao processar:"+processar);
+        if (session.getAttribute("pagMax")!=null){
+            pagMax = Integer.parseInt((String)session.getAttribute("pagMax"));
+                }
+                
         if (request.getParameter("processar")==null)
             processar="listar";
         
@@ -59,20 +63,44 @@ public class UsuariosController extends HttpServlet {
             listaUsuarios = loginDAO.getListaUsuariosPaginada(limite,numeroPagina);
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
-            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("alterar")) {
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
-            RequestDispatcher rd = request.getRequestDispatcher("alteraUsuario.jsp");
+            rd = request.getRequestDispatcher("alteraUsuario.jsp");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("gravar")){
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
-            RequestDispatcher rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("desativar")) {
+            String usuarioAlterarEstado = (String) request.getParameter("usuarioAlterarEstado");
+            loginDAO.desativarUsuario(usuarioAlterarEstado);
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("ativar")) {
+            String usuarioAlterarEstado = (String) request.getParameter("usuarioAlterarEstado");
+            loginDAO.ativarUsuario(usuarioAlterarEstado);
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("proximaPagina")) {
+            System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
+            if (numeroPagina<pagMax)
+                numeroPagina++;
+                session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("paginaAnterior")) {
+            System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
+            if(numeroPagina>1)
+                numeroPagina--;
+            session.setAttribute("numeroPagina", String.valueOf(numeroPagina)); 
+            
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -57,11 +57,11 @@
                 <c:choose>
                     <c:when test="${usuarios['ativo']==1}">
                         <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>
-                        <td> <a href="desativarUsuario?usuarioAlterarEstado=${usuarios['nomeUsuario']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar o usuário ${usuarios['nomeUsuario']}"></a></td>
+                        <td> <a href="UsuariosController?processar=desativar&usuarioAlterarEstado=${usuarios['nomeUsuario']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar o usuário ${usuarios['nomeUsuario']}"></a></td>
                     </c:when>
                     <c:otherwise>
                         <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>
-                        <td> <a href="ativarUsuario?usuarioAlterarEstado=${usuarios['nomeUsuario']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar o usuário ${usuarios['nomeUsuario']}"></a></td>
+                        <td> <a href="UsuariosController?processar=ativar&usuarioAlterarEstado=${usuarios['nomeUsuario']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar o usuário ${usuarios['nomeUsuario']}"></a></td>
                     </c:otherwise>
                 </c:choose>
                 
@@ -69,9 +69,9 @@
                     <c:set var="contador" value="${contador+1}"/>
         </c:forEach>
         <tr>            
-            <td><a href="ServletPaginaAnteriorUsuarios"
+            <td><a href="UsuariosController?processar=paginaAnterior"
             </a>Anterior</td>
-        <td><a href="ServletProximaPaginaUsuarios"
+        <td><a href="UsuariosController?processar=proximaPagina"
         </a>Posterior</td>
         <td colspan="7">
             <%
