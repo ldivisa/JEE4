@@ -3,7 +3,7 @@
 <c:import url="cabecalhoLogin.jsp" />
 <div id="central">
 
-    <form action="ServletLogar3" method="GET">
+    <form action="UsuariosController" method="GET">
         <table border="1" id="table" class="tabela">
             <tr> <td colspan="2"><h1 id="TextoInformativo">Acesso ao sistema:</h1> </td></tr>
             <tr>
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="submit" name="login" value="Acessar" >
+                    <input type="submit" name="processar" value="logar" >
                     <input type="reset" name="limpar" value="Limpar">
                 </td>
             </tr>

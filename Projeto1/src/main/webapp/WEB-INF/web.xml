@@ -1,65 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    <servlet>
-        <servlet-name>ServletLogar</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletLogar</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletLogar3</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletLogar3</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletListarUsuariosPaginada</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuariosPaginada</servlet-class>
-    </servlet>
+    
+   
     <servlet>
         <servlet-name>checarPermissao</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.checarPermissao</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>criarNovoUsuario</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.criarNovoUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>trocarSenha</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.trocarSenha</servlet-class>
-    </servlet>
+        
     <servlet>
         <servlet-name>UsuariosController</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.UsuariosController</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletLogar</servlet-name>
-        <url-pattern>/ServletLogar</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>ServletEncerrarSessao</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletEncerrarSessao</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletEncerrarSessao</servlet-name>
-        <url-pattern>/ServletEncerrarSessao</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletLogar3</servlet-name>
-        <url-pattern>/ServletLogar3</url-pattern>
-    </servlet-mapping>
+    
+        
+    
     <servlet-mapping>
         <servlet-name>checarPermissao</servlet-name>
         <url-pattern>/checarPermissao</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>criarNovoUsuario</servlet-name>
-        <url-pattern>/criarNovoUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>trocarSenha</servlet-name>
-        <url-pattern>/trocarSenha</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletListarUsuariosPaginada</servlet-name>
-        <url-pattern>/ServletListarUsuariosPaginada</url-pattern>
-    </servlet-mapping>
+    
+       
     <servlet-mapping>
         <servlet-name>UsuariosController</servlet-name>
         <url-pattern>/UsuariosController</url-pattern>

@@ -68,7 +68,7 @@ public class UsuariosController extends HttpServlet {
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("novo")){
             loginDAO.registrarNovoUsuario(request.getParameter("nomeUsuario"),request.getParameter("nomeCompletoUsuario"),request.getParameter("acessoUsuario"),request.getParameter("gruposUsuario"),request.getParameter("ativo"), request.getParameter("dataCadastro"), request.getParameter("senha"));
-            rd = request.getRequestDispatcher("ServletListarUsuariosPaginada");
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("alterar")) {
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
@@ -123,20 +123,59 @@ public class UsuariosController extends HttpServlet {
                 rd.forward(request, response);
                 return;
             }
-            if(!hash.checaHashSenha(senhaUsuarioBanco,senhaAtual)){
+            if (!hash.checaHashSenha(senhaUsuarioBanco, senhaAtual)) {
                 session.setAttribute("mensagem", "A senha atual não confere");
                 rd = request.getRequestDispatcher("trocarSenha.jsp");
                 rd.forward(request, response);
                 return;
             }
-            
+
             loginDAO.alterarSenha(usuarioAtual, senhaAtualHash);
-                rd = request.getRequestDispatcher("UsuariosController?processar=listar");
-                rd.forward(request, response);
-        
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("encerrarSessao")) {
+            session.removeAttribute("usuarioAtual");
+            session.removeAttribute("nomeUsuarioCompleto");
+            request.setAttribute("status", null);
+            request.removeAttribute("usuarioAtual");
+            rd = request.getRequestDispatcher("/login.jsp");
+            rd.forward(request, response);
+        } else if (processar.equalsIgnoreCase("logar")) {
+            response.setContentType("text/html;charset=UTF-8");
+            Login usuarioChecado = new Login();
+            usuarioChecado.setNomeUsuario(request.getParameter("usuario"));
+            usuarioChecado.setSenhaUsuario(request.getParameter("senha"));
+            
+                if (loginDAO.getLogin(usuarioChecado) == null) {
+                    request.setAttribute("status", "Usuário e/ou senha inválidos");
+                    rd = request.getRequestDispatcher("/login.jsp");
+                    rd.forward(request, response);
+                } else {
+                    Login usuarioCarregado = loginDAO.getLogin(usuarioChecado);
+                    if (usuarioCarregado.getAtivo() == 0) {
+                        request.setAttribute("status", "Usuário desativado");
+                        rd = request.getRequestDispatcher("/login.jsp");
+                        rd.forward(request, response);
+                    } else {
+                         session.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
+                        session.setAttribute("nomeUsuario", usuarioCarregado.getNomeUsuario());
+                        session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
+                        session.setAttribute("senhaUsuarioBanco", usuarioCarregado.getSenhaUsuario());
+                        session.setAttribute("acessoUsuario", usuarioCarregado.getAcessoUsuario());
+                        rd = request.getRequestDispatcher("/index.jsp");
+                        rd.forward(request, response);
+                    }
+    }
+        } else if(processar.equalsIgnoreCase("checarPermissao")){
+                        String permissaoNecesssaria =(String) request.getParameter("permissaoNecessaria");  
+                        String direitos =(String) session.getAttribute("acessoUsuario");  
+                        loginDAO.getPermissao(direitos,permissaoNecesssaria);
+                            if (!direitos.contains(permissaoNecesssaria)){
+                                    rd = request.getRequestDispatcher("/login.jsp");
+                        rd.forward(request, response);
         }
     }
-
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
