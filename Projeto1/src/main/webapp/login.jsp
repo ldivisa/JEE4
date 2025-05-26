@@ -17,7 +17,7 @@
             <tr>
                 <td colspan="2">
                     <input type="submit" name="processar" value="logar" >
-                    <input type="reset" name="limpar" value="Limpar">
+                    <input type="reset" name="limpar" value="limpar">
                 </td>
             </tr>
             <tr><td colspan="2"><h1 id="TextoStatus">

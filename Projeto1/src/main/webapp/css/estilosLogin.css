@@ -146,3 +146,9 @@ input{
 input[type=submit],[type=reset]{
     border-radius: 10px;
 }
+
+button{
+    background-color: red;
+    border-radius: 10px;
+    font-size: 3vw;
+}
