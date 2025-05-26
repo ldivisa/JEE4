@@ -15,7 +15,7 @@
         <h1>Alterar dados do  Usuário</h1>
     </div>
     <div id="formAlteraUsuario">
-    <form id="formAlteraUsuario" method="get" action="alterarUsuario">
+    <form id="formAlteraUsuario" method="get" action="UsuariosController?processar=gravar">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
             <input type="text"  name="nomeUsuario" value="${param.nomeUsuario}" readonly autofocus maxlength="40"/>

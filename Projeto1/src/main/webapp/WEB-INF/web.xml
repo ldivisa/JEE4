@@ -9,22 +9,6 @@
         <servlet-class>org.hopto.depositodivisa.servlets.ServletLogar3</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>desativarUsuario</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.desativarUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ativarUsuario</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ativarUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>alterarUsuario</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.alterarUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletListarUsuarios</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuarios</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ServletListarUsuariosPaginada</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.ServletListarUsuariosPaginada</servlet-class>
     </servlet>
@@ -35,14 +19,6 @@
     <servlet>
         <servlet-name>criarNovoUsuario</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.criarNovoUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletProximaPaginaUsuarios</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletProximaPaginaUsuarios</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletPaginaAnteriorUsuarios</servlet-name>
-        <servlet-class>org.hopto.depositodivisa.servlets.ServletPaginaAnteriorUsuarios</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>trocarSenha</servlet-name>
@@ -67,30 +43,6 @@
     <servlet-mapping>
         <servlet-name>ServletLogar3</servlet-name>
         <url-pattern>/ServletLogar3</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletListarUsuarios</servlet-name>
-        <url-pattern>/ServletListarUsuarios</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ativarUsuario</servlet-name>
-        <url-pattern>/ativarUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>alterarUsuario</servlet-name>
-        <url-pattern>/alterarUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletPaginaAnteriorUsuarios</servlet-name>
-        <url-pattern>/ServletPaginaAnteriorUsuarios</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletProximaPaginaUsuarios</servlet-name>
-        <url-pattern>/ServletProximaPaginaUsuarios</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>desativarUsuario</servlet-name>
-        <url-pattern>/desativarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>checarPermissao</servlet-name>
