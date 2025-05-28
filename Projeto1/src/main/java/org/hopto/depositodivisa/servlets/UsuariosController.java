@@ -51,8 +51,11 @@ public class UsuariosController extends HttpServlet {
         numeroPagina = Integer.valueOf((String) session.getAttribute("numeroPagina"));
         } else {
         session.setAttribute("numeroPagina", String.valueOf(numeroPagina));}
-        
         String processar = request.getParameter("processar");
+        
+        if (request.getParameter("ordenacaoUsuario") != null)
+            session.setAttribute("ordenacaoUsuario",request.getParameter("ordenacaoUsuario"));
+        
         if (session.getAttribute("pagMax")!=null){
             pagMax = Integer.parseInt((String)session.getAttribute("pagMax"));
                 }
@@ -61,7 +64,7 @@ public class UsuariosController extends HttpServlet {
             processar="listar";
         
         if (processar.equalsIgnoreCase("listar")){
-            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite,numeroPagina);
+            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite,numeroPagina, (String) session.getAttribute("ordenacaoUsuario"));
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
@@ -89,7 +92,7 @@ public class UsuariosController extends HttpServlet {
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("proximaPagina")) {
-            System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
+            //System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
             if (numeroPagina<pagMax)
                 numeroPagina++;
                 session.setAttribute("numeroPagina", String.valueOf(numeroPagina));

@@ -1,5 +1,6 @@
 package org.hopto.depositodivisa.dao;
 
+import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,6 +31,7 @@ public class LoginDAO {
     private String usuarioAlterarEstado;
     private Integer numeroPagina;
     private Integer limite;
+
     public void LoginDAO() {
         url = null;
         usuario = null;
@@ -200,11 +202,12 @@ public class LoginDAO {
         return null;
     }
 
-    public List<Login> getListaUsuariosPaginada(Integer limite,Integer numeroPagina) throws SQLException {
+    public List<Login> getListaUsuariosPaginada(Integer limite,Integer numeroPagina,String ordenacao) throws SQLException {
         String strLimite =String.valueOf(limite);
         String offset =String.valueOf( (limite* numeroPagina) - limite);
+        
         connection = new ConexaoFactory().getConnection();
-        String SQL = "select * from login limit "+ strLimite+" offset "+offset;
+        String SQL = "select * from login order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
         //System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();

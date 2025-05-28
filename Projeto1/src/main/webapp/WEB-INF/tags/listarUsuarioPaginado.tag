@@ -26,13 +26,13 @@
     <table border="1">
         <tr><td colspan="6"><a href="novoUsuario.jsp" title="Criar Novo Usuário"><img src="imagens/novoUsuario.jpg" alt="Novo usuário" height="50px" widht="50px"> </td></tr>
         <tr class="tabelaLinhaespecial">
-            <td>Nome</td>
-            <td>Nome Completo</td>
-            <td>Nivel Acesso</td>
-            <td>Grupo Usuários</td>
-            <td>Data Cadastro</td>
-            <td>Data último acesso</td>
-            <td>Ativo</td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=nomeUsuario">Nome</a></td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=nomeCompletoUsuario">Nome Completo</a></td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=acessoUsuario">Nivel Acesso</a></td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=gruposUsuario">Grupo Usuários</a></td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=dataCadastro">Data Cadastro</a></td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=dataUltimoAcesso">Data último acesso</a></td>
+            <td><a href="UsuariosController?acao=listar&ordenacaoUsuario=ativo">Ativo</a></td>
             <td>Alterar</td>
             <td>Excluir</td>
         </tr>
