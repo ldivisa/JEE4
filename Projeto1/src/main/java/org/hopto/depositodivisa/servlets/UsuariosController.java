@@ -57,7 +57,7 @@ public class UsuariosController extends HttpServlet {
             session.setAttribute("ordenacaoUsuario",request.getParameter("ordenacaoUsuario"));
         
         if (session.getAttribute("pagMax")!=null){
-            pagMax = Integer.parseInt((String)session.getAttribute("pagMax"));
+            pagMax = Integer.valueOf((String)session.getAttribute("pagMax"));
                 }
                 
         if (request.getParameter("processar")==null)
