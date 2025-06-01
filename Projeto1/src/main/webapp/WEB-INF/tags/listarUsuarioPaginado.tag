@@ -9,7 +9,8 @@
     LoginDAO login = new LoginDAO();
     Integer pagMax = null;
     Integer limite = 4;
-    Integer numRegistros = Integer.parseInt(login.contagemRegistros());
+    Integer numRegistros;
+    numRegistros = (Integer.valueOf(login.contagemRegistros((String) session.getAttribute("usuarioPesquisar"))));
     if (session.getAttribute("limite") != null) {
         limite = Integer.parseInt((String) session.getAttribute("limite"));
     }
@@ -89,6 +90,10 @@
                         %>
                     </td>
                 </tr>
-                <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/></td></tr>
+                <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/> - Ordenação: ${ordenacaoUsuario}</td></tr>
+                <tr><form action="UsuariosController?processar=pesquisar" autocomplete="false">
+                    <td colspan="9">Pesquisar: <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários"/>
+                        <button type="submit" name="processar" value="pesquisar"><img src="imagens/lupa.png" width="25px" height="25px" alt="Pesquisar!"/></button></td>
+                </form></tr>
 
 </table>

@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,45 +40,49 @@ public class UsuariosController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         List<Login> listaUsuarios = null;
         LoginDAO loginDAO = new LoginDAO();
-        Integer limite = 4 ,numeroPagina=1;
+        Integer limite = 4, numeroPagina = 1;
         HttpSession session = request.getSession();
         RequestDispatcher rd;
-        Integer pagMax  = 1;
-        if ((String) session.getAttribute("limite")!=null){
-        limite = Integer.valueOf((String) session.getAttribute("limite"));
+        Integer pagMax = 1;
+        if ((String) session.getAttribute("limite") != null) {
+            limite = Integer.valueOf((String) session.getAttribute("limite"));
         } else {
-        session.setAttribute("limite",String.valueOf(limite));}
-        if ((String) session.getAttribute("numeroPagina")!=null){
-        numeroPagina = Integer.valueOf((String) session.getAttribute("numeroPagina"));
+            session.setAttribute("limite", String.valueOf(limite));
+        }
+        if ((String) session.getAttribute("numeroPagina") != null) {
+            numeroPagina = Integer.valueOf((String) session.getAttribute("numeroPagina"));
         } else {
-        session.setAttribute("numeroPagina", String.valueOf(numeroPagina));}
+            session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
+        }
         String processar = request.getParameter("processar");
-        
-        if (request.getParameter("ordenacaoUsuario") != null)
-            session.setAttribute("ordenacaoUsuario",request.getParameter("ordenacaoUsuario"));
-        
-        if (session.getAttribute("pagMax")!=null){
-            pagMax = Integer.valueOf((String)session.getAttribute("pagMax"));
-                }
-                
-        if (request.getParameter("processar")==null)
-            processar="listar";
-        
-        if (processar.equalsIgnoreCase("listar")){
-            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite,numeroPagina, (String) session.getAttribute("ordenacaoUsuario"));
+
+        if (request.getParameter("ordenacaoUsuario") != null) {
+            session.setAttribute("ordenacaoUsuario", request.getParameter("ordenacaoUsuario"));
+        }
+
+        if (session.getAttribute("pagMax") != null) {
+            pagMax = Integer.valueOf((String) session.getAttribute("pagMax"));
+        }
+
+        if (request.getParameter("processar") == null) {
+            processar = "listar";
+        }
+
+        if (processar.equalsIgnoreCase("listar")) {
+            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina, (String) session.getAttribute("ordenacaoUsuario"), (String) session.getAttribute("usuarioPesquisar"));
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
             rd.forward(request, response);
-        } else if (processar.equalsIgnoreCase("novo")){
-            loginDAO.registrarNovoUsuario(request.getParameter("nomeUsuario"),request.getParameter("nomeCompletoUsuario"),request.getParameter("acessoUsuario"),request.getParameter("gruposUsuario"),request.getParameter("ativo"), request.getParameter("dataCadastro"), request.getParameter("senha"));
+        } else if (processar.equalsIgnoreCase("novo")) {
+            loginDAO.registrarNovoUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"), request.getParameter("dataCadastro"), request.getParameter("senha"));
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("alterar")) {
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
-        } else if (processar.equalsIgnoreCase("gravar")){
+        } else if (processar.equalsIgnoreCase("gravar")) {
             loginDAO.alterarUsuario(request.getParameter("nomeUsuario"), request.getParameter("nomeCompletoUsuario"), request.getParameter("acessoUsuario"), request.getParameter("gruposUsuario"), request.getParameter("ativo"));
             rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
             rd.forward(request, response);
@@ -93,34 +98,36 @@ public class UsuariosController extends HttpServlet {
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("proximaPagina")) {
             //System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
-            if (numeroPagina<pagMax)
+            if (numeroPagina < pagMax) {
                 numeroPagina++;
-                session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
+            }
+            session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("paginaAnterior")) {
-            System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
-            if(numeroPagina>1)
+            System.out.println("\nproximaPagina " + numeroPagina + " " + pagMax);
+            if (numeroPagina > 1) {
                 numeroPagina--;
-            session.setAttribute("numeroPagina", String.valueOf(numeroPagina)); 
+            }
+            session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
-        } else if (processar.equalsIgnoreCase("trocarSenha")){
+        } else if (processar.equalsIgnoreCase("trocarSenha")) {
             HashSenhasArgo2 hash = new HashSenhasArgo2();
             String usuarioAtual = (String) session.getAttribute("nomeUsuario");
-            String usuarioAlterarEstado=(String) session.getAttribute("usuarioAlterarEstado");
-            String senhaAtual=request.getParameter("senhaAtual");
-            String senhaNova1=request.getParameter("senhaNova1");
-            String senhaNova2=request.getParameter("senhaNova2");
+            String usuarioAlterarEstado = (String) session.getAttribute("usuarioAlterarEstado");
+            String senhaAtual = request.getParameter("senhaAtual");
+            String senhaNova1 = request.getParameter("senhaNova1");
+            String senhaNova2 = request.getParameter("senhaNova2");
             String senhaUsuarioBanco = (String) session.getAttribute("senhaUsuarioBanco");
             String senhaAtualHash = hash.criaHashSenha(senhaNova1);
-            if  (senhaAtual.equals(senhaNova1)||senhaAtual.equals(senhaNova2)){
+            if (senhaAtual.equals(senhaNova1) || senhaAtual.equals(senhaNova2)) {
                 session.setAttribute("mensagem", "A senha nova precisar ser diferente da atual");
                 rd = request.getRequestDispatcher("trocarSenha.jsp");
                 rd.forward(request, response);
                 return;
             }
-            if (!senhaNova1.equals(senhaNova2)){
+            if (!senhaNova1.equals(senhaNova2)) {
                 session.setAttribute("mensagem", "Os dois campos de registro da nova senha precisam ser iguais");
                 rd = request.getRequestDispatcher("trocarSenha.jsp");
                 rd.forward(request, response);
@@ -148,37 +155,44 @@ public class UsuariosController extends HttpServlet {
             Login usuarioChecado = new Login();
             usuarioChecado.setNomeUsuario(request.getParameter("usuario"));
             usuarioChecado.setSenhaUsuario(request.getParameter("senha"));
-            
-                if (loginDAO.getLogin(usuarioChecado) == null) {
-                    request.setAttribute("status", "Usuário e/ou senha inválidos");
+
+            if (loginDAO.getLogin(usuarioChecado) == null) {
+                request.setAttribute("status", "Usuário e/ou senha inválidos");
+                rd = request.getRequestDispatcher("/login.jsp");
+                rd.forward(request, response);
+            } else {
+                Login usuarioCarregado = loginDAO.getLogin(usuarioChecado);
+                if (usuarioCarregado.getAtivo() == 0) {
+                    request.setAttribute("status", "Usuário desativado");
                     rd = request.getRequestDispatcher("/login.jsp");
                     rd.forward(request, response);
                 } else {
-                    Login usuarioCarregado = loginDAO.getLogin(usuarioChecado);
-                    if (usuarioCarregado.getAtivo() == 0) {
-                        request.setAttribute("status", "Usuário desativado");
-                        rd = request.getRequestDispatcher("/login.jsp");
-                        rd.forward(request, response);
-                    } else {
-                         session.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
-                        session.setAttribute("nomeUsuario", usuarioCarregado.getNomeUsuario());
-                        session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
-                        session.setAttribute("senhaUsuarioBanco", usuarioCarregado.getSenhaUsuario());
-                        session.setAttribute("acessoUsuario", usuarioCarregado.getAcessoUsuario());
-                        rd = request.getRequestDispatcher("/index.jsp");
-                        rd.forward(request, response);
-                    }
-    }
-        } else if(processar.equalsIgnoreCase("checarPermissao")){
-                        String permissaoNecesssaria =(String) request.getParameter("permissaoNecessaria");  
-                        String direitos =(String) session.getAttribute("acessoUsuario");  
-                        loginDAO.getPermissao(direitos,permissaoNecesssaria);
-                            if (!direitos.contains(permissaoNecesssaria)){
-                                    rd = request.getRequestDispatcher("/login.jsp");
-                        rd.forward(request, response);
+                    session.setAttribute("usuarioAtual", usuarioCarregado.getNomeUsuario());
+                    session.setAttribute("nomeUsuario", usuarioCarregado.getNomeUsuario());
+                    session.setAttribute("nomeCompletoUsuario", usuarioCarregado.getNomeCompletoUsuario());
+                    session.setAttribute("senhaUsuarioBanco", usuarioCarregado.getSenhaUsuario());
+                    session.setAttribute("acessoUsuario", usuarioCarregado.getAcessoUsuario());
+                    rd = request.getRequestDispatcher("/index.jsp");
+                    rd.forward(request, response);
+                }
+            }
+        } else if (processar.equalsIgnoreCase("checarPermissao")) {
+            String permissaoNecesssaria = (String) request.getParameter("permissaoNecessaria");
+            String direitos = (String) session.getAttribute("acessoUsuario");
+            loginDAO.getPermissao(direitos, permissaoNecesssaria);
+            if (!direitos.contains(permissaoNecesssaria)) {
+                rd = request.getRequestDispatcher("/login.jsp");
+                rd.forward(request, response);
+            }
+        } else if (processar.equalsIgnoreCase("pesquisar")) {
+            //out.print("\nPesquisar - "+request.getParameter("usuarioPesquisar"));
+            if (request.getParameter("usuarioPesquisar")!=null)
+            session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            rd.forward(request, response);
         }
     }
-    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
