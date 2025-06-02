@@ -93,7 +93,9 @@
                 </tr>
                 <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/> - Ordenação: ${ordenacaoUsuario}</td></tr>
                 <tr><form action="UsuariosController?processar=pesquisar" autocomplete="false">
-                    <td colspan="9">Pesquisar: <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários"/>
+                    <td colspan="9">Pesquisar: <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários" value=
+                                                      <%=session.getAttribute("usuarioPesquisar")%>
+                                                      >
                         <button type="submit" name="processar" value="pesquisar" accesskey="l" title="alt+shift+l"><img src="imagens/lupa.png" width="25px" height="25px" alt="Pesquisar!"/></button></td>
                 </form></tr>
 
