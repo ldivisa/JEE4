@@ -75,10 +75,10 @@
 
                     <td colspan="7">
                         <%
-                           if (Integer.parseInt((String) session.getAttribute("numeroPagina")) > 1) {
-                                out.print("<a href='UsuariosController?processar=paginaAnterior'</a>Anterior");
+                            if (Integer.parseInt((String) session.getAttribute("numeroPagina")) > 1) {
+                                out.print("<a href='UsuariosController?processar=paginaAnterior'>Anterior</a> ");
                             }
-                           for (int i = 1; i <= pagMax; i++) {
+                            for (int i = 1; i <= pagMax; i++) {
                                 if (Integer.parseInt((String) session.getAttribute("numeroPagina")) == i) {
                                     out.print("<b>" + i + "</b> ");
                                 } else {
@@ -86,14 +86,15 @@
                                 }
                             }
                             if (Integer.parseInt((String) session.getAttribute("numeroPagina")) < Integer.parseInt((String) session.getAttribute("pagMax"))) {
-                                out.print("<a href='UsuariosController?processar=proximaPagina'</a>Posterior");}
+                                out.print(" <a href='UsuariosController?processar=proximaPagina'>Posterior</a>");
+                            }
                         %>
                     </td>
                 </tr>
                 <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/> - Ordenação: ${ordenacaoUsuario}</td></tr>
                 <tr><form action="UsuariosController?processar=pesquisar" autocomplete="false">
                     <td colspan="9">Pesquisar: <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários"/>
-                        <button type="submit" name="processar" value="pesquisar"><img src="imagens/lupa.png" width="25px" height="25px" alt="Pesquisar!"/></button></td>
+                        <button type="submit" name="processar" value="pesquisar" accesskey="l" title="alt+shift+l"><img src="imagens/lupa.png" width="25px" height="25px" alt="Pesquisar!"/></button></td>
                 </form></tr>
 
 </table>
