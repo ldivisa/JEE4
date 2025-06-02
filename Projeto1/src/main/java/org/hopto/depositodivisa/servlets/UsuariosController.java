@@ -58,8 +58,20 @@ public class UsuariosController extends HttpServlet {
 
         if (request.getParameter("ordenacaoUsuario") != null) {
             session.setAttribute("ordenacaoUsuario", request.getParameter("ordenacaoUsuario"));
+            } else {
+            session.setAttribute("ordenacaoUsuario","nomeCompletoUsuario");
         }
-
+        
+        if (request.getParameter("tipoPesquisa") != null) {
+            session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
+        } else {
+            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
+        }
+        if (request.getParameter("usuarioPesquisar") != null) {
+            session.setAttribute("usuarioPesquisar", "");
+        } else {
+            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
+        }
         if (session.getAttribute("pagMax") != null) {
             pagMax = Integer.valueOf((String) session.getAttribute("pagMax"));
         }
@@ -69,7 +81,7 @@ public class UsuariosController extends HttpServlet {
         }
 
         if (processar.equalsIgnoreCase("listar")) {
-            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina, (String) session.getAttribute("ordenacaoUsuario"), (String) session.getAttribute("usuarioPesquisar"));
+            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina, (String) session.getAttribute("ordenacaoUsuario"), (String) session.getAttribute("usuarioPesquisar"),(String) session.getAttribute("tipoPesquisa"));
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
@@ -188,6 +200,8 @@ public class UsuariosController extends HttpServlet {
             //out.print("\nPesquisar - "+request.getParameter("usuarioPesquisar"));
             if (request.getParameter("usuarioPesquisar")!=null)
             session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
+            if (request.getParameter("tipoPesquisa")!=null)
+            session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         }

@@ -10,7 +10,7 @@
     Integer pagMax = null;
     Integer limite = 4;
     Integer numRegistros;
-    numRegistros = (Integer.valueOf(login.contagemRegistros((String) session.getAttribute("usuarioPesquisar"))));
+    numRegistros = (Integer.valueOf(login.contagemRegistros((String) session.getAttribute("usuarioPesquisar"),(String) session.getAttribute("tipoPesquisa"))));
     if (session.getAttribute("limite") != null) {
         limite = Integer.parseInt((String) session.getAttribute("limite"));
     }
@@ -93,13 +93,42 @@
                 </tr>
                 <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemUsuarios/> - Ordenação: ${ordenacaoUsuario}</td></tr>
                 <tr><form action="UsuariosController?processar=pesquisar" autocomplete="false">
-                    <td colspan="9">Pesquisar: <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários" value=
+                    <td colspan="9">Pesquisar por:
+                        <select name="tipoPesquisa"  accesskey="o">
+                            <% 
+                            String tipoPesquisa = (String) session.getAttribute("tipoPesquisa");
+                            if (tipoPesquisa.equalsIgnoreCase("nomeUsuario"))
+                            out.println("<option value='nomeUsuario' selected='selected'>Nome do usuário</option>");
+                            else
+                            out.println("<option value='nomeUsuario'>Nome do usuário</option>");
+                            
+                            if (tipoPesquisa.equalsIgnoreCase("nivel"))
+                            out.println("<option value='nivel' selected='selected'>Nível</option>");
+                            else
+                            out.println("<option value='nivel'>Nível</option>");
+
+                            if (tipoPesquisa.equalsIgnoreCase("nomeCompletoUsuario"))
+                            out.println("<option value='nomeCompletoUsuario' selected='selected'>Nome Completo Usuário</option>");
+                            else
+                            out.println("<option value='nomeCompletoUsuario'>Nome Completo Usuário</option>");
+                            
+                            if (tipoPesquisa.equalsIgnoreCase("ativo"))
+                            out.println("<option value='ativo' selected='selected'>Ativo?</option>");
+                            else
+                            out.println("<option value='ativo'>Ativo</option>");
+                            %>
+                            
+                            
+                            
+                            
+                        </select>(o)
+                        <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários" value=
                                                       <%
                                                           if (session.getAttribute("usuarioPesquisar") != null)
                                                               out.println(session.getAttribute("usuarioPesquisar"));
                                                       %>
-                                                      >
-                        <button type="submit" name="processar" value="pesquisar" accesskey="l" title="alt+shift+l"><img src="imagens/lupa.png" width="25px" height="25px" alt="Pesquisar!"/></button></td>
+                                                      >(p)
+                        <button type="submit" name="processar" value="pesquisar" accesskey="l" title="alt+shift+l"><img src="imagens/lupa.png" width="25px" height="25px" alt="Pesquisar!"/>(l)</button></td>
                 </form></tr>
 
 </table>

@@ -202,13 +202,15 @@ public class LoginDAO {
         return null;
     }
 
-    public List<Login> getListaUsuariosPaginada(Integer limite,Integer numeroPagina,String ordenacao,String pesquisa) throws SQLException {
+    public List<Login> getListaUsuariosPaginada(Integer limite,Integer numeroPagina,String ordenacao,String pesquisa, String tipoPesquisa) throws SQLException {
         String strLimite =String.valueOf(limite);
         String offset =String.valueOf( (limite* numeroPagina) - limite);
         if (pesquisa==null )
             pesquisa="";
+        if (tipoPesquisa==null)
+            tipoPesquisa="nomeCompletoUsuario";
         connection = new ConexaoFactory().getConnection();
-        String SQL = "select * from login where nomeCompletoUsuario like '%"+pesquisa +"%'order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
+        String SQL = "select * from login where "+tipoPesquisa+" like '%"+pesquisa +"%'order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
         //System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
@@ -346,11 +348,11 @@ public void alterarSenha(String nomeUsuario, String senhaNovaHash){
         } 
 }
 
-public String contagemRegistros(String pesquisa){
+public String contagemRegistros(String pesquisa,String tipoPesquisa){
 connection = new ConexaoFactory().getConnection();
 if (pesquisa==null)
     pesquisa="";
-String SQL = "select count(*) as contagem from login where nomeCompletoUsuario like '%"+pesquisa+"%'"; 
+String SQL = "select count(*) as contagem from login where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
     System.out.println("\n SQL "+SQL);
         PreparedStatement ps1;
         ResultSet rs = null;
