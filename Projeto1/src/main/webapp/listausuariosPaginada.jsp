@@ -8,20 +8,31 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="cabecalho.jsp" />
 <div id="central">
-        <util:verificarSessaoAtiva />
+    <util:verificarSessaoAtiva />
     <%
         HttpSession sessao = request.getSession();
         LoginDAO login = new LoginDAO();
-        if (!login.getPermissao((String)sessao.getAttribute("acessoUsuario"),"U"))
+        if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
             response.sendRedirect("index.jsp");
     %>
-<%
-if (request.getParameter("irPagina")!=null){
-    session.setAttribute("numeroPagina",request.getParameter("irPagina"));
-    session.setAttribute("processar",request.getParameter("listar"));
-    response.sendRedirect("UsuariosController");
-    }
-%>
+    <%
+        if (request.getParameter("tipoPesquisa") != null) {
+            session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
+        }
+
+        if (request.getParameter("usuarioPesquisar") != null) {
+            session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
+        }
+
+        if (request.getParameter("irPagina") != null) {
+            session.setAttribute("numeroPagina", request.getParameter("irPagina"));
+            session.setAttribute("processar", request.getParameter("processar"));
+            response.sendRedirect("UsuariosController?processar="+(String) session.getAttribute("processar")+"&numeroPagina="+session.getAttribute("numeroPagina")+"&usuarioPesquisar="+session.getAttribute("usuarioPesquisar")+
+            "&tipoPesquisa="+session.getAttribute("tipoPesquisa"));
+        } else {
+        System.out.println("LISTAUSUARIOSPAGINADA: "+(String) session.getAttribute("numeroPagina"));
+        }
+    %>
     <util:listarUsuarioPaginado/>       
 </div>
 </div>

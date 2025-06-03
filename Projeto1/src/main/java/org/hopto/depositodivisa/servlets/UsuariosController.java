@@ -61,12 +61,12 @@ public class UsuariosController extends HttpServlet {
             } else {
             session.setAttribute("ordenacaoUsuario","nomeCompletoUsuario");
         }
-        
-        if (request.getParameter("tipoPesquisa") != null) {
+        System.out.println("\ntipoPesquisa (USUARIOSCONTROLLER): "+request.getParameter("tipoPesquisa"));
+        if ((request.getParameter("tipoPesquisa") != null)) {
             session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
-        } else {
-            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
-        }
+        } else
+            session.setAttribute("tipoPesquisa","nomeCompletoUsuario");
+        
         if (request.getParameter("usuarioPesquisar") != null) {
   //          session.setAttribute("usuarioPesquisar", "");
               session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
