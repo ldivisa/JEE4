@@ -1,6 +1,5 @@
 package org.hopto.depositodivisa.dao;
 
-import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,21 +21,17 @@ public class BairroDAO {
 
     public static String url;
     public Connection connection;
-    private String bairro;
-    private String senha;
+    private String bairroNome;
     private ResultSet resultSet;
     private PreparedStatement ps;
-    public static String nomeCompletoBairro;
     private String bairroAlterarEstado;
     private Integer numeroPagina;
     private Integer limite;
 
     public void BairroDAO() {
-        bairro = null;
+        bairroNome = null;
         resultSet = null;
-        ps = null;
-        nomeCompletoBairro = null;
-
+        ps = null;        
     }
 
     public boolean verificaBairro(String bairro, String senha) throws SQLException {
@@ -63,7 +58,7 @@ public class BairroDAO {
 
     }
 
-    public boolean verificaBairro1(BairroModel bairros) throws SQLException {
+    public boolean verificaBairro1(BairroModel bairro) throws SQLException {
         this.bairro = bairros.getNomeBairro();
         this.senha = bairros.getSenhaBairro();
 
