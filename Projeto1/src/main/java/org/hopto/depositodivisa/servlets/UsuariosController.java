@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -48,6 +47,10 @@ public class UsuariosController extends HttpServlet {
             limite = Integer.valueOf((String) session.getAttribute("limite"));
         } else {
             session.setAttribute("limite", String.valueOf(limite));
+        }
+        if (session.getAttribute("usuarioPesquisar")!=request.getParameter("usuarioPesquisar")){
+        numeroPagina=1;
+        session.setAttribute("numeroPagina", "1");
         }
         if ((String) session.getAttribute("numeroPagina") != null) {
             numeroPagina = Integer.valueOf((String) session.getAttribute("numeroPagina"));
