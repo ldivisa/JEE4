@@ -68,10 +68,12 @@ public class UsuariosController extends HttpServlet {
             session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
         }
         if (request.getParameter("usuarioPesquisar") != null) {
-            session.setAttribute("usuarioPesquisar", "");
+  //          session.setAttribute("usuarioPesquisar", "");
+              session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
         } else {
-            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
-        }
+//            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
+              session.setAttribute("usuarioPesquisar", "");
+    }
         if (session.getAttribute("pagMax") != null) {
             pagMax = Integer.valueOf((String) session.getAttribute("pagMax"));
         }

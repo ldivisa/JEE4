@@ -210,7 +210,7 @@ public class LoginDAO {
         if (tipoPesquisa==null)
             tipoPesquisa="nomeCompletoUsuario";
         connection = new ConexaoFactory().getConnection();
-        String SQL = "select * from login where "+tipoPesquisa+" like '%"+pesquisa +"%'order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
+        String SQL = "select * from login where "+tipoPesquisa+" like '%"+pesquisa +"%' order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
         //System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
@@ -350,9 +350,10 @@ public void alterarSenha(String nomeUsuario, String senhaNovaHash){
 
 public String contagemRegistros(String pesquisa,String tipoPesquisa){
 connection = new ConexaoFactory().getConnection();
+String SQL;
 if (pesquisa==null)
     pesquisa="";
-String SQL = "select count(*) as contagem from login where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
+SQL = "select count(*) as contagem from login where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
     System.out.println("\n SQL "+SQL);
         PreparedStatement ps1;
         ResultSet rs = null;
@@ -365,6 +366,14 @@ String SQL = "select count(*) as contagem from login where "+tipoPesquisa+" like
             System.out.println("\n\nContagem "+contagem);
      } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+     }finally{
+    try {
+        rs.close();
+        
+    } catch (SQLException ex) {
+        System.getLogger(LoginDAO.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+    }
+        
         }
  return contagem;       
 }

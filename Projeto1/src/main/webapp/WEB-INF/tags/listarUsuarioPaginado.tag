@@ -102,10 +102,10 @@
                             else
                             out.println("<option value='nomeUsuario'>Nome do usuário</option>");
                             
-                            if (tipoPesquisa.equalsIgnoreCase("nivel"))
-                            out.println("<option value='nivel' selected='selected'>Nível</option>");
+                            if (tipoPesquisa.equalsIgnoreCase("acessoUsuario"))
+                            out.println("<option value='acessoUsuario' selected='selected'>Nível</option>");
                             else
-                            out.println("<option value='nivel'>Nível</option>");
+                            out.println("<option value='acessoUsuario'>Nível</option>");
 
                             if (tipoPesquisa.equalsIgnoreCase("nomeCompletoUsuario"))
                             out.println("<option value='nomeCompletoUsuario' selected='selected'>Nome Completo Usuário</option>");
@@ -117,10 +117,7 @@
                             else
                             out.println("<option value='ativo'>Ativo</option>");
                             %>
-                            
-                            
-                            
-                            
+                          
                         </select>(o)
                         <input type="text" name="usuarioPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários" value=
                                                       <%

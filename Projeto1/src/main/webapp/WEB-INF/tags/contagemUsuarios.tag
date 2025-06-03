@@ -5,6 +5,6 @@
   LoginDAO login = new LoginDAO();
   request.setAttribute("contagemUsuarios", login.contagemRegistros((String)session.getAttribute("usuarioPesquisar"),(String) session.getAttribute("tipoPesquisa")));
   //System.out.println("\n"+login.contagemRegistros());
-  out.print(login.contagemRegistros((String)session.getAttribute("usuarioPesquisar"),(String) session.getAttribute("tipoPesquisa")));
+    out.print(login.contagemRegistros((String)session.getAttribute("usuarioPesquisar"),(String) session.getAttribute("tipoPesquisa")));
 %>
 
