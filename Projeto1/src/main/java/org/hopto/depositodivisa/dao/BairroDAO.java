@@ -35,8 +35,7 @@ public class BairroDAO {
     }
 
     public boolean verificaBairro(String bairro, String senha) throws SQLException {
-        this.bairro = bairro;
-        this.senha = senha;
+         
         url = new ConexaoFactory().getUrl();
 
         try {
@@ -59,15 +58,13 @@ public class BairroDAO {
     }
 
     public boolean verificaBairro1(BairroModel bairro) throws SQLException {
-        this.bairro = bairros.getNomeBairro();
-        this.senha = bairros.getSenhaBairro();
-
+         
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=? and senhaBairro=?";
+            String SQL = "select * from bairros where nomeBairro=?";
             ps = connection.prepareStatement(SQL);
-            ps.setString(1, bairro);
-            ps.setString(2, senha);
+            ps.setString(1, bairroNome);
+          
             resultSet = ps.executeQuery();
             return resultSet.next();
 
@@ -81,112 +78,20 @@ public class BairroDAO {
 
     }
 
-    public Bairro getBairro2(String bairro, String senha) throws SQLException {
-        this.bairro = bairro;
-        this.senha = senha;
-
-        try {
-            connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=? and senhaBairro=?";
-            ps = connection.prepareStatement(SQL);
-            ps.setString(1, bairro);
-            ps.setString(2, senha);
-            resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                Bairro bairroLogadoAtual = new Bairro();
-                bairroLogadoAtual.setNomeBairro(bairro);
-                bairroLogadoAtual.setNomeCompletoBairro(resultSet.getString("nomeCompletoBairro"));
-                bairroLogadoAtual.setSenhaBairro(senha);
-                bairroLogadoAtual.setAcessoBairro(resultSet.getString("AcessoBairro"));
-                //System.out.println("O connection está fechado? "+connection.isClosed());
-                return bairroLogadoAtual;
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            ps.close();
-            resultSet.close();
-            connection.close();
-        }
-        return null;
-    }
-
-    public Bairro getBairro1(Bairro bairros) {
-        this.bairro = bairros.getNomeBairro();
-        this.senha = bairros.getSenhaBairro();
-        try {
-            connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=? and senhaBairro=?";
-            ps = connection.prepareStatement(SQL);
-            ps.setString(1, bairro);
-            ps.setString(2, senha);
-            resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                bairroLogado = new Bairro();
-                bairroLogado.setNomeBairro(bairro);
-                bairroLogado.setNomeCompletoBairro(resultSet.getString("nomeCompletoBairro"));
-                bairroLogado.setSenhaBairro(senha);
-                bairroLogado.setAcessoBairro(resultSet.getString("AcessoBairro"));
-                return bairroLogado;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
-
-    public Bairro getBairro(Bairro bairros) throws SQLException {
-        this.bairro = bairros.getNomeBairro();
-        this.senha = bairros.getSenhaBairro();
-        //System.out.println("This senha "+senha);
-        HashSenhasArgo2 maquinaSenha = new HashSenhasArgo2();
-        try {
-            connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=?";
-            ps = connection.prepareStatement(SQL);
-            ps.setString(1, bairro);
-            resultSet = ps.executeQuery();
-
-            if (resultSet.next() && maquinaSenha.checaHashSenha(resultSet.getString("senhaBairro"), this.senha)) {
-                bairroLogado = new Bairro();
-                bairroLogado.setNomeBairro(resultSet.getString("nomeBairro"));
-                bairroLogado.setNomeCompletoBairro(resultSet.getString("nomeCompletoBairro"));
-                bairroLogado.setSenhaBairro(resultSet.getString("senhaBairro"));
-                bairroLogado.setAcessoBairro(resultSet.getString("AcessoBairro"));
-                bairroLogado.setAtivo(resultSet.getInt("ativo"));
-                //System.out.println("Passou no teste de nome no banco e hash "+bairroLogado.getAtivo());
-                return bairroLogado;
-            } else {
-                //System.out.println(" Nao Passou no teste de nome no banco e hash");
-                return null;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            ps.close();
-            connection.close();
-        }
-    }
-
-    public List<Bairro> getListaBairros() throws SQLException {
+ 
+    public List<BairroModel> getListaBairros() throws SQLException {
         connection = new ConexaoFactory().getConnection();
         String SQL = "select * from bairros";
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
-        List<Bairro> listaBairros;
+        List<BairroModel> listaBairros;
         listaBairros = new ArrayList<>();
         if (resultSet1.isBeforeFirst()) {
             while (resultSet1.next()) {
-                Bairro bairro1 = new Bairro();
-                bairro1.setAcessoBairro(resultSet1.getString("acessoBairro"));
-                bairro1.setDataUltimoAcesso(resultSet1.getString("dataUltimoAcesso"));
-                bairro1.setDataCadastro(resultSet1.getDate("dataCadastro"));
-                bairro1.setNomeCompletoBairro(resultSet1.getString("nomeCompletoBairro"));
-                bairro1.setNomeBairro(resultSet1.getString("nomeBairro"));
-                bairro1.setSenhaBairro(resultSet1.getString("senhaBairro"));
-                bairro1.setGruposBairro(resultSet1.getString("gruposBairro"));
+                BairroModel bairro1 = new BairroModel();
+                bairro1.setBairroNome(resultSet1.getString("bairroNome"));
                 bairro1.setAtivo(resultSet1.getInt("ativo"));
+
                 listaBairros.add(bairro1);
             }
             return listaBairros;
@@ -194,7 +99,7 @@ public class BairroDAO {
         return null;
     }
 
-    public List<Bairro> getListaBairrosPaginada(Integer limite,Integer numeroPagina,String ordenacao,String pesquisa, String tipoPesquisa) throws SQLException {
+    public List<BairroModel> getListaBairrosPaginada(Integer limite,Integer numeroPagina,String ordenacao,String pesquisa, String tipoPesquisa) throws SQLException {
         String strLimite =String.valueOf(limite);
         String offset =String.valueOf( (limite* numeroPagina) - limite);
         if (pesquisa==null )
@@ -206,18 +111,12 @@ public class BairroDAO {
         //System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
-        List<Bairro> listaBairros;
+        List<BairroModel> listaBairros;
         listaBairros = new ArrayList<>();
         if (resultSet1.isBeforeFirst()) {
             while (resultSet1.next()) {
-                Bairro bairro1 = new Bairro();
-                bairro1.setAcessoBairro(resultSet1.getString("acessoBairro"));
-                bairro1.setDataUltimoAcesso(resultSet1.getString("dataUltimoAcesso"));
-                bairro1.setDataCadastro(resultSet1.getDate("dataCadastro"));
-                bairro1.setNomeCompletoBairro(resultSet1.getString("nomeCompletoBairro"));
-                bairro1.setNomeBairro(resultSet1.getString("nomeBairro"));
-                bairro1.setSenhaBairro(resultSet1.getString("senhaBairro"));
-                bairro1.setGruposBairro(resultSet1.getString("gruposBairro"));
+                BairroModel bairro1 = new BairroModel();
+                bairro1.setBairroNome(resultSet1.getString("bairroNome"));
                 bairro1.setAtivo(resultSet1.getInt("ativo"));
                 //System.out.println("\nNome:"+bairro1.getNomeBairro());
                 listaBairros.add(bairro1);
