@@ -48,10 +48,26 @@ public class UsuariosController extends HttpServlet {
         } else {
             session.setAttribute("limite", String.valueOf(limite));
         }
-        if (session.getAttribute("usuarioPesquisar")!=request.getParameter("usuarioPesquisar")){
-        numeroPagina=1;
-        session.setAttribute("numeroPagina", "1");
-        }
+        System.out.println("\n usuarioPesquisar -> (session):"+session.getAttribute("usuarioPesquisar"));
+        System.out.println("\n usuarioPesquisar -> (param):"+request.getParameter("usuarioPesquisar"));
+        String par1,ses1;
+        ses1=(String) session.getAttribute("usuarioPesquisar");
+        par1=request.getParameter("usuarioPesquisar");
+        boolean compok=false;
+        if (ses1!=null&&par1!=null)
+            compok=true;
+        if (compok){
+            if(ses1.equalsIgnoreCase(par1)){
+            System.out.println("Sao iguais");
+            }else{
+            System.out.println("Nao sao iguais");
+            numeroPagina=1;
+            session.setAttribute("numeroPagina", "1");
+        }}
+//        if (session.getAttribute("usuarioPesquisar") != request.getParameter("usuarioPesquisar")) {
+//            numeroPagina = 1;
+//            session.setAttribute("numeroPagina", "1");
+//        }
         if ((String) session.getAttribute("numeroPagina") != null) {
             numeroPagina = Integer.valueOf((String) session.getAttribute("numeroPagina"));
         } else {
@@ -61,22 +77,23 @@ public class UsuariosController extends HttpServlet {
 
         if (request.getParameter("ordenacaoUsuario") != null) {
             session.setAttribute("ordenacaoUsuario", request.getParameter("ordenacaoUsuario"));
-            } else {
-            session.setAttribute("ordenacaoUsuario","nomeCompletoUsuario");
+        } else {
+            session.setAttribute("ordenacaoUsuario", "nomeCompletoUsuario");
         }
-        System.out.println("\ntipoPesquisa (USUARIOSCONTROLLER): "+request.getParameter("tipoPesquisa"));
+        System.out.println("\ntipoPesquisa (USUARIOSCONTROLLER): " + request.getParameter("tipoPesquisa"));
         if ((request.getParameter("tipoPesquisa") != null)) {
             session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
-        } else
-            session.setAttribute("tipoPesquisa","nomeCompletoUsuario");
-        
+        } else {
+            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
+        }
+
         if (request.getParameter("usuarioPesquisar") != null) {
-  //          session.setAttribute("usuarioPesquisar", "");
-              session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
+            //          session.setAttribute("usuarioPesquisar", "");
+            session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
         } else {
 //            session.setAttribute("tipoPesquisa", "nomeCompletoUsuario");
-              session.setAttribute("usuarioPesquisar", "");
-    }
+            session.setAttribute("usuarioPesquisar", "");
+        }
         if (session.getAttribute("pagMax") != null) {
             pagMax = Integer.valueOf((String) session.getAttribute("pagMax"));
         }
@@ -86,7 +103,7 @@ public class UsuariosController extends HttpServlet {
         }
 
         if (processar.equalsIgnoreCase("listar")) {
-            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina, (String) session.getAttribute("ordenacaoUsuario"), (String) session.getAttribute("usuarioPesquisar"),(String) session.getAttribute("tipoPesquisa"));
+            listaUsuarios = loginDAO.getListaUsuariosPaginada(limite, numeroPagina, (String) session.getAttribute("ordenacaoUsuario"), (String) session.getAttribute("usuarioPesquisar"), (String) session.getAttribute("tipoPesquisa"));
             request.setAttribute("sessaoListaUsuarios", listaUsuarios);
             session.setAttribute("sessaoListaUsuarios", listaUsuarios);
             rd = request.getRequestDispatcher("listausuariosPaginada.jsp");
@@ -114,14 +131,17 @@ public class UsuariosController extends HttpServlet {
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("proximaPagina")) {
-            System.out.println("\nproximaPagina "+numeroPagina+" pagmax: "+pagMax);
+            System.out.println("\nproximaPagina " + numeroPagina + " pagmax: " + pagMax);
             if (numeroPagina < pagMax) {
                 numeroPagina++;
                 session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
-                System.out.println("\nproximaPagina "+numeroPagina+" pagmax: "+pagMax);
+                System.out.println("\nproximaPagina " + numeroPagina + " pagmax: " + pagMax);
             }
-            
-            rd = request.getRequestDispatcher("UsuariosController?processar=listar?");
+
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar&tipoPesquisa="
+                    + (String) session.getAttribute("tipoPesquisa")
+                    + "&usuarioPesquisar=" + (String) session.getAttribute("usuarioPesquisar")
+                    + "&numeroPagina=" + (String) session.getAttribute("numeroPagina"));
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("paginaAnterior")) {
             System.out.println("\npagina Anterior" + numeroPagina + " " + pagMax);
@@ -129,8 +149,12 @@ public class UsuariosController extends HttpServlet {
                 numeroPagina--;
                 session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
             }
-            
-            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar"
+                    + "&tipoPesquisa="
+                    + (String) session.getAttribute("tipoPesquisa")
+                    + "&usuarioPesquisar=" + (String) session.getAttribute("usuarioPesquisar")
+                    + "&numeroPagina=" + (String) session.getAttribute("numeroPagina"));
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("trocarSenha")) {
             HashSenhasArgo2 hash = new HashSenhasArgo2();
@@ -206,11 +230,17 @@ public class UsuariosController extends HttpServlet {
             }
         } else if (processar.equalsIgnoreCase("pesquisar")) {
             //out.print("\nPesquisar - "+request.getParameter("usuarioPesquisar"));
-            if (request.getParameter("usuarioPesquisar")!=null)
-            session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
-            if (request.getParameter("tipoPesquisa")!=null)
-            session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
-            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            if (request.getParameter("usuarioPesquisar") != null) {
+                session.setAttribute("usuarioPesquisar", request.getParameter("usuarioPesquisar"));
+            }
+            if (request.getParameter("tipoPesquisa") != null) {
+                session.setAttribute("tipoPesquisa", request.getParameter("tipoPesquisa"));
+            }
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar"
+                    + "&tipoPesquisa="
+                    + (String) session.getAttribute("tipoPesquisa")
+                    + "&usuarioPesquisar=" + (String) session.getAttribute("usuarioPesquisar")
+                    + "&numeroPagina=" + (String) session.getAttribute("numeroPagina"));
             rd.forward(request, response);
         }
     }

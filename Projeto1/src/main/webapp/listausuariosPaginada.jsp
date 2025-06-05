@@ -27,10 +27,12 @@
         if (request.getParameter("irPagina") != null) {
             session.setAttribute("numeroPagina", request.getParameter("irPagina"));
             session.setAttribute("processar", request.getParameter("processar"));
-            response.sendRedirect("UsuariosController?processar="+(String) session.getAttribute("processar")+"&numeroPagina="+session.getAttribute("numeroPagina")+"&usuarioPesquisar="+session.getAttribute("usuarioPesquisar")+
+            response.sendRedirect("UsuariosController?processar="+(String) session.getAttribute("processar")+
+            "&numeroPagina="+session.getAttribute("numeroPagina")+
+            "&usuarioPesquisar="+session.getAttribute("usuarioPesquisar")+
             "&tipoPesquisa="+session.getAttribute("tipoPesquisa"));
         } else {
-        System.out.println("LISTAUSUARIOSPAGINADA: "+(String) session.getAttribute("numeroPagina"));
+        System.out.println("ir pagina é null - LISTAUSUARIOSPAGINADA: "+(String) session.getAttribute("numeroPagina"));
         }
     %>
     <util:listarUsuarioPaginado/>       
