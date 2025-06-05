@@ -114,19 +114,22 @@ public class UsuariosController extends HttpServlet {
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("proximaPagina")) {
-            //System.out.println("\nproximaPagina "+numeroPagina+" "+pagMax);
+            System.out.println("\nproximaPagina "+numeroPagina+" pagmax: "+pagMax);
             if (numeroPagina < pagMax) {
                 numeroPagina++;
+                session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
+                System.out.println("\nproximaPagina "+numeroPagina+" pagmax: "+pagMax);
             }
-            session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
-            rd = request.getRequestDispatcher("UsuariosController?processar=listar");
+            
+            rd = request.getRequestDispatcher("UsuariosController?processar=listar?");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("paginaAnterior")) {
-            System.out.println("\nproximaPagina " + numeroPagina + " " + pagMax);
+            System.out.println("\npagina Anterior" + numeroPagina + " " + pagMax);
             if (numeroPagina > 1) {
                 numeroPagina--;
+                session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
             }
-            session.setAttribute("numeroPagina", String.valueOf(numeroPagina));
+            
             rd = request.getRequestDispatcher("UsuariosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("trocarSenha")) {
