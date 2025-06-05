@@ -28,14 +28,9 @@
 <c:set var="corB" value="white"/>
 
 <table border="1">
-    <tr><td colspan="6"><a href="novoBairro.jsp" title="Criar Novo Usuário"><img src="imagens/novoBairro.jpg" alt="Novo usuário" height="50px" widht="50px"> </td></tr>
+    <tr><td colspan="6"><a href="novoBairro.jsp" title="Criar Novo Usuário"><img src="imagens/novoBairro.jpg" alt="Novo bairro" height="50px" widht="50px"> </td></tr>
                 <tr class="tabelaLinhaespecial">
-                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=nomeBairro">Nome</a></td>
-                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=nomeCompletoBairro">Nome Completo</a></td>
-                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=acessoBairro">Nivel Acesso</a></td>
-                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=gruposBairro">Grupo Usuários</a></td>
-                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=dataCadastro">Data Cadastro</a></td>
-                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=dataUltimoAcesso">Data último acesso</a></td>
+                    <td><a href="BairrosController?acao=listar&ordenacaoBairro=bairroNome">Nome</a></td>
                     <td><a href="BairrosController?acao=listar&ordenacaoBairro=ativo">Ativo</a></td>
                     <td>Alterar</td>
                     <td>Excluir</td>
@@ -50,22 +45,17 @@
                             </c:otherwise>
                         </c:choose>
 
-                        <td> ${bairros['nomeBairro']} </td>
-                        <td> ${bairros['nomeCompletoBairro']} </td>
-                        <td> ${bairros['acessoBairro']} </td>
-                        <td> ${bairros['gruposBairro']} </td>
-                        <td> ${bairros['dataCadastro']} </td>
-                        <td> ${bairros['dataUltimoAcesso']} </td>
+                        <td> ${bairros['bairroNome']} </td>
                         <td> ${bairros['ativo']} </td>
-                        <td><a href="alteraBairro.jsp?nomeBairro=${bairros['nomeBairro']}&nomeCompletoBairro=${bairros['nomeCompletoBairro']}&acessoBairro=${bairros['acessoBairro']}&gruposBairro=${bairros['gruposBairro']}&dataCadastro=${bairros['dataCadastro']}&dataUltimoAcesso=${bairros['dataUltimoAcesso']}&ativo=${bairros['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${bairros['nomeBairro']}"></a></td>
-                                <c:choose>
+                        <td><a href="alteraBairro.jsp?bairroNome=${bairros['bairroNome']}&ativo=${bairros['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${bairros['bairroNome']}"></a></td>
+                                                        <c:choose>
                                     <c:when test="${bairros['ativo']==1}">
-                                        <c:set var="bairroAlterarEstado" value="${bairros['nomeBairro']}" scope="session"/>
-                                <td> <a href="BairrosController?processar=desativar&bairroAlterarEstado=${bairros['nomeBairro']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar o usuário ${bairros['nomeBairro']}"></a></td>
+                                        <c:set var="bairroAlterarEstado" value="${bairros['bairroNome']}" scope="session"/>
+                                <td> <a href="BairrosController?processar=desativar&bairroAlterarEstado=${bairros['bairroNome']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar o usuário ${bairros['bairroNome']}"></a></td>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:set var="bairroAlterarEstado" value="${bairros['nomeBairro']}" scope="session"/>
-                                <td> <a href="BairrosController?processar=ativar&bairroAlterarEstado=${bairros['nomeBairro']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar o usuário ${bairros['nomeBairro']}"></a></td>
+                                        <c:set var="bairroAlterarEstado" value="${bairros['bairroNome']}" scope="session"/>
+                                <td> <a href="BairrosController?processar=ativar&bairroAlterarEstado=${bairros['bairroNome']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar o usuário ${bairros['bairroNome']}"></a></td>
                                     </c:otherwise>
                                 </c:choose>
                     </tr>   
@@ -95,10 +85,10 @@
                     <td colspan="9">Pesquisar por:
                         <select name="tipoPesquisa"  accesskey="o">
                             <%
-                                if (tipoPesquisa.equalsIgnoreCase("nomeBairro")) {
-                                    out.println("<option value='nomeBairro' selected='selected'>Nome do usuário</option>");
+                                if (tipoPesquisa.equalsIgnoreCase("bairroNome")) {
+                                    out.println("<option value='bairroNome' selected='selected'>Nome do usuário</option>");
                                 } else {
-                                    out.println("<option value='nomeBairro'>Nome do usuário</option>");
+                                    out.println("<option value='bairroNome'>Nome do usuário</option>");
                                 }
                               
                                 if (tipoPesquisa.equalsIgnoreCase("ativo")) {

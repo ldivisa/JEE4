@@ -135,37 +135,7 @@ public class BairrosController extends HttpServlet {
                     + "&bairroPesquisar=" + (String) session.getAttribute("bairroPesquisar")
                     + "&numeroPagina=" + (String) session.getAttribute("numeroPagina"));
             rd.forward(request, response);
-        } else if (processar.equalsIgnoreCase("trocarSenha")) {
-            HashSenhasArgo2 hash = new HashSenhasArgo2();
-            String bairroAtual = (String) session.getAttribute("bairroNome");
-            String bairroAlterarEstado = (String) session.getAttribute("bairroAlterarEstado");
-            String senhaAtual = request.getParameter("senhaAtual");
-            String senhaNova1 = request.getParameter("senhaNova1");
-            String senhaNova2 = request.getParameter("senhaNova2");
-            String senhaBairroBanco = (String) session.getAttribute("senhaBairroBanco");
-            String senhaAtualHash = hash.criaHashSenha(senhaNova1);
-            if (senhaAtual.equals(senhaNova1) || senhaAtual.equals(senhaNova2)) {
-                session.setAttribute("mensagem", "A senha nova precisar ser diferente da atual");
-                rd = request.getRequestDispatcher("trocarSenha.jsp");
-                rd.forward(request, response);
-                return;
-            }
-            if (!senhaNova1.equals(senhaNova2)) {
-                session.setAttribute("mensagem", "Os dois campos de registro da nova senha precisam ser iguais");
-                rd = request.getRequestDispatcher("trocarSenha.jsp");
-                rd.forward(request, response);
-                return;
-            }
-            if (!hash.checaHashSenha(senhaBairroBanco, senhaAtual)) {
-                session.setAttribute("mensagem", "A senha atual não confere");
-                rd = request.getRequestDispatcher("trocarSenha.jsp");
-                rd.forward(request, response);
-                return;
-            }
-
-            BairroDAO.alterarSenha(bairroAtual, senhaAtualHash);
-            rd = request.getRequestDispatcher("BairrosController?processar=listar");
-            rd.forward(request, response);
+             
         } else if (processar.equalsIgnoreCase("encerrarSessao")) {
             session.removeAttribute("bairroAtual");
             session.removeAttribute("bairroNomeCompleto");

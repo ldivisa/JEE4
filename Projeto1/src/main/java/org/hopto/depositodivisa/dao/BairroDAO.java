@@ -40,7 +40,7 @@ public class BairroDAO {
 
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=?";
+            String SQL = "select * from bairros where bairroNome=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, bairro);
             resultSet = ps.executeQuery();
@@ -60,7 +60,7 @@ public class BairroDAO {
          
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=?";
+            String SQL = "select * from bairros where bairroNome=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, bairroNome);
           
@@ -129,7 +129,7 @@ public class BairroDAO {
         try {
             this.bairroAlterarEstado = bairroAlterarEstado;
             connection = new ConexaoFactory().getConnection();
-            String SQL = "update bairros set ativo=0 where nomeBairro='" + this.bairroAlterarEstado + "'";
+            String SQL = "update bairros set ativo=0 where bairroNome='" + this.bairroAlterarEstado + "'";
             Statement st = connection.createStatement();
             st.executeUpdate(SQL);
         } catch (SQLException ex) {
@@ -141,7 +141,7 @@ public class BairroDAO {
         try {
             this.bairroAlterarEstado = bairroAlterarEstado;
             connection = new ConexaoFactory().getConnection();
-            String SQL = "update bairros set ativo=1 where nomeBairro='" + this.bairroAlterarEstado + "'";
+            String SQL = "update bairros set ativo=1 where bairroNome='" + this.bairroAlterarEstado + "'";
             //System.out.println("SQL " + SQL);
             Statement ps1 = connection.createStatement();
             ps1.executeUpdate(SQL);
@@ -156,7 +156,7 @@ public class BairroDAO {
         return (acessoBairro.contains(permissaoNecessaria));
     }
 
-    public void alterarBairro(String nomeBairro,String nomeCompletoBairro,String acessoBairro,String gruposBairro,String ativo) {
+    public void alterarBairro(String bairroNome,String nomeCompletoBairro,String acessoBairro,String gruposBairro,String ativo) {
         try {
             connection = new ConexaoFactory().getConnection();
             int bairroAtivo;
@@ -170,7 +170,7 @@ public class BairroDAO {
                     +"\" ,acessoBairro=\""+acessoBairro
                     +"\",gruposBairro=\""+gruposBairro
                     +"\",ativo=\""+bairroAtivo
-                    +"\" where nomeBairro=\""+nomeBairro+"\"";
+                    +"\" where bairroNome=\""+bairroNome+"\"";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             //System.out.println("\n SQL: "+SQL);
             ps1.executeUpdate(SQL);
@@ -180,19 +180,19 @@ public class BairroDAO {
     }
     
     
-   public void registrarNovoBairro(String nomeBairro,String ativo) {
-       //System.out.println("Nome Bairro:"+nomeBairro); 
+   public void registrarNovoBairro(String bairroNome,String ativo) {
+       //System.out.println("Nome Bairro:"+bairroNome); 
        
         try {
             connection = new ConexaoFactory().getConnection();
             int bairroAtivo= ativo.equalsIgnoreCase("on")?1:0;
             String SQL = "insert into bairros"
-                    +"(nomeBairro"
+                    +"(bairroNome"
                     +",ativo)"
                     +" values(?,?)";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             
-            ps1.setString(1, nomeBairro);
+            ps1.setString(1, bairroNome);
             ps1.setInt(2, bairroAtivo);
             
             ps1.execute();
@@ -206,7 +206,7 @@ public void registrarDataUltimoBairroPerfilBairro(String bairroAlterarEstado)   
          connection = new ConexaoFactory().getConnection();
          String hoje = new java.text.SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new java.util.Date());
          //System.out.println("hoje "+hoje);
-         String SQL = "update bairros set dataUltimoAcesso=\""+hoje+ "\" where nomeBairro=\""+bairroAlterarEstado+"\"";
+         String SQL = "update bairros set dataUltimoAcesso=\""+hoje+ "\" where bairroNome=\""+bairroAlterarEstado+"\"";
          //System.out.println("SQL "+SQL);
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             ps1.execute();
@@ -215,10 +215,10 @@ public void registrarDataUltimoBairroPerfilBairro(String bairroAlterarEstado)   
         }
 }
 
-public void alterarSenha(String nomeBairro, String senhaNovaHash){
+public void alterarSenha(String bairroNome, String senhaNovaHash){
     try{     
     connection = new ConexaoFactory().getConnection();
-    String SQL = "update bairros set senhaBairro= \""+senhaNovaHash +"\" where nomeBairro=\""+nomeBairro+"\"";
+    String SQL = "update bairros set senhaBairro= \""+senhaNovaHash +"\" where bairroNome=\""+bairroNome+"\"";
         //System.out.println("SQL "+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ps1.execute();
