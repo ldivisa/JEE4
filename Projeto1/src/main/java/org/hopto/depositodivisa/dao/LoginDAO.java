@@ -353,7 +353,7 @@ connection = new ConexaoFactory().getConnection();
 String SQL;
 if (pesquisa==null)
     pesquisa="";
-SQL = "select count(*) as contagem from login where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
+SQL = "select count(*) as contagem from bairros where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
     System.out.println("\n SQL "+SQL);
         PreparedStatement ps1;
         ResultSet rs = null;

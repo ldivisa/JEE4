@@ -40,10 +40,9 @@ public class BairroDAO {
 
         try {
             connection = new ConexaoFactory().getConnection();
-            String SQL = "select * from bairros where nomeBairro=? and senhaBairro=?";
+            String SQL = "select * from bairros where nomeBairro=?";
             ps = connection.prepareStatement(SQL);
             ps.setString(1, bairro);
-            ps.setString(2, senha);
             resultSet = ps.executeQuery();
             return resultSet.next();
 
@@ -105,7 +104,7 @@ public class BairroDAO {
         if (pesquisa==null )
             pesquisa="";
         if (tipoPesquisa==null)
-            tipoPesquisa="nomeCompletoBairro";
+            tipoPesquisa="bairro";
         connection = new ConexaoFactory().getConnection();
         String SQL = "select * from bairros where "+tipoPesquisa+" like '%"+pesquisa +"%' order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
         //System.out.println("\nSQL:"+SQL);
@@ -181,31 +180,20 @@ public class BairroDAO {
     }
     
     
-   public void registrarNovoBairro(String nomeBairro,String nomeCompletoBairro,String acessoBairro,String gruposBairro,String ativo,String dataCadastro, String Senha) {
+   public void registrarNovoBairro(String nomeBairro,String ativo) {
        //System.out.println("Nome Bairro:"+nomeBairro); 
-       HashSenhasArgo2 maquinaHash = new HashSenhasArgo2();
-        String senhaHash=maquinaHash.criaHashSenha(Senha);       
+       
         try {
             connection = new ConexaoFactory().getConnection();
             int bairroAtivo= ativo.equalsIgnoreCase("on")?1:0;
             String SQL = "insert into bairros"
                     +"(nomeBairro"
-                    +",acessoBairro"
-                    +",gruposBairro"
-                    +",ativo"
-                    +",senhaBairro"
-                    +",dataCadastro"
-                    +",nomeCompletoBairro)"
-                    +" values(?,?,?,?,?,?,?)";
+                    +",ativo)"
+                    +" values(?,?)";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             
             ps1.setString(1, nomeBairro);
-            ps1.setString(2, acessoBairro);
-            ps1.setString(3, gruposBairro);
-            ps1.setInt(4, bairroAtivo);
-            ps1.setString(5, senhaHash);
-            ps1.setString(6, dataCadastro);
-            ps1.setString(7, nomeCompletoBairro);
+            ps1.setInt(2, bairroAtivo);
             
             ps1.execute();
         } catch (SQLException ex) {

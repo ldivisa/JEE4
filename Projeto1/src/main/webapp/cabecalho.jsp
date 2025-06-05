@@ -32,7 +32,7 @@
                                 response.sendRedirect("login.jsp");
                                 }
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"C")){
-                            out.print("<li><a href=\"views/cadastros.jsp\"><img src=\"imagens/Gabinete.jpg\" alt=\"Cadastros\" height=\"50px\" width=\"50px\" title=\"Cadastros de clientes, produtos, fornecedores, etc.\"</a></li>");
+                            out.print("<li><a href=\"cadastros.jsp\"><img src=\"imagens/Gabinete.jpg\" alt=\"Cadastros\" height=\"50px\" width=\"50px\" title=\"Cadastros de clientes, produtos, fornecedores, etc.\"</a></li>");
                                 }
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"V")){
                             out.print("<li><a href=\"views/saida.jsp\"><img src=\"imagens/CaixaRegistradora.jpg\" alt=\"Vendas\" height=\"50px\" width=\"50px\" title=\"Vender material\"></a></li>");
