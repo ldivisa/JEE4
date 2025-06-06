@@ -156,7 +156,7 @@ public class BairroDAO {
         return (acessoBairro.contains(permissaoNecessaria));
     }
 
-    public void alterarBairro(String bairroNome,String nomeCompletoBairro,String acessoBairro,String gruposBairro,String ativo) {
+    public void alterarBairro(String bairroNome,String ativo,String bairroOriginal) {
         try {
             connection = new ConexaoFactory().getConnection();
             int bairroAtivo;
@@ -166,13 +166,11 @@ public class BairroDAO {
             bairroAtivo= ativo.equalsIgnoreCase("on")?1:0;
             }
             String SQL = "update bairros set"
-                    +" nomeCompletoBairro=\""+nomeCompletoBairro
-                    +"\" ,acessoBairro=\""+acessoBairro
-                    +"\",gruposBairro=\""+gruposBairro
+                    +" bairroNome=\""+bairroNome
                     +"\",ativo=\""+bairroAtivo
-                    +"\" where bairroNome=\""+bairroNome+"\"";
+                    +"\" where bairroNome=\""+bairroOriginal+"\"";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
-            //System.out.println("\n SQL: "+SQL);
+            System.out.println("\n SQL: "+SQL);
             ps1.executeUpdate(SQL);
         } catch (SQLException ex) {
             Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -187,14 +185,13 @@ public class BairroDAO {
             connection = new ConexaoFactory().getConnection();
             int bairroAtivo= ativo.equalsIgnoreCase("on")?1:0;
             String SQL = "insert into bairros"
-                    +"(bairroNome"
-                    +",ativo)"
+                    +"(bairroNome,ativo)"
                     +" values(?,?)";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             
             ps1.setString(1, bairroNome);
-            ps1.setInt(2, bairroAtivo);
-            
+            ps1.setString(2, String.valueOf(bairroAtivo));
+            System.out.println("\nSQL: "+SQL);
             ps1.execute();
         } catch (SQLException ex) {
             Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);

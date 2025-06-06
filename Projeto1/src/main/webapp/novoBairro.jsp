@@ -5,48 +5,27 @@
 <c:import url="cabecalho.jsp" />
 <div id="central">
     <util:verificarSessaoAtiva />
-    <%//Checando se o usuario ativo tem a permissao neste modulo
+    <%//Checando se o bairro ativo tem a permissao neste modulo
         HttpSession sessao = request.getSession();
         LoginDAO login = new LoginDAO();
-        if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "U"))
+        if (!login.getPermissao((String) sessao.getAttribute("acessoUsuario"), "B"))
             response.sendRedirect("index.jsp");
     %>
-    <div id="tituloNovoUsuario">
-        <h1>Novo Usuário</h1>
+    <div id="tituloNovoBairro">
+        <h1>Novo Bairro</h1>
     </div>
-    <div id="formNovoUsuario">
-        <form id="formNovoUsuario" method="get" action="UsuariosController">
+    <div id="formNovoBairro">
+        <form id="formNovoBairro" method="get" action="BairrosController">
         <div class="campos">
-            <label for="usuario">Usuário.:</label>
-            <input type="text"  name="nomeUsuario" required autofocus maxlength="30" size="30"/>
-        </div>
-        <div class="campos">
-            <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  name="nomeCompletoUsuario" required maxlength="50" size="50"/>
-        </div>
-        <div class="campos">
-            <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text" name="acessoUsuario" required size="34" maxlength="34"/>
-        </div>
-        <div class="campos">
-            <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  name="gruposUsuario" required maxlength="20" size="20"/>
-        </div>
-        <div class="campos">
-            <label for="dataCadastro">Data Cadastro.:</label>
-            <% String hoje =new java.text.SimpleDateFormat("YYYY-MM-dd").format(new java.util.Date());%>
-            <input type="date"  name="dataCadastro" required value="<%=hoje%>" min="2025-05-01" />
-        </div>
-        <div class="campos">
-            <label for="senha">Senha .:</label>
-            <input type="password"  name="senha" required  maxlength="20" size="20"/>
+            <label for="bairro">Bairro.:</label>
+            <input type="text"  name="bairroNome" required autofocus maxlength="30" size="30"/>
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
             <input type="checkbox"  name="ativo" checked />
         </div>
         <div class="campos">
-            <button type="submit"  name="processar" value="novo" title="Gravar informações no cadastro deste novo usuário">Gravar novo usuário</>
+            <button type="submit"  name="processar" value="novo" title="Gravar informações no cadastro deste novo bairro">Gravar novo bairro</>
         </div>
     </form>
     </div>

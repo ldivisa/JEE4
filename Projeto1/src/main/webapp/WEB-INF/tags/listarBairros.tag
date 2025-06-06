@@ -22,13 +22,13 @@
     String tipoPesquisa = (String) session.getAttribute("tipoPesquisa");
     String bairroPesquisar = (String) session.getAttribute("bairroPesquisar");
 %>
-<h1>Listagem de usuários do sistema:</h1>
+<h1>Listagem de bairros: </h1>
 <c:set var="contador" value="0"/>
 <c:set var="corA" value="lightblue"/>
 <c:set var="corB" value="white"/>
 
 <table border="1">
-    <tr><td colspan="6"><a href="novoBairro.jsp" title="Criar Novo Usuário"><img src="imagens/novoBairro.jpg" alt="Novo bairro" height="50px" widht="50px"> </td></tr>
+    <tr><td colspan="6"><a href="novoBairro.jsp" title="Criar Novo Bairro"><img src="imagens/bairro.jpg" alt="Novo bairro" height="50px" widht="50px"> </td></tr>
                 <tr class="tabelaLinhaespecial">
                     <td><a href="BairrosController?acao=listar&ordenacaoBairro=bairroNome">Nome</a></td>
                     <td><a href="BairrosController?acao=listar&ordenacaoBairro=ativo">Ativo</a></td>
@@ -80,13 +80,13 @@
                         %>
                     </td>
                 </tr>
-                <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de usuários registrados: <depositodivisa:contagemBairros/> - Ordenação: ${ordenacaoBairro}</td></tr>
+                <tr><td class="tabelaLinhaespecial" colspan="9">Página ${numeroPagina}/${pagMax} - Total de bairros registrados: <depositodivisa:contagemBairros/> - Ordenação: ${ordenacaoBairro}</td></tr>
                 <tr><form action="BairrosController?processar=pesquisar" autocomplete="false">
                     <td colspan="9">Pesquisar por:
                         <select name="tipoPesquisa"  accesskey="o">
                             <%
                                 if (tipoPesquisa.equalsIgnoreCase("bairroNome")) {
-                                    out.println("<option value='bairroNome' selected='selected'>Nome do usuário</option>");
+                                    out.println("<option value='bairroNome' selected='selected'>Nome do bairro</option>");
                                 } else {
                                     out.println("<option value='bairroNome'>Nome do usuário</option>");
                                 }
@@ -99,7 +99,7 @@
                             %>
 
                         </select>(o)
-                        <input type="text" name="bairroPesquisar" accesskey="p" autofocus="true" title="Pesquisar usuários" value=
+                        <input type="text" name="bairroPesquisar" accesskey="p" autofocus="true" title="Pesquisar Bairros" value=
                                <%
                                    if (session.getAttribute("bairroPesquisar") != null)
                                        out.println(session.getAttribute("bairroPesquisar"));

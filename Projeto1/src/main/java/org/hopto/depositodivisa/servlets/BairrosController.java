@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hopto.depositodivisa.dao.BairroDAO;
-import org.hopto.depositodivisa.funcoes.HashSenhasArgo2;
 import org.hopto.depositodivisa.model.BairroModel;
 
 /**
@@ -92,11 +91,11 @@ public class BairrosController extends HttpServlet {
             rd = request.getRequestDispatcher("BairrosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("alterar")) {
-            BairroDAO.alterarBairro(request.getParameter("bairroNome"), request.getParameter("bairroNome"), request.getParameter("acessoBairro"), request.getParameter("gruposBairro"), request.getParameter("ativo"));
+            BairroDAO.alterarBairro(request.getParameter("bairroNome"),request.getParameter("ativo"),(String)session.getAttribute("bairroOriginal"));
             rd = request.getRequestDispatcher("BairrosController?processar=listar");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("gravar")) {
-            BairroDAO.alterarBairro(request.getParameter("bairroNome"), request.getParameter("nomeCompletoBairro"), request.getParameter("acessoBairro"), request.getParameter("gruposBairro"), request.getParameter("ativo"));
+            BairroDAO.alterarBairro(request.getParameter("bairroNome"), request.getParameter("ativo"),(String) session.getAttribute("bairroOriginal"));
             rd = request.getRequestDispatcher("listabairrosPaginada.jsp");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("desativar")) {
