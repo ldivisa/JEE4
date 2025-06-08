@@ -5,22 +5,21 @@
 <div id="central">
 
     <div id="conteudo">
-                <div id="menu"> 
-                    <nav>
-                        <h1>MENUS</h1>
-                        <ol>
-                            <%
-                                LoginDAO login = new LoginDAO();
-                            if(session.getAttribute("acessoUsuario")==null){
+        <div id="cadastros"> 
+S            <h1>CADASTROS</h1>
+            <table id="tabelaCadastros">
+                <tr><td><%
+                            LoginDAO login = new LoginDAO();
+                            if (session.getAttribute("acessoUsuario") == null) {
                                 response.sendRedirect("login.jsp");
-                                }
-                            if (login.getPermissao((String) session.getAttribute("acessoUsuario"),"B")){
-                            out.print("<li><a href='BairrosController?processar=listar'><img src='imagens/Usuarios.png' alt='alt' height='50px' width='50px' title='Bairros'</a></li>");
-                                }
-                                %>
-                    </h1> </td></tr>
-        </table>
-    </form>
-</div>
+                            }
 
-<c:import url="rodape.jsp" /> 
+                            if (login.getPermissao((String) session.getAttribute("acessoUsuario"), "B")) {
+                                out.print("<a href='BairrosController?processar=listar'><img src='imagens/Usuarios.png' alt='Bairros' height='200px' width='200px' title='Bairros'</a>");
+                            }
+                        %></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <c:import url="rodape.jsp" /> 
