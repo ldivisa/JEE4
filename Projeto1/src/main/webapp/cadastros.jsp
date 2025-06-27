@@ -6,7 +6,9 @@
 
     <div id="conteudo">
         <div id="cadastros"> 
-S            <h1>CADASTROS</h1>
+            
+            
+            <h1>CADASTROS</h1>
             <table id="tabelaCadastros">
                 <tr><td><%
                             LoginDAO login = new LoginDAO();
