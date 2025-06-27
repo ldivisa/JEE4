@@ -1,4 +1,4 @@
-<%@tag import="org.hopto.depositodivisa.dao.LoginDAO"%>
+<%@tag import="org.hopto.depositodivisa.dao.BairroDAO"%>
 <%@tag import="com.mysql.cj.jdbc.*"%>
 <%@tag import="org.hopto.depositodivisa.factory.ConexaoFactory"%>
 <%@tag import="com.mysql.cj.protocol.Resultset"%>
@@ -6,11 +6,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="depositodivisa" %>
 <%
-    LoginDAO login = new LoginDAO();
+    BairroDAO bairro = new BairroDAO();
     Integer pagMax = null;
     Integer limite = 4;
     Integer numRegistros;
-    numRegistros = (Integer.valueOf(login.contagemRegistros((String) session.getAttribute("bairroPesquisar"), (String) session.getAttribute("tipoPesquisa"))));
+    numRegistros = (Integer.valueOf(bairro.contagemRegistros((String) session.getAttribute("bairroPesquisar"), (String) session.getAttribute("tipoPesquisa"))));
     if (session.getAttribute("limite") != null) {
         limite = Integer.parseInt((String) session.getAttribute("limite"));
     }

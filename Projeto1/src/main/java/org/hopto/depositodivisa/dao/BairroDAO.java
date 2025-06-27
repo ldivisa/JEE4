@@ -230,7 +230,7 @@ String SQL;
 if (pesquisa==null)
     pesquisa="";
 SQL = "select count(*) as contagem from bairros where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
-    System.out.println("\n SQL "+SQL);
+    System.out.println("\n SQL CONTAGEMREGISTRS "+SQL);
         PreparedStatement ps1;
         ResultSet rs = null;
         String contagem = null;
