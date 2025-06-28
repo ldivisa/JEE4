@@ -88,7 +88,7 @@
                                 if (tipoPesquisa.equalsIgnoreCase("bairroNome")) {
                                     out.println("<option value='bairroNome' selected='selected'>Nome do bairro</option>");
                                 } else {
-                                    out.println("<option value='bairroNome'>Nome do usuário</option>");
+                                    out.println("<option value='bairroNome'>Nome do bairro</option>");
                                 }
                               
                                 if (tipoPesquisa.equalsIgnoreCase("ativo")) {
