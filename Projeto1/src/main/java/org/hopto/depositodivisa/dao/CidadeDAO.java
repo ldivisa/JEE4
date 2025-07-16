@@ -55,7 +55,7 @@ public class CidadeDAO {
 
     }
 
-    public boolean verificaBairro1(CidadeModel bairro) throws SQLException {
+    public boolean verificaCidade1(CidadeModel cidade) throws SQLException {
          
         try {
             connection = new ConexaoFactory().getConnection();
@@ -105,30 +105,30 @@ public class CidadeDAO {
         if (tipoPesquisa==null)
             tipoPesquisa="bairro";
         connection = new ConexaoFactory().getConnection();
-        String SQL = "select * from bairros where "+tipoPesquisa+" like '%"+pesquisa +"%' order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
+        String SQL = "select * from cidades where "+tipoPesquisa+" like '%"+pesquisa +"%' order by "+ordenacao+" limit "+ strLimite+" offset "+offset;
         //System.out.println("\nSQL:"+SQL);
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ResultSet resultSet1 = ps1.executeQuery();
-        List<BairroModel> listaBairros;
-        listaBairros = new ArrayList<>();
+        List<CidadeModel> listaCidades;
+        listaCidades = new ArrayList<>();
         if (resultSet1.isBeforeFirst()) {
             while (resultSet1.next()) {
-                BairroModel bairro1 = new BairroModel();
-                bairro1.setBairroNome(resultSet1.getString("bairroNome"));
-                bairro1.setAtivo(resultSet1.getInt("ativo"));
+                CidadeModel cidade1 = new CidadeModel();
+                cidade1.setNomeCidade(resultSet1.getString("nomeCidade"));
+                cidade1.setAtivo(resultSet1.getInt("ativo"));
                 //System.out.println("\nNome:"+bairro1.getNomeBairro());
-                listaBairros.add(bairro1);
+                listaCidades.add(cidade1);
             }
-            return listaBairros;
+            return listaCidades;
         }
         return null;
     }
 
-    public void desativarBairro(String bairroAlterarEstado) {
+    public void desativarCidades(String cidadeAlterarEstado) {
         try {
-            this.bairroAlterarEstado = bairroAlterarEstado;
+            this.cidadeAlterarEstado = cidadeAlterarEstado;
             connection = new ConexaoFactory().getConnection();
-            String SQL = "update bairros set ativo=0 where bairroNome='" + this.bairroAlterarEstado + "'";
+            String SQL = "update cidades set ativo=0 where nomeCidade='" + this.cidadeAlterarEstado + "'";
             Statement st = connection.createStatement();
             st.executeUpdate(SQL);
         } catch (SQLException ex) {
@@ -136,11 +136,11 @@ public class CidadeDAO {
         }
     }
 
-    public void ativarBairro(String bairroAlterarEstado) {
+    public void ativarCidade(String cidadeAlterarEstado) {
         try {
-            this.bairroAlterarEstado = bairroAlterarEstado;
+            this.cidadeAlterarEstado = cidadeAlterarEstado;
             connection = new ConexaoFactory().getConnection();
-            String SQL = "update bairros set ativo=1 where bairroNome='" + this.bairroAlterarEstado + "'";
+            String SQL = "update cidades set ativo=1 where bairroNome='" + this.cidadeAlterarEstado + "'";
             //System.out.println("SQL " + SQL);
             Statement ps1 = connection.createStatement();
             ps1.executeUpdate(SQL);
@@ -149,25 +149,25 @@ public class CidadeDAO {
         }
     }
 
-    public boolean getPermissao(String acessoBairro, String permissaoNecessaria) {
+    public boolean getPermissao(String acessoCidade, String permissaoNecessaria) {
         //System.out.println("Passando em getPermissao - " + acessoBairro + " contem " + permissaoNecessaria + " ?");
 
-        return (acessoBairro.contains(permissaoNecessaria));
+        return (acessoCidade.contains(permissaoNecessaria));
     }
 
-    public void alterarBairro(String bairroNome,String ativo,String bairroOriginal) {
+    public void alterarCidade(String nomeCidade,String ativo,String cidadeOriginal) {
         try {
             connection = new ConexaoFactory().getConnection();
-            int bairroAtivo;
+            int cidadeAtivo;
             if (ativo==null){
                 ativo="0";
-                bairroAtivo=0;} else{
-            bairroAtivo= ativo.equalsIgnoreCase("on")?1:0;
+                cidadeAtivo=0;} else{
+            cidadeAtivo= ativo.equalsIgnoreCase("on")?1:0;
             }
-            String SQL = "update bairros set"
-                    +" bairroNome=\""+bairroNome
-                    +"\",ativo=\""+bairroAtivo
-                    +"\" where bairroNome=\""+bairroOriginal+"\"";
+            String SQL = "update cidades set"
+                    +" bairroNome=\""+nomeCidade
+                    +"\",ativo=\""+cidadeAtivo
+                    +"\" where nomeCidade=\""+cidadeOriginal+"\"";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             System.out.println("\n SQL: "+SQL);
             ps1.executeUpdate(SQL);
@@ -177,32 +177,32 @@ public class CidadeDAO {
     }
     
     
-   public void registrarNovoBairro(String bairroNome,String ativo) {
+   public void registrarNovaCidade(String nomeCidade,String ativo) {
        //System.out.println("Nome Bairro:"+bairroNome); 
        
         try {
             connection = new ConexaoFactory().getConnection();
-            int bairroAtivo= ativo.equalsIgnoreCase("on")?1:0;
-            String SQL = "insert into bairros"
-                    +"(bairroNome,ativo)"
+            int cidadeAtivo= ativo.equalsIgnoreCase("on")?1:0;
+            String SQL = "insert into cidades"
+                    +"(nomeCidade,ativo)"
                     +" values(?,?)";
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             
-            ps1.setString(1, bairroNome);
-            ps1.setString(2, String.valueOf(bairroAtivo));
+            ps1.setString(1, nomeCidade);
+            ps1.setString(2, String.valueOf(cidadeAtivo));
             System.out.println("\nSQL: "+SQL);
             ps1.execute();
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
-public void registrarDataUltimoBairroPerfilBairro(String bairroAlterarEstado)    {
-  this.bairroAlterarEstado = bairroAlterarEstado;
+public void registrarDataUltimaCidadePerfilCidade(String cidadeAlterarEstado)    {
+  this.cidadeAlterarEstado = cidadeAlterarEstado;
     try {
          connection = new ConexaoFactory().getConnection();
          String hoje = new java.text.SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new java.util.Date());
          //System.out.println("hoje "+hoje);
-         String SQL = "update bairros set dataUltimoAcesso=\""+hoje+ "\" where bairroNome=\""+bairroAlterarEstado+"\"";
+         String SQL = "update cidades set dataUltimoAcesso=\""+hoje+ "\" where nomeCidade=\""+cidadeAlterarEstado+"\"";
          //System.out.println("SQL "+SQL);
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             ps1.execute();
@@ -228,7 +228,7 @@ connection = new ConexaoFactory().getConnection();
 String SQL;
 if (pesquisa==null)
     pesquisa="";
-SQL = "select count(*) as contagem from bairros where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
+SQL = "select count(*) as contagem from cidades where "+tipoPesquisa+" like '%"+pesquisa+"%'"; 
     System.out.println("\n SQL CONTAGEMREGISTRS "+SQL);
         PreparedStatement ps1;
         ResultSet rs = null;
