@@ -27,7 +27,7 @@
         out.println("<td>"+usuario.getNomeUsuario()+"</td>");
         out.println("<td>"+usuario.getNomeCompletoUsuario()+"</td>");
         out.println("<td>"+usuario.getAcessoUsuario()+"</td>");
-        out.println("<td>"+usuario.getGrupoUsuarios()+"</td>");
+        out.println("<td>"+usuario.getGruposUsuario()+"</td>");
         out.println("<td>"+usuario.getDataCadastro()+"</td>");
         out.println("<td>"+usuario.getDataUltimoAcesso()+"</td>");
         
