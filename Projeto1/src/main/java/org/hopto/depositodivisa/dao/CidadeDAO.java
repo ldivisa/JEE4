@@ -124,7 +124,7 @@ public class CidadeDAO {
         return null;
     }
 
-    public void desativarCidades(String cidadeAlterarEstado) {
+    public void desativarCidade(String cidadeAlterarEstado) {
         try {
             this.cidadeAlterarEstado = cidadeAlterarEstado;
             connection = new ConexaoFactory().getConnection();
@@ -140,7 +140,7 @@ public class CidadeDAO {
         try {
             this.cidadeAlterarEstado = cidadeAlterarEstado;
             connection = new ConexaoFactory().getConnection();
-            String SQL = "update cidades set ativo=1 where bairroNome='" + this.cidadeAlterarEstado + "'";
+            String SQL = "update cidades set ativo=1 where nomeCidade='" + this.cidadeAlterarEstado + "'";
             //System.out.println("SQL " + SQL);
             Statement ps1 = connection.createStatement();
             ps1.executeUpdate(SQL);
@@ -165,7 +165,7 @@ public class CidadeDAO {
             cidadeAtivo= ativo.equalsIgnoreCase("on")?1:0;
             }
             String SQL = "update cidades set"
-                    +" bairroNome=\""+nomeCidade
+                    +" nomeCidade=\""+nomeCidade
                     +"\",ativo=\""+cidadeAtivo
                     +"\" where nomeCidade=\""+cidadeOriginal+"\"";
             PreparedStatement ps1 = connection.prepareStatement(SQL);

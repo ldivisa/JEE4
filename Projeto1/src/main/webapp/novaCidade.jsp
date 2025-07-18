@@ -15,9 +15,9 @@
         <h1>Nova Cidade</h1>
     </div>
     <div id="formNovaCidade">
-        <form id="formformNovaCidade" method="get" action="CidadesController">
+        <form id="formNovaCidade" method="get" action="CidadesController">
         <div class="campos">
-            <label for="usuario">Cidade.:</label>
+            <label for="nomeCidade">Cidade.:</label>
             <input type="text"  name="nomeCidade" required autofocus maxlength="30" size="30"/>
         </div>
         <div class="campos">

@@ -88,7 +88,7 @@ public class CidadesController extends HttpServlet {
             rd = request.getRequestDispatcher("listaCidades.jsp");
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("novo")) {
-            CidadeDAO.registrarNovaCidade(request.getParameter("cidadeNome"),  request.getParameter("ativo"));
+            CidadeDAO.registrarNovaCidade(request.getParameter("nomeCidade"),  request.getParameter("ativo"));
             //BairroDAO.registrarNovoBairro(request.getParameter("bairroNome"),  request.getParameter("ativo"));
             rd = request.getRequestDispatcher("CidadesController?processar=listar");
             rd.forward(request, response);
@@ -104,7 +104,7 @@ public class CidadesController extends HttpServlet {
             rd.forward(request, response);
         } else if (processar.equalsIgnoreCase("desativar")) {
             String cidadeAlterarEstado = (String) request.getParameter("cidadeAlterarEstado");
-            CidadeDAO.desativarCidades(cidadeAlterarEstado);
+            CidadeDAO.desativarCidade(cidadeAlterarEstado);
             //BairroDAO.desativarBairro(bairroAlterarEstado);
             rd = request.getRequestDispatcher("CidadesController?processar=listar");
             rd.forward(request, response);
