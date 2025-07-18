@@ -24,23 +24,23 @@
                     </c:otherwise>
                 </c:choose>
                       
-                <td> ${usuarios['nomeCidade']} </td>
-                <td> ${usuarios['ativo']} </td>
-                <td><a href="alteraCidade.jsp?nomeUsuario=${usuarios['nomeCidade']}&nomeCompletoUsuario=${usuarios['nomeCompletoUsuario']}&acessoUsuario=${usuarios['acessoUsuario']}&gruposUsuario=${usuarios['gruposUsuario']}&dataCadastro=${usuarios['dataCadastro']}&dataUltimoAcesso=${usuarios['dataUltimoAcesso']}&ativo=${usuarios['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar usuário ${usuarios['nomeUsuario']}"></a></td>
+                <td> ${cidades['nomeCidade']} </td>
+                <td> ${cidades['ativo']} </td>
+                <td><a href="alteraCidade.jsp?nomeCidade=${cidades['nomeCidade']}&ativo=${cidades['ativo']} "><img src="imagens/Editar.png" height="50px" width="50px" alt="Editar" title="Editar cidade ${cidades['nomeCidade']}"></a></td>
                 <c:choose>
-                    <c:when test="${usuarios['ativo']==1}">
-                        <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>
-                        <td> <a href="desativarUsuario?usuarioAlterarEstado=${usuarios['nomeUsuario']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar o usuário ${usuarios['nomeUsuario']}"></a></td>
+                    <c:when test="${cidades['ativo']==1}">
+                        <c:set var="cidadeAlterarEstado" value="${cidades['nomeCidade']}" scope="session"/>
+                        <td> <a href="desativarCidade?cidadeAlterarEstado=${cidades['nomeCidade']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar a cidade ${cidades['nomeCidade']}"></a></td>
                     </c:when>
                     <c:otherwise>
-                        <c:set var="usuarioAlterarEstado" value="${usuarios['nomeUsuario']}" scope="session"/>
-                        <td> <a href="ativarUsuario?usuarioAlterarEstado=${usuarios['nomeUsuario']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar o usuário ${usuarios['nomeUsuario']}"></a></td>
+                        <c:set var="cidadeAlterarEstado" value="${usuarios['nomeCidade']}" scope="session"/>
+                        <td> <a href="ativarCidade?cidadeAlterarEstado=${cidades['nomeCidade']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar a cidade ${cidades['nomeCidade']}"></a></td>
                     </c:otherwise>
                 </c:choose>
                 
             </tr>   
             <c:set var="contador" value="${contador+1}"/>
         </c:forEach>
-        <tr><td class="tabelaLinhaespecial" colspan="9">Total de usuários registrados: ${contador}</td></tr>
+        <tr><td class="tabelaLinhaespecial" colspan="9">Total de cidades registradas: ${contador}</td></tr>
 
     </table>

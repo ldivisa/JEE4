@@ -5,6 +5,12 @@
         <servlet-name>UsuariosController</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.UsuariosController</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>CidadesController</servlet-name>
+        <servlet-class>org.hopto.depositodivisa.servlets.CidadesController</servlet-class>
+    </servlet>
+    
       <servlet>
         <servlet-name>BairrosController</servlet-name>
         <servlet-class>org.hopto.depositodivisa.servlets.BairrosController</servlet-class>
@@ -14,8 +20,8 @@
         <url-pattern>/UsuariosController</url-pattern>
     </servlet-mapping>
      <servlet-mapping>
-        <servlet-name>BairrosController</servlet-name>
-        <url-pattern>/BairrosController</url-pattern>
+        <servlet-name>CidadesController</servlet-name>
+        <url-pattern>/CidadesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
