@@ -42,7 +42,12 @@
         </div>
         <div class="campos">
             <label for="ativo">Ativo.:</label>
-            <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))%>checked<% else %>  />
+            <input type="checkbox"  name="ativo" <% if (request.getParameter("ativo").equals("1"))
+                   out.print("checked");
+                   else
+                   out.print("");
+                   %>
+                   />
         </div>
         <div class="campos">
             <button type="submit"  name="processar" value="alterar" title="Gravar alterações no cadastro deste usuário">Alterar Usuário</>

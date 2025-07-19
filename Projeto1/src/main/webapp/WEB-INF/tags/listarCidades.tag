@@ -30,11 +30,11 @@
                 <c:choose>
                     <c:when test="${cidades['ativo']==1}">
                         <c:set var="cidadeAlterarEstado" value="${cidades['nomeCidade']}" scope="session"/>
-                        <td> <a href="desativarCidade?cidadeAlterarEstado=${cidades['nomeCidade']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar a cidade ${cidades['nomeCidade']}"></a></td>
+                        <td> <a href="CidadesController?processar=desativar&cidadeAlterarEstado=${cidades['nomeCidade']}"><img src="imagens/desativar.png" height="50px" width="50px" alt="desativar" title="Desativar a cidade ${cidades['nomeCidade']}"></a></td>
                     </c:when>
                     <c:otherwise>
                         <c:set var="cidadeAlterarEstado" value="${usuarios['nomeCidade']}" scope="session"/>
-                        <td> <a href="ativarCidade?cidadeAlterarEstado=${cidades['nomeCidade']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar a cidade ${cidades['nomeCidade']}"></a></td>
+                        <td> <a href="CidadesController?processar=ativar&cidadeAlterarEstado=${cidades['nomeCidade']}"><img src="imagens/ativar.png" height="50px" width="50px" alt="ativar" title="Ativar a cidade ${cidades['nomeCidade']}"></a></td>
                     </c:otherwise>
                 </c:choose>
                 

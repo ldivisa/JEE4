@@ -21,7 +21,7 @@
     <div id="formAlteraCidade">
     <form id="formAlteraCidade" method="get" action="CidadesController">
         <div class="campos">
-            <label for="usuario">Bairro.:</label>
+            <label for="usuario">Cidade.:</label>
             <input type="text"  name="nomeCidade" value="${param.nomeCidade}"  autofocus maxlength="40"/>
         </div>
         <div class="campos">

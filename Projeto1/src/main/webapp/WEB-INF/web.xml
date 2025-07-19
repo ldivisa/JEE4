@@ -23,6 +23,12 @@
         <servlet-name>CidadesController</servlet-name>
         <url-pattern>/CidadesController</url-pattern>
     </servlet-mapping>
+
+     <servlet-mapping>
+        <servlet-name>BairrosController</servlet-name>
+        <url-pattern>/BairrosController</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30

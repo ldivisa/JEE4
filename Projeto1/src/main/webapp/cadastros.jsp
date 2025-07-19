@@ -19,6 +19,18 @@
                             if (login.getPermissao((String) session.getAttribute("acessoUsuario"), "B")) {
                                 out.print("<a href='BairrosController?processar=listar'><img src='imagens/Usuarios.png' alt='Bairros' height='200px' width='200px' title='Bairros'</a>");
                             }
+                            
+                            if (login.getPermissao((String) session.getAttribute("acessoUsuario"), "L")) {
+                                out.print("<a href='LogradourosController?processar=listar'><img src='imagens/Usuarios.png' alt='Logradouros' height='200px' width='200px' title='Logradouros'</a>");
+                            }
+                            
+                            if (login.getPermissao((String) session.getAttribute("acessoUsuario"), "C")) {
+                                out.print("<a href='CidadesController?processar=listar'><img src='imagens/Cidades.png' alt='Cidades' height='200px' width='200px' title='Cidades'</a>");
+                            }
+                            
+                            if (login.getPermissao((String) session.getAttribute("acessoUsuario"), "E")) {
+                                out.print("<a href='BairrosController?processar=listar'><img src='imagens/Usuarios.png' alt='Bairros' height='200px' width='200px' title='Bairros'</a>");
+                            }
                         %></td></tr>
             </table>
         </div>
