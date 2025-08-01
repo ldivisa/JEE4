@@ -8,10 +8,10 @@ function validarSenha(input){
 }
 
 function formata_mascara(campo_passado,mascara){
-    var campo = campo_passado.value.lenght;
+    var campo = campo_passado.value.length;
     var saida = mascara.substring(0,1);
     var texto = mascara.substring(campo);
-    if(texto.substring(0,1) != saida){
+    if(texto.substring(0,1) !== saida){
         campo_passado.value += texto.substring(0,1);
     }
 }
@@ -27,7 +27,7 @@ function Numero(e){
         return true;
     else
     {
-        if (tecla !=8) // backspace
+        if (tecla !==8) // backspace
             return false;
         else
             return true;

@@ -14,7 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <div>TODO write content</div>
         <form>
            <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text" id= "gruposUsuario"  placeholder=" Grupos do Usuario" name="gruposUsuario" required maxlength="20" size="20" onkeypress="formata_mascara(this,'##-##-####'); return Numero(event);"/>
+            <input type="text" id= "gruposUsuario"  placeholder=" Grupos do Usuario" name="gruposUsuario" required maxlength="20" size="20" oninput="formata_mascara(this,'##-##-####');" onkeypress="return Numero(event);"/>
         </form>
         </body>
 </html>
