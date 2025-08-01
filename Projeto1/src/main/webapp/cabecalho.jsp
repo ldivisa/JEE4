@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script language="javascript" src="js/funcoes.js"> </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Java EE 4 - Projeto 1</title>
     </head>

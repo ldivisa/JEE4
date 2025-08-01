@@ -13,8 +13,24 @@ function formata_mascara(campo_passado,mascara){
     var texto = mascara.substring(campo);
     if(texto.substring(0,1) !== saida){
         campo_passado.value += texto.substring(0,1);
-        
     }
-    
+}
+
+function Numero(e){
+    var tecla;
+    navegador = /msie/i.test(navigator.userAgent);
+    if(navegador)
+            tecla = event.keyCode;
+        else
+            tecla = e.which;
+    if(tecla > 47 && tecla < 58) // numeros 0 ate 9
+        return true;
+    else
+    {
+        if (tecla !==8) // backspace
+            return false;
+        else
+            return true;
+    }
 }
 
