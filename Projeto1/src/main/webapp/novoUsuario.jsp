@@ -20,11 +20,11 @@
         <form id="formNovoUsuario" method="get" action="UsuariosController">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  placeholder="nome do usuario" name="nomeUsuario" required autofocus maxlength="30"  onkeyup="lettersOnly(this);" size="30"/>
+            <input type="text"  placeholder="nome do usuario" name="nomeUsuario" required autofocus maxlength="30"  onkeypress="return lettersOnly(event);" size="30"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  placeholder=" Nome completo do usuario" name="nomeCompletoUsuario" required maxlength="50" size="50"/>
+            <input type="text"  placeholder=" Nome completo do usuario" name="nomeCompletoUsuario" onkeypress="return lettersOnly(event);" required maxlength="50" size="50"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
@@ -32,7 +32,7 @@
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  placeholder=" Grupos do Usuario" name="gruposUsuario" required maxlength="20" size="20" onkeypress="formata_mascara(this,'##/##/####'); return Numero(event);"/>
+            <input type="text"  placeholder=" Grupos do Usuario" name="gruposUsuario" required maxlength="20" size="20" oninput="formata_mascara(this,'##/##/####');" onkeypress="return Numero(event);"/>
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
