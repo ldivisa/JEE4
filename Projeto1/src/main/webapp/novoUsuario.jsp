@@ -20,7 +20,7 @@
         <form id="formNovoUsuario" method="get" action="UsuariosController">
         <div class="campos">
             <label for="usuario">Usuário.:</label>
-            <input type="text"  placeholder=" nome do usuario" name="nomeUsuario" required autofocus maxlength="30" size="30"/>
+            <input type="text"  placeholder="nome do usuario" name="nomeUsuario" required autofocus maxlength="30"  onkeyup="lettersOnly(this);" size="30"/>
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
