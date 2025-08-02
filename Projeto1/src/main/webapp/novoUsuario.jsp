@@ -24,15 +24,15 @@
         </div>
         <div class="campos">
             <label for="nomeCompletoUsuario">Nome Completo Usuário.:</label>
-            <input type="text"  placeholder=" Nome completo do usuario" name="nomeCompletoUsuario" onkeypress="return lettersOnly(event);" required maxlength="50" size="50"/>
+            <input type="text"  placeholder="Nome completo do usuario" name="nomeCompletoUsuario" onkeypress="return lettersOnly(event);" required maxlength="50" size="50"/>
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text" name="acessoUsuario" placeholder=" acessos ABCDEFGHI" required pattern="[[:alpha:]]{1,}" size="34" maxlength="34"/>
+            <input type="text" name="acessoUsuario" placeholder="ABCDEFGHI" required pattern="[[:alpha:]]{1,}" onkeypress="return somenteMaiusculas(event);" size="34" maxlength="34"/>
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
-            <input type="text"  placeholder=" Grupos do Usuario" name="gruposUsuario" required maxlength="20" size="20" oninput="formata_mascara(this,'##/##/####');" onkeypress="return Numero(event);"/>
+            <input type="text"  placeholder=" Grupos do Usuario" name="gruposUsuario" required maxlength="20" size="20" onkeypress="return Numero(event);"/>
         </div>
         <div class="campos">
             <label for="dataCadastro">Data Cadastro.:</label>
