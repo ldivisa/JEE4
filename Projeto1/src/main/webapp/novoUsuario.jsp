@@ -18,8 +18,10 @@
     </div>
     <div id="formNovoUsuario">
         <form id="formNovoUsuario" method="get" action="UsuariosController">
+            <fieldset>
         <div class="campos">
             <label for="usuario">Usuário.:</label>
+            <legend>Usuário</legend>
             <input type="text"  placeholder="nome do usuario" name="nomeUsuario" required autofocus maxlength="30"  onkeypress="return lettersOnly(event);" size="30"/>
         </div>
         <div class="campos">
@@ -50,6 +52,7 @@
         <div class="campos">
             <button type="submit"  name="processar" value="novo" title="Gravar informações no cadastro deste novo usuário">Gravar novo usuário</>
         </div>
+            </fieldset>>
     </form>
     </div>
 </div>
