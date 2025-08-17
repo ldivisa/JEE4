@@ -1,3 +1,20 @@
+function teste(evt) {
+         return true;
+}
+
+function aceitarSomenteMaiusculas(evt) {
+     alert("Este campo aceita apenas letras maiúsculas.");
+    evt = (evt) ? evt : event;
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+        ((evt.which) ? evt.which : 0));
+          alert(charCode);
+    if (charCode < 65 || charCode > 90) {
+        alert("Este campo aceita apenas letras maiúsculas.");
+        return false;
+    }
+    return true;
+}
+
 function validarSenha(input){
     if(input.value !==document.getElementById("senhaNova1").value){
         input.setCustomValidity('As senhas não são iguais');
@@ -46,14 +63,14 @@ function lettersOnly(evt) {
     return true;
 }
 
-function somenteMaiusculas(evt) {
+
+function lettersOnly2(evt) {
     evt = (evt) ? evt : event;
     var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
         ((evt.which) ? evt.which : 0));
-        
-    if ((charCode < 65 || charCode > 90)&&(charCode !==8)) {
-        alert("Este campo aceita apenas letras maiúsculas.");
-        //alert(charCode);
+    if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+        (charCode < 97 || charCode > 122)) {
+        alert("Este campo aceita apenas letras.");
         return false;
     }
     return true;

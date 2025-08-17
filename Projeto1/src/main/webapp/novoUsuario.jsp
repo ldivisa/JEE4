@@ -30,7 +30,7 @@
         </div>
         <div class="campos">
             <label for="acessoUsuario">Acessos Usuário.:</label>
-            <input type="text" name="acessoUsuario" placeholder="ABCDEFGHI" required pattern="[[:alpha:]]{1,}" onkeypress="return somenteMaiusculas(event);" size="34" maxlength="34"/>
+            <input type="text" name="acessoUsuario" placeholder="ABCDEFGHI" onkeypress="return aceitarSomenteMaiusculas(event);" required size="34" maxlength="34"/>
         </div>
         <div class="campos">
             <label for="gruposUsuario">Grupos Usuário.:</label>
