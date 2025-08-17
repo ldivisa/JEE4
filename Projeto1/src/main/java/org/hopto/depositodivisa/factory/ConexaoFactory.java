@@ -4,6 +4,7 @@
  */
 package org.hopto.depositodivisa.factory;
 
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -63,6 +64,7 @@ Dotenv ambiente =Dotenv.load();
             Logger.getLogger(ConexaoFactory.class.getName()).log(Level.SEVERE, null, e);
             throw new RuntimeException("Erro ClassNotFoundException em ConnectionFactory", e);
         }
+
         
         
     }

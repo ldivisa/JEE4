@@ -3,11 +3,11 @@ function teste(evt) {
 }
 
 function aceitarSomenteMaiusculas(evt) {
-     alert("Este campo aceita apenas letras maiúsculas.");
+     //alert("Este campo aceita apenas letras maiúsculas.");
     evt = (evt) ? evt : event;
     var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
         ((evt.which) ? evt.which : 0));
-          alert(charCode);
+       //   alert(charCode);
     if (charCode < 65 || charCode > 90) {
         alert("Este campo aceita apenas letras maiúsculas.");
         return false;

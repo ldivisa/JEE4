@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hopto.depositodivisa.factory.ConexaoFactory;
-import org.hopto.depositodivisa.funcoes.HashSenhasArgo2;
 import org.hopto.depositodivisa.model.BairroModel;
 
 /**
@@ -208,7 +207,7 @@ public void registrarDataUltimoBairroPerfilBairro(String bairroAlterarEstado)   
             PreparedStatement ps1 = connection.prepareStatement(SQL);
             ps1.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
 
@@ -220,7 +219,7 @@ public void alterarSenha(String bairroNome, String senhaNovaHash){
         PreparedStatement ps1 = connection.prepareStatement(SQL);
         ps1.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
 }
 
@@ -241,13 +240,13 @@ SQL = "select count(*) as contagem from bairros where "+tipoPesquisa+" like '%"+
             contagem= rs.getString("contagem");
             System.out.println("\n\nContagem "+contagem);
      } catch (SQLException ex) {
-            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
+          //  Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
      }finally{
     try {
         rs.close();
         
     } catch (SQLException ex) {
-        System.getLogger(BairroDAO.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        //System.getLogger(BairroDAO.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
     }
         
         }
